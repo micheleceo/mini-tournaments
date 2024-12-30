@@ -20,8 +20,13 @@ The players must be in the registered list. Actually there is a JSON file for th
 After the tournment is finished you can download the updated JSON file,
 but there is no memory at the moment.
 
-## Istruction
-Home screen
+## Technologies Used
+
+- JavaScript
+- HTML
+- CSS
+
+## Istructions
 ![Hone screen](/screenshots/home-screen.png)
 
 -  You can view the registerd players with the relative rating
@@ -33,8 +38,4 @@ Home screen
 
   
 
-## Technologies Used
 
-- JavaScript
-- HTML
-- CSS
