@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini padel tournament</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="padel-tournament-styles.css">
+    <script src="padel-tournament-script.js"></script>
+
+</head>
+
+<body>
+    
+    <!-- Screen 1: Select names -->
+    <div id="screen1" class="screen active padel-decor">
+        <h1 style="font-size: 28px; font-weight: bold;">Mini tournament</h1>
+        <div class="player-input">
+            <select id="player1-select" class="player-select" onchange="handleSelectChange(event)"></select>
+            <select id="player2-select" class="player-select" disabled onchange="handleSelectChange(event)"></select>
+            <select id="player3-select" class="player-select" disabled onchange="handleSelectChange(event)"></select>
+            <select id="player4-select" class="player-select" disabled onchange="handleSelectChange(event)"></select>
+            <select id="player5-select" class="player-select" disabled onchange="handleSelectChange(event)"></select>
+            <select id="player6-select" class="player-select" disabled onchange="handleSelectChange(event)"></select>
+            <select id="player7-select" class="player-select" disabled onchange="handleSelectChange(event)"></select>
+            <select id="player8-select" class="player-select" disabled onchange="handleSelectChange(event)"></select>
+        </div>
+        <div class="player-buttons">
+            <button onclick="displayPlayersList()">View Players List</button>
+            <button onclick="displayNewPlayerForm()">New player</button>
+            <button onclick="resetSelects()">Reset</button>
+        </div>
+        <div class="navigation-buttons">
+            <select id="selection-criterion-players" class="method" aria-label="Selection criterion for players">
+                <option value="rating-balance">Rating balance</option>
+                <option value="random" disabled>Random selection</option>
+            </select>
+            <button onclick="startTournament()">Start tournament</button>
+        </div>
+    </div>
+    
+    <!-- Screen 2: Round 1 -->
+    <div id="screen2" class="screen padel-decor">
+        <h2>Round 1</h2>
+        <div id="match1" class="match">
+            <div id="team1" class="team">
+                <label for="team1-gamesWon" id="team1-players">Team1</label>
+                <input type="number" id="team1-gamesWon">
+            </div>
+            <div id="team2" class="team">
+                <label for="team2-gamesWon" id="team2-players">Team2</label>
+                <input type="number" id="team2-gamesWon">
+            </div>
+        </div>
+        <div id="match2" class="match">
+            <div id="team3" class="team">
+                <label for="team3-gamesWon" id="team3-players">Team3</label>
+                <input type="number" id="team3-gamesWon">
+            </div>
+            <div id="team4" class="team">
+                <label for="team4-gamesWon" id="team4-players">Team4</label>
+                <input type="number" id="team4-gamesWon">
+            </div>
+        </div>
+        <div class="next-step">
+            <select id="selection-criterion-1" class="method" aria-label="Selection criterion for round 1">
+                <option value="semifinal_final">Semi-final and final</option>
+                <option value="random" disabled>Random selection</option>
+                <option value="wvsl_cross" disabled>Winners vs Losers (cross)</option>
+            </select>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="switchScreen(2, 1)">&lt</button>
+            <button onclick="gotoNextStep(currentRound=1)">Next step</button>
+        </div>
+    </div>
+
+    <!-- Screen 3: Round 2 -->
+    <div id="screen3" class="screen padel-decor">
+        <h2>Round 2</h2>
+        <div id="match3" class="match">
+            <div id="team5" class="team">
+                <label for="team5-gamesWon" id="team5-players">Team5</label>
+                <input type="number" id="team5-gamesWon">
+            </div>
+            <div id="team6" class="team">
+                <label for="team6-gamesWon" id="team6-players">Team6</label>
+                <input type="number" id="team6-gamesWon">
+            </div>
+        </div>
+        <div id="match4" class="match">
+            <div id="team7" class="team">
+                <label for="team7-gamesWon" id="team7-players">Team7</label>
+                <input type="number" id="team7-gamesWon">
+            </div>
+            <div id="team8" class="team">
+                <label for="team8-gamesWon" id="team8-players">Team8</label>
+                <input type="number" id="team8-gamesWon">
+            </div>
+        </div>
+        <div id="creatRound3" class="createNewRound">
+        <select id="selection-criterion-2" class="method" aria-label="Selection criterion for round 2">
+            <option value="random">Random selection</option>
+            <option value="wvsl_cross">Winners vs Losers (cross)</option>
+        </select>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="switchScreen(3, 2)">&lt</button>
+            <button onclick="gotoNextStep(2)">Next step</button>
+        </div>
+    </div>
+
+    <!-- Screen 4: Round 3 -->
+    <div id="screen4" class="screen padel-decor">
+        <h2>Round 3</h2>
+        <div id="match5" class="match">
+            <div id="team9" class="team">
+                <label for="team9-gamesWon" id="team9-players">Team5</label>
+                <input type="number" id="team9-gamesWon">
+            </div>
+            <div id="team10" class="team">
+                <label for="team10-gamesWon" id="team10-players">Team6</label>
+                <input type="number" id="team10-gamesWon">
+            </div>
+        </div>
+        <div id="match6" class="match">
+            <div id="team11" class="team">
+                <label for="team11-gamesWon" id="team11-players">Team7</label>
+                <input type="number" id="team11-gamesWon">
+            </div>
+            <div id="team12" class="team">
+                <label for="team12-gamesWon" id="team12-players">Team8</label>
+                <input type="number" id="team12-gamesWon">
+            </div>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="switchScreen(4, 3)">&lt</button>
+            <button onclick="gotoNextStep(3)">Next step</button>
+        </div>
+    </div>
+
+    <!-- Screen 5: Score Calculations -->
+    <div id="screen5" class="screen padel-decor">
+        <h2>Score calculation</h2>
+        <label for="score-calculation-criterion">Select method</label>
+        <select id="score-calculation-criterion" aria-label="Score calculation method">
+            <option value="rating-increment">Rating increment</option>
+            <option value="win-lose-draw">Win lose draw</option>
+            <option value="total-gamesWon">Total games won</option>
+            <option value="relative-gamesWon">Games won minus games lose</option>
+        </select>
+        <div class="navigation-buttons">
+            <button onclick="switchScreen(5, 3)">&lt</button>
+            <button onclick="calculateTournamentScore()">Calculate score</button>
+        </div>
+    </div>
+
+    <!-- Screen 6: Final ranking -->
+    <div id="screen6" class="screen padel-decor">
+        <h3>Tournament ranking</h3>
+        <div id="final-ranking"></div>
+        <div>
+            <table id="ranking-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Player</th>
+                        <th>Score</th>
+                        <th>RI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="switchScreen(6, 5)">&lt</button>
+            <button onclick="restartTournament()">New tournament</button>
+            <button onclick="recordTournamentResults()">Record tournament</button>
+        </div>
+    </div>
+
+    <!-- New player modal -->
+    <div id="playerModal" class="modal" role="dialog" aria-labelledby="playerModalLabel" aria-hidden="true">
+        <div class="modal-content">
+            <h3 id="playerModalLabel">Insert new player</h3>
+            <input type="text" id="newPlayerName" placeholder="Player name">
+            <div class="modal-buttons">
+                <button onclick="cancel()">Cancel</button>
+                <button onclick="insertNewPlayer()">Insert</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Players list modal -->
+    <div id="playesrsListModal" class="modal" role="dialog" aria-labelledby="playersListModalLabel" aria-hidden="true">
+        <div class="modal-content">
+          <h3 id="playersListModalLabel">Players List</h3>
+          <table id="players-table">
+            <thead>
+              <tr>
+                <th id="name-header">Name</th>
+                <th id="rating-header">Rating</th>
+              </tr>
+            </thead>
+            <tbody id="players-tbody">
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+</body>
+
+</html>
