@@ -605,7 +605,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 async function getJsonData() {
     try {
-      const response = await fetch('https://raw.githubusercontent.com/micheleceo/Test/main/registeredPlayers.json');
+      const response = await fetch('https://raw.githubusercontent.com/micheleceo/mini-tournaments/refs/heads/main/registeredPlayers.json');
       if (!response.ok) {
         throw new Error(`Errore HTTP! Stato: ${response.status}`);
       }
