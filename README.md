@@ -22,7 +22,7 @@ but there is no memory at the moment.
 
 ## Istruction
 Home screen
-![Hone screeb](/screenshots/Home Screen.png)
+![Hone screen](/screenshots/home-screen.png)
 
 -  You can view the registerd players with the relative rating
 -  You can add a new one (only for the tournament) no memory at the moment !!!
