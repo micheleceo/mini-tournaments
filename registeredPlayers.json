@@ -1,0 +1,145 @@
+{
+  "registeredPlayers": [
+    {
+      "name": "Pippo Franco",
+      "rating": 1592.2847116313924,
+      "totalGamesWon": 78,
+      "totalGamesLost": 37,
+      "totalMatchesWon": 5,
+      "totalMatchesDrawn": 0,
+      "totalMatchesLost": 0,
+      "totalTournamentsWon": 0,
+      "totalTournamentsDrawn": 0,
+      "totalTournamentsLost": 3,
+      "PlayedTournamentsID": [
+        "30-12-2024, 09:23",
+        "30-12-2024, 21:19"
+      ]
+    },
+    {
+      "name": "Felice Loffo",
+      "rating": 222.03739071952336,
+      "totalGamesWon": 52,
+      "totalGamesLost": 63,
+      "totalMatchesWon": 3,
+      "totalMatchesDrawn": 0,
+      "totalMatchesLost": 2,
+      "totalTournamentsWon": 0,
+      "totalTournamentsDrawn": 0,
+      "totalTournamentsLost": 3,
+      "PlayedTournamentsID": [
+        "30-12-2024, 09:23",
+        "30-12-2024, 21:19"
+      ]
+    },
+    {
+      "name": "Franca Mente",
+      "rating": 401.87055756715426,
+      "totalGamesWon": 45,
+      "totalGamesLost": 26,
+      "totalMatchesWon": 4,
+      "totalMatchesDrawn": 0,
+      "totalMatchesLost": 1,
+      "totalTournamentsWon": 0,
+      "totalTournamentsDrawn": 0,
+      "totalTournamentsLost": 3,
+      "PlayedTournamentsID": [
+        "30-12-2024, 09:23",
+        "30-12-2024, 21:19"
+      ]
+    },
+    {
+      "name": "Bianca Neri",
+      "rating": 698.4515447837616,
+      "totalGamesWon": 41,
+      "totalGamesLost": 30,
+      "totalMatchesWon": 4,
+      "totalMatchesDrawn": 0,
+      "totalMatchesLost": 1,
+      "totalTournamentsWon": 0,
+      "totalTournamentsDrawn": 0,
+      "totalTournamentsLost": 3,
+      "PlayedTournamentsID": [
+        "30-12-2024, 09:23",
+        "30-12-2024, 21:19"
+      ]
+    },
+    {
+      "name": "Gemma Preziosa",
+      "rating": 1698.4515447837616,
+      "totalGamesWon": 97,
+      "totalGamesLost": 30,
+      "totalMatchesWon": 51,
+      "totalMatchesDrawn": 0,
+      "totalMatchesLost": 1,
+      "totalTournamentsWon": 0,
+      "totalTournamentsDrawn": 0,
+      "totalTournamentsLost": 3,
+      "PlayedTournamentsID": [
+        "30-12-2024, 09:23",
+        "30-12-2024, 21:19"
+      ]
+    },
+    {
+      "name": "Guglielmo Cancelli",
+      "rating": 1601.8705575671543,
+      "totalGamesWon": 101,
+      "totalGamesLost": 26,
+      "totalMatchesWon": 51,
+      "totalMatchesDrawn": 0,
+      "totalMatchesLost": 1,
+      "totalTournamentsWon": 0,
+      "totalTournamentsDrawn": 0,
+      "totalTournamentsLost": 3,
+      "PlayedTournamentsID": [
+        "30-12-2024, 09:23",
+        "30-12-2024, 21:19"
+      ]
+    },
+    {
+      "name": "Bruno Biondi",
+      "rating": 1415.0373907195235,
+      "totalGamesWon": 108,
+      "totalGamesLost": 63,
+      "totalMatchesWon": 50,
+      "totalMatchesDrawn": 0,
+      "totalMatchesLost": 2,
+      "totalTournamentsWon": 0,
+      "totalTournamentsDrawn": 0,
+      "totalTournamentsLost": 3,
+      "PlayedTournamentsID": [
+        "30-12-2024, 09:23",
+        "30-12-2024, 21:19"
+      ]
+    },
+    {
+      "name": "Flip Trmon",
+      "rating": 1885.2847116313924,
+      "totalGamesWon": 124,
+      "totalGamesLost": 37,
+      "totalMatchesWon": 52,
+      "totalMatchesDrawn": 0,
+      "totalMatchesLost": 0,
+      "totalTournamentsWon": 0,
+      "totalTournamentsDrawn": 0,
+      "totalTournamentsLost": 3,
+      "PlayedTournamentsID": [
+        "30-12-2024, 09:23",
+        "30-12-2024, 21:19"
+      ]
+    },
+    {
+      "name": "Guido Di Rado",
+      "rating": 500.1610511754579,
+      "totalGamesWon": 80,
+      "totalGamesLost": 9,
+      "totalMatchesWon": 50,
+      "totalMatchesDrawn": 0,
+      "totalMatchesLost": 0,
+      "totalTournamentsWon": 0,
+      "totalTournamentsDrawn": 0,
+      "totalTournamentsLost": 0,
+      "PlayedTournamentsID": []
+    }
+  ]
+}
