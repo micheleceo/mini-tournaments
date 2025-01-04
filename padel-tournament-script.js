@@ -1,6 +1,7 @@
 'use strict';
 let data ;
 let registeredPlayers;
+let loggedIn = false;
 
 class Player {
     constructor(name,initialRating) {
@@ -141,7 +142,7 @@ class Tournament {
         
         switch (currentRoundNumber) {
             case 0:
-                //  Organize players
+                //  Organize players an create round 1
                 const slected_Citerion = document.getElementById('selection-criterion-players');
                 if(slected_Citerion.value == 'rating-balance'){
                     this.balancePlayersTeams();
@@ -154,7 +155,7 @@ class Tournament {
                 switchScreen(1, 2);
                 break;
             case 1:
-                //  Organize players and create a new round
+                //  Organize players and create round 2
                 const selectElement1 = document.getElementById('selection-criterion-1');
                 this.organizePlayers(selectElement1,currentRoundNumber);
                 if(selectElement1.value == 'semifinal_final'){
@@ -194,7 +195,9 @@ class Tournament {
         switch (select.value) {
             case 'semifinal_final':
                 //Winners vs Winners and Loosers vs Loosers
-                this.player.sort((a, b) => b.matchResult[roundIndex].matchRatingIncrement - a.matchResult[roundIndex].matchRatingIncrement);
+                this.player.sort((a, b) => b.matchResult[roundIndex].ratingIncrement - a.matchResult[roundIndex].ratingIncrement);
+                console.log(">>>>>Player by mach rating increment: ");
+                this.player.forEach(player => console.log(`${player.name} ${player.matchResult[roundIndex].ratingIncrement}`));
                 break;
             case 'random':
                 // Shuffle players
@@ -227,14 +230,14 @@ class Tournament {
      * reorders the player list for the first round matches.
      */
     balancePlayersTeams() {
-        this.player.sort((a, b) => b.rating - a.rating);
-        console.log("Tournament player order by rating: ");
-        this.player.forEach(player => console.log(`${player.name} ${player.rating}`));
+        this.player.sort((a, b) => b.initialRating - a.initialRating);
+        console.log(">>>>Tournament player order by rating: ");
+        this.player.forEach(player => console.log(`${player.name} ${player.initialRating}`));
         //The player with the highest rating goes on a team with the player with the lowest rating
         const round1Players = [0, 7, 1, 6, 2, 5, 3, 4].map(index => this.player[index]);
-        console.log("Round1 player ordered for match: ");
+        console.log(">>>>Round1 player ordered for match: ");
         this.player = round1Players;
-        this.player.forEach(player => console.log(`${player.name} ${player.rating}`));
+        this.player.forEach(player => console.log(`${player.name} ${player.initialRating}`));
     }
     
     swap(playerA, playerB) {
@@ -256,21 +259,23 @@ class Tournament {
         let roundIndex = roundNumber -1;
         
         const team= [];
-        //Iteration through the 4 teams
+        //Create the teams
         for(let i = 0; i < 4; i++){
             team.push(new Team(this.player[i*2], this.player[i*2+1], parseInt(document.getElementById(`team${++teamIndex}-gamesWon`).value) || 0));
         }
 
+        //Create the matches
         const match = [];
         match.push(new Match());
         match[0].team.push(team[0], team[1]);
         match.push(new Match());
         match[1].team.push(team[2], team[3]);
        
+        //Create and add the round to the torunament
         this.round.push(new Round());
         this.round[roundIndex].match.push(match[0], match[1]);
 
-        //Iteration through the 2 matches
+        //Iteration through the 2 matches, calculate the result and update the player results with the rating increment
         for(let i = 0; i < 2; i++){
             
             const result = calculateResult(this.round[roundIndex].match[i].team[0].gamesWon, this.round[roundIndex].match[i].team[1].gamesWon);
@@ -313,7 +318,7 @@ class Tournament {
                     player.tournamentMatchesDrawn++;
                 }
             })
-         });
+        });
 
         const selectElement1 = document.getElementById('score-calculation-criterion');
 
@@ -386,9 +391,6 @@ class Tournament {
                {
                 registeredPlayers[index].totalTournamentsLost++
                }
-               registeredPlayers[index].PlayedTournamentsID.push(tournamentID);
-
-               
                
             } else {
                 console.error('Player not found');
@@ -396,19 +398,23 @@ class Tournament {
             
         });
 
-        this.exportJSON();
+        if (loggedIn) {
+        // Salva i dati in Gdrive
+        requestToDoPost(data);
+        }
+        else{
+             // Converte l'oggetto in una stringa JSON
+            const jsonData = JSON.stringify(data, null, 2); // Il 2 indica l'indentazione
+
+            this.exportJSON(jsonData);
+        }
     }
 
 
-
-
-    exportJSON() {
-        // Converte l'oggetto in una stringa JSON
-        const jsonString = JSON.stringify(data, null, 2); // Il 2 indica l'indentazione
-
+    exportJSON(jsonData) {
         // Crea un elemento <a> (link) invisibile
         const link = document.createElement('a');
-        link.setAttribute('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(jsonString));
+        link.setAttribute('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(jsonData));
         link.setAttribute('download', 'registeredPlayers.json'); // Nome del file da scaricare
 
         // Aggiunge il link al documento (non è necessario che sia visibile)
@@ -445,7 +451,7 @@ function startTournament() {
     });
 
     if (allSelected) {
-        // Inizia il torneo
+        // Start the tournament
         tournament.startTournament();
     } else {
         alert('Please select all players before starting the tournament.');
@@ -594,9 +600,17 @@ function resetSelects() {
 
 // Inizialize all selects at DOM ready
 document.addEventListener('DOMContentLoaded', async function() {
-   //TODO: define JSON data structure
+
    data = await getJsonData();
+
+   // CHeck if some error occurred
+   if (data === null) {
+    alert('Error fetching JSON file. Refresh da page to try again.');
+    return;
+   }
+
    registeredPlayers = data.registeredPlayers;
+
    console.log(registeredPlayers);
 
    initializeFirstSelect();  
@@ -607,12 +621,12 @@ async function getJsonData() {
     try {
       const response = await fetch('https://raw.githubusercontent.com/micheleceo/mini-tournaments/refs/heads/main/registeredPlayers.json');
       if (!response.ok) {
-        throw new Error(`Errore HTTP! Stato: ${response.status}`);
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const jsonData = await response.json();
-      return jsonData; // Puoi restituire i dati se necessario
+      return jsonData; 
     } catch (error) {
-      console.error('Errore durante il recupero del JSON:', error);
+      console.error('Error fetching JSON file:', error);
       return null; // Gestisci l'errore restituendo null o un valore di default
     }
 }
@@ -649,7 +663,7 @@ function insertNewPlayer() {
         return;
     }
     
-    //TODO Add new payer to DB
+    //TODO Add new player to DB
     
     // Add new player to the registered players
     registeredPlayers.push({
@@ -739,4 +753,60 @@ function getTournametID() {
 
     // Formatta la data
     return romaDateTime;
+}
+
+let url = 'https://script.google.com/macros/s/AKfycbx44BoWtW35013PtfBDmyb00pd7c1z1yewlXFcFxtcxgYo_Ch_7cUhEWrgJ-ak3k'; // Replace with your deployed script URL
+
+//Grdrive requests
+async function requestToDoGet() {
+    let jsonfile;
+  
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.statusText}`);
+      }
+  
+      jsonfile = await response.json();
+      return jsonfile;
+    } catch (error) {
+      console.error('There has been a problem with your fetch operation:', error);
+      return "error";
+    }
+  }
+
+
+  async function requestToDoPost(json_data) {
+  
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(json_data)
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.statusText}`);
+      }
+  
+      const data = await response.json();
+      
+    } catch (error) {
+      console.error('There has been a problem with your fetch operation:', error);
+    }
+  }
+
+  
+  async function showPasswordPopup() {    
+    const password = prompt("Please enter the password:");
+    url = url + password + "/exec";
+    const response = await requestToDoGet();
+
+    if (response === "error") {
+        alert("Incorrect password!");
+    } else {
+        loggedIn = true;
+        data = response;
+        registeredPlayers  = data.data
+        resetSelects();
+    }
 }
