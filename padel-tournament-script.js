@@ -195,7 +195,9 @@ class Tournament {
         switch (select.value) {
             case 'semifinal_final':
                 //Winners vs Winners and Loosers vs Loosers
-                this.player.sort((a, b) => b.matchResult[roundIndex].matchRatingIncrement - a.matchResult[roundIndex].matchRatingIncrement);
+                this.player.sort((a, b) => b.matchResult[roundIndex].ratingIncrement - a.matchResult[roundIndex].ratingIncrement);
+                console.log(">>>>>Player by mach rating increment: ");
+                this.player.forEach(player => console.log(`${player.name} ${player.matchResult[roundIndex].ratingIncrement}`));
                 break;
             case 'random':
                 // Shuffle players
@@ -229,11 +231,11 @@ class Tournament {
      */
     balancePlayersTeams() {
         this.player.sort((a, b) => b.initialRating - a.initialRating);
-        console.log("Tournament player order by rating: ");
+        console.log(">>>>Tournament player order by rating: ");
         this.player.forEach(player => console.log(`${player.name} ${player.initialRating}`));
         //The player with the highest rating goes on a team with the player with the lowest rating
         const round1Players = [0, 7, 1, 6, 2, 5, 3, 4].map(index => this.player[index]);
-        console.log("Round1 player ordered for match: ");
+        console.log(">>>>Round1 player ordered for match: ");
         this.player = round1Players;
         this.player.forEach(player => console.log(`${player.name} ${player.initialRating}`));
     }
@@ -449,7 +451,7 @@ function startTournament() {
     });
 
     if (allSelected) {
-        // Inizia il torneo
+        // Start the tournament
         tournament.startTournament();
     } else {
         alert('Please select all players before starting the tournament.');
