@@ -160,6 +160,15 @@ function resetSelects() {
     initializeFirstSelect();
 }
 
+function resetInputs() {
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+      input.value = '';
+    });
+
+    resetSelects();
+  }
+
 
 // Inizialize all selects at DOM ready
 document.addEventListener('DOMContentLoaded', async function() {
@@ -370,6 +379,8 @@ window.cancel = cancel;
 window.insertNewPlayer = insertNewPlayer;
 window.displayPlayersList = displayPlayersList;
 window.showPasswordPopup = showPasswordPopup;
+window.resetSelects = resetSelects;
+window.resetInputs = resetInputs;
 window.registeredPlayers = registeredPlayers;
 
 // Esporta le funzioni se necessario
@@ -386,5 +397,7 @@ export {
     insertNewPlayer,
     displayPlayersList,
     showPasswordPopup,
+    resetInputs,
+    resetSelects,
     registeredPlayers
 };

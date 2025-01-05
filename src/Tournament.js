@@ -149,12 +149,6 @@ class Tournament {
         this.player.forEach(player => console.log(`${player.name} ${player.initialRating}`));
     }
     
-    //TODO: forse da cancellare
-    /*swap(playerA, playerB) {
-        const temp = playerA;
-        playerA = playerB;
-        playerB = temp;
-    }*/
 
     setupRound(roundNumber) {
         let teamIndex = (roundNumber-1) * 4;
@@ -199,6 +193,17 @@ class Tournament {
             this.player[i*4+3].saveMatchResults(roundIndex,this.round[roundIndex].match[i].team[1].gamesWon, this.round[roundIndex].match[i].team[0].gamesWon,teamBRatingIncrement);
         }
     }
+
+    /**
+     * Calculates the tournament score for each player based on the selected scoring criterion.
+     * Resets and updates player statistics, calculates scores, and generates a ranking table.
+     * 
+     * The function first resets all tournament statistics for each player, then updates these
+     * statistics based on the results of each match. The score for each player is calculated 
+     * according to the selected criterion, which can be 'win-lose-draw', 'rating-increment', 
+     * 'total-gamesWon', or 'relative-gamesWon'. The players are then ranked in descending order 
+     * based on their scores, and the results are displayed in the ranking table.
+     */
 
     calculateTournamentScore() {
         // Calculate tournament final rating increment
@@ -279,6 +284,7 @@ class Tournament {
         switchScreen(5, 6);
     }
 
+
     recordTournamentResults(registeredPlayers)  {
 
         this.tournamentID = this.getTournamentID();
@@ -292,13 +298,12 @@ class Tournament {
                registeredPlayers[index].totalMatchesWon += player.tournamentMatchesWon;
                registeredPlayers[index].totalMatchesDrawn += player.tournamentMatchesDrawn;
                registeredPlayers[index].totalMatchesLost += player.tournamentMatchesLost;
+
                const maxScore = Math.max(...this.player.map(player => player.tournamentScore));
-               if(player.score >= maxScore)
-               {
+               if(player.score >= maxScore) {
                 registeredPlayers[index].totalTournamentsWon++
                }
-               else 
-               {
+               else if(player.score < maxScore) {            
                 registeredPlayers[index].totalTournamentsLost++
                }
                
@@ -310,6 +315,10 @@ class Tournament {
 
     }
 
+    /**
+     * Restituisce la data e l'ora attuale della zona di Roma in formato stringa.
+     * @returns {string} Data e ora attuali in formato "AAAA-MM-DD-HH-MM"
+     */
     getTournamentID() {
         const now = new Date();
         const options = { 
@@ -332,11 +341,10 @@ class Tournament {
  
 
     restartTournament() {
-        switchScreen(6, 1);
         // Reset all fileds
-        for (let i = 1; i <= 8; i++) {
-            document.getElementById(`player${i}-select`).value = '';
-        }
+        resetInputs();
+
+        switchScreen(6, 1);
     }
 }
 
