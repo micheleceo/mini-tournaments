@@ -1,4 +1,4 @@
-https://github.com/micheleceo/mini-tournaments/blob/main/README.md# Mini-Tournaments
+# Mini-Tournaments
 
 Mini tournaments for 8 players with stats.
 
