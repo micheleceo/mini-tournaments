@@ -1,13 +1,14 @@
 
 class Tournament {
     constructor() {
+        this.tournamentID = '';
         this.player = [];
         this.currentRound = 0;
         this.team=[];
         this.round=[];
     }
 
-    startTournament() {
+    startTournament(registeredPlayers) {
        
         // Reset tournament
         this.player = [];
@@ -148,6 +149,7 @@ class Tournament {
         this.player.forEach(player => console.log(`${player.name} ${player.initialRating}`));
     }
     
+    //TODO: forse da cancellare
     swap(playerA, playerB) {
         const temp = playerA;
         playerA = playerB;
@@ -277,9 +279,9 @@ class Tournament {
         switchScreen(5, 6);
     }
 
-    recordTournamentResults() {
+    recordTournamentResults(registeredPlayers,  ) {
 
-        const tournamentID = getTournametID();
+        this.tournamentID = this.getTournamentID();
         
         this.player.forEach(player => {
             const index = registeredPlayers.findIndex(registeredPlayers => registeredPlayers.name === player.name);
@@ -306,6 +308,7 @@ class Tournament {
             
         });
 
+        // TODO: spostare la logica di salvataggio nel file principale
         if (loggedIn) {
         // Salva i dati in Gdrive
         requestToDoPost(data);
@@ -316,6 +319,24 @@ class Tournament {
 
             this.exportJSON(jsonData);
         }
+    }
+
+    getTournamentID() {
+        const now = new Date();
+        const options = { 
+            timeZone: 'Europe/Rome',
+            hour12: false,
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit'
+        };
+    
+        const romaDateTime = new Date().toLocaleString('it-IT', options).replace(/\//g, '-');
+    
+        // Formatta la data
+        return romaDateTime;
     }
 
 
@@ -345,3 +366,8 @@ class Tournament {
 }
 
 export default Tournament;
+import Player from './Player.js';
+import Team from './Team.js';
+import Match from './Match.js';
+import Round from './Round.js';
+import { calculateResult, calculteTeamRating, calculateTeamRatingIncrement } from './utils.js';

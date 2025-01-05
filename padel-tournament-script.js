@@ -3,15 +3,10 @@ let data ;
 let registeredPlayers;
 let loggedIn = false;
 
-import Player from './Player.js';
-import Team from './Team.js';
-import Match from './Match.js';
-import Round from './Round.js';
-import MatchResult from './MatchResult.js';
-import Tournament from './Tournamet.js';
+import Tournament from './Tournament.js';
 
 // Instantiate the tournament
-const tournament = new Tournament();
+let tournament;
 
 // Global functions for HTML interface
 function startTournament() {
@@ -25,8 +20,9 @@ function startTournament() {
     });
 
     if (allSelected) {
+        tournament = new Tournament();
         // Start the tournament
-        tournament.startTournament();
+        tournament.startTournament(registeredPlayers);
     } else {
         alert('Please select all players before starting the tournament.');
         return;
@@ -42,7 +38,7 @@ function calculateTournamentScore() {
 }
 
 function recordTournamentResults() {
-    tournament.recordTournamentResults();
+    tournament.recordTournamentResults(registeredPlayers,loggedIn,data);
 }
 
 function restartTournament() {
@@ -52,44 +48,6 @@ function restartTournament() {
 function switchScreen(currentScreen, nextScreen) {
     document.getElementById(`screen${currentScreen}`).classList.remove('active');
     document.getElementById(`screen${nextScreen}`).classList.add('active');
-}
-
-function calculateTeamRatingIncrement(teamRating, opponentTeamRating, teamActualScore) {
-    const K_FACTOR = 32; // Adjust this factor to change the strength of the rating system
-
-    const teamExpectedScore = calculateExpectedScore(teamRating, opponentTeamRating);
-    const opponentteamExpectedScore = calculateExpectedScore(opponentTeamRating, teamRating);
-
-    const teamRatingChange = K_FACTOR * (teamActualScore - teamExpectedScore);
-    const opponentteamRatingChange = K_FACTOR * (1 - teamActualScore - opponentteamExpectedScore);
-
-    return [teamRatingChange, opponentteamRatingChange];
-}
-
-/**
-     * Calculate the expected score of a player
-     * @param {number} playerRating - Current rating of the player
-     * @param {number} opponentRating - Current rating of the opponent
-     * @returns {number} Expected score (between 0 and 1)
-     */
-function calculateExpectedScore(playerRating, opponentRating) {
-    return 1 / (1 + Math.pow(10, (opponentRating - playerRating) / 400));
-}
-
-
-function calculateResult(teamAgamesWon, teamBgamesWon) {
-    const delta = teamAgamesWon - teamBgamesWon;
-    if( delta > 0){
-        return 1; 
-    }else if( delta < 0){
-        return 0;
-    }else{
-        return 0.5;
-    }
-}
-
-function calculteTeamRating(player1Rating, player2Rating){
-    return (player1Rating+player2Rating)/2; 
 }
 
 
@@ -311,24 +269,6 @@ function displayPlayersList() {
     });
 }
 
-function getTournametID() {
-    const now = new Date();
-    const options = { 
-        timeZone: 'Europe/Rome',
-        hour12: false,
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit'
-    };
-
-    const romaDateTime = new Date().toLocaleString('it-IT', options).replace(/\//g, '-');
-
-    // Formatta la data
-    return romaDateTime;
-}
-
 let url = 'https://script.google.com/macros/s/AKfycbx44BoWtW35013PtfBDmyb00pd7c1z1yewlXFcFxtcxgYo_Ch_7cUhEWrgJ-ak3k'; // Replace with your deployed script URL
 
 //Grdrive requests
@@ -386,7 +326,34 @@ async function requestToDoGet() {
 
 }
 
+// Assegna le funzioni all'oggetto window
 window.handleSelectChange = handleSelectChange;
-// Esporta la funzione se necessario
+window.startTournament = startTournament;
+window.gotoNextStep = gotoNextStep;
+window.calculateTournamentScore = calculateTournamentScore;
+window.recordTournamentResults = recordTournamentResults;
+window.restartTournament = restartTournament;
+window.switchScreen = switchScreen;
+window.displayNewPlayerForm = displayNewPlayerForm;
+window.cancel = cancel;
+window.insertNewPlayer = insertNewPlayer;
+window.displayPlayersList = displayPlayersList;
+window.showPasswordPopup = showPasswordPopup;
+window.registeredPlayers = registeredPlayers;
 
-export {tournament, MatchResult, Round, Match, Team, Player, registeredPlayers, loggedIn, showPasswordPopup, handleSelectChange };
+// Esporta le funzioni se necessario
+export {
+    startTournament,
+    handleSelectChange,
+    gotoNextStep,
+    calculateTournamentScore,
+    recordTournamentResults,
+    restartTournament,
+    switchScreen,
+    displayNewPlayerForm,
+    cancel,
+    insertNewPlayer,
+    displayPlayersList,
+    showPasswordPopup,
+    registeredPlayers
+};
