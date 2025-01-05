@@ -31,10 +31,10 @@ class Player {
     * @param {number} matchRatingIncrement - The rating increment for the player after the match.
     */
     saveMatchResults(roundindex, matchGamesWon, matchGamesLost,matchRatingIncrement) {
-        let matchResult = new MatchResult();
-        matchResult.gamesWon = matchGamesWon;
+        let matchResult = new MatchResult(matchGamesWon, matchGamesLost, matchRatingIncrement);
+       /* matchResult.gamesWon = matchGamesWon;
         matchResult.gamesLost = matchGamesLost;
-        matchResult.ratingIncrement = matchRatingIncrement;
+        matchResult.ratingIncrement = matchRatingIncrement;*/
         if(this.matchResult.length < roundindex+1){
             this.matchResult.push(matchResult); 
         }
@@ -45,4 +45,5 @@ class Player {
     }
 }
 
-export default Player;
+//export default Player;
+export default  Player ;
