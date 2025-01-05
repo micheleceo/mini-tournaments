@@ -105,7 +105,7 @@ class Tournament {
             case 'semifinal_final':
                 //Winners vs Winners and Loosers vs Loosers
                 this.player.sort((a, b) => b.matchResult[roundIndex].ratingIncrement - a.matchResult[roundIndex].ratingIncrement);
-                console.log(">>>>>Player by mach rating increment: ");
+                console.log(">>>>>Player rating increment after round: " + currentRoundNumber);
                 this.player.forEach(player => console.log(`${player.name} ${player.matchResult[roundIndex].ratingIncrement}`));
                 break;
             case 'random':

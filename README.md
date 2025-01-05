@@ -29,11 +29,35 @@ but there is no memory at the moment.
 ## Istructions
 ![Hone screen](/assets/screenshots/home-screen.png)
 
--  You can view the registerd players with the relative rating
--  You can add a new one (only for the tournament) no memory at the moment !!!
--  You can reset the select box
--  You can choose a method to organize the matches (Rating balance for now)
--  Finally start the tournament
+-  You can view the registerd players with the relative rating (calculated with the ELO method)
+-  You can select the playes starting from the first select and so on
+-  You can add a new one for the torunament, there is no memory so it'll be deleted for the next tornament
+-  You can reset the select box in case of error
+-  You can choose a method to organize the matches
+    -  *Random:* set up the matches using Fisher-Yates algorithm to randomize the order of players   
+    -  *Rating:* balance criterion:Set up matches putting the player with the highest rating with the player who has the lowest rating and so on.
+    
+-  Finally start the tournament!!!
+
+![Round1](/assets/screenshots/Round1.png)
+
+- After the **round 1** is finished insert the results
+- For the next round you can select:
+    - *Random:* (like above)
+    - *Semi-final and final:* In this case there will'be just another round.
+        The winning teams will face each other for the first and second place
+        The losing teams vill face each other for the third and the fourth place
+    - *Winners vs Loosers:* in this case the winning players will be separated
+       and will play in the same team with the losing players. There will be
+       a balnce with the players rating increment obtained in the round 1.
+- Select the criterion and go to next step
+        
+
+- After the **round 2** is finished insert the results and go to next step
+ 
+
+![Score Calculation](/assets/screenshots/ScoreCalculation.png)
+
 
 
   
