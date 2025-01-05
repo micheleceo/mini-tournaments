@@ -3,44 +3,7 @@ let data ;
 let registeredPlayers;
 let loggedIn = false;
 
-class Player {
-    constructor(name,initialRating) {
-        if (typeof initialRating !== 'number') {
-            throw new TypeError("Rating must be a number");
-          }
-        this.name = name;
-        this.initialRating = initialRating;
-
-        this.tournamentGamesWon = 0;
-        this.tournamentGamesLost = 0;
-        this.tournamentMatchesWon = 0;
-        this.tournamentMatchesDrawn = 0;
-        this.tournamentMatchesLost = 0;
-        this.tournamentRatingIncrement = 0;
-        this.tournamentScore = 0;
- 
-        this.matchResult = [];
-    }
-
-    /**
-     * Records a new round, updates round for the player, and updates game wins and relative points.
-     * @param {number} teamGameWins - Game won by the player's team
-     * @param {number} opponentTeamGameWins - Games won by the opponent team
-     */
-    saveMatchResults(roundindex,matchGamesWon, matchGamesLost,matchRatingIncrement) {
-        let matchResult = new MatchResult();
-        matchResult.gamesWon = matchGamesWon;
-        matchResult.gamesLost = matchGamesLost;
-        matchResult.ratingIncrement = matchRatingIncrement;
-        if(this.matchResult.length < roundindex+1){
-            this.matchResult.push(matchResult); 
-        }
-        else{
-            this.matchResult[roundindex] = matchResult;
-        }
-       
-    }
-}
+import Player from './Player.js';
 
 
 class MatchResult {
