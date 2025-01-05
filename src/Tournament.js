@@ -279,7 +279,7 @@ class Tournament {
         switchScreen(5, 6);
     }
 
-    recordTournamentResults(registeredPlayers,  ) {
+    recordTournamentResults(registeredPlayers, loggedIn, data)  {
 
         this.tournamentID = this.getTournamentID();
         
