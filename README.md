@@ -1,4 +1,4 @@
-# Mini-Tournaments
+https://github.com/micheleceo/mini-tournaments/blob/main/README.md# Mini-Tournaments
 
 Mini tournaments for 8 players with stats.
 
@@ -27,7 +27,7 @@ but there is no memory at the moment.
 - CSS
 
 ## Istructions
-![Hone screen](/screenshots/home-screen.png)
+![Hone screen](/assets/screenshots/home-screen.png)
 
 -  You can view the registerd players with the relative rating
 -  You can add a new one (only for the tournament) no memory at the moment !!!
