@@ -150,11 +150,11 @@ class Tournament {
     }
     
     //TODO: forse da cancellare
-    swap(playerA, playerB) {
+    /*swap(playerA, playerB) {
         const temp = playerA;
         playerA = playerB;
         playerB = temp;
-    }
+    }*/
 
     setupRound(roundNumber) {
         let teamIndex = (roundNumber-1) * 4;
@@ -279,7 +279,7 @@ class Tournament {
         switchScreen(5, 6);
     }
 
-    recordTournamentResults(registeredPlayers, loggedIn, data)  {
+    recordTournamentResults(registeredPlayers)  {
 
         this.tournamentID = this.getTournamentID();
         
@@ -308,17 +308,6 @@ class Tournament {
             
         });
 
-        // TODO: spostare la logica di salvataggio nel file principale
-        if (loggedIn) {
-        // Salva i dati in Gdrive
-        requestToDoPost(data);
-        }
-        else{
-             // Converte l'oggetto in una stringa JSON
-            const jsonData = JSON.stringify(data, null, 2); // Il 2 indica l'indentazione
-
-            this.exportJSON(jsonData);
-        }
     }
 
     getTournamentID() {
@@ -340,21 +329,7 @@ class Tournament {
     }
 
 
-    exportJSON(jsonData) {
-        // Crea un elemento <a> (link) invisibile
-        const link = document.createElement('a');
-        link.setAttribute('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(jsonData));
-        link.setAttribute('download', 'registeredPlayers.json'); // Nome del file da scaricare
-
-        // Aggiunge il link al documento (non è necessario che sia visibile)
-        document.body.appendChild(link);
-
-        // Simula il click sul link per avviare il download
-        link.click();
-
-        // Rimuove il link dal documento
-        document.body.removeChild(link);
-    }
+ 
 
     restartTournament() {
         switchScreen(6, 1);

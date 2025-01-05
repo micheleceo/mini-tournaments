@@ -37,9 +37,40 @@ function calculateTournamentScore() {
     tournament.calculateTournamentScore();
 }
 
+
 function recordTournamentResults() {
-    tournament.recordTournamentResults(registeredPlayers,loggedIn,data);
+    tournament.recordTournamentResults(registeredPlayers);
+
+    if (loggedIn) {
+
+        // Save data to Google Drive
+        requestToDoPost(data);
+    }
+    else{
+
+        // Convert data to JSON
+        const jsonData = JSON.stringify(data, null, 2); // Il 2 indica l'indentazione
+        exportJSON(jsonData);
+    }
 }
+
+
+function exportJSON(jsonData) {
+    // Create an invisible link element to download the JSON file
+    const link = document.createElement('a');
+    link.setAttribute('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(jsonData));
+    link.setAttribute('download', 'registeredPlayers.json'); // Nome del file da scaricare
+
+    // Add the link to the DOM is necessary to trigger the download
+    document.body.appendChild(link);
+
+    // Simulate a click on the link to download the JSON file
+    link.click();
+
+    // Remove the link from the DOM
+    document.body.removeChild(link);
+}
+
 
 function restartTournament() {
     tournament.restartTournament();
@@ -151,7 +182,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 async function getJsonData() {
     try {
-      const response = await fetch('https://raw.githubusercontent.com/micheleceo/mini-tournaments/refs/heads/main/registeredPlayers.json');
+      const response = await fetch('./assets/data/registeredPlayers.json');
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -195,7 +226,7 @@ function insertNewPlayer() {
         return;
     }
     
-    //TODO Add new player to DB
+    //TODO Maybe add new player to DB
     
     // Add new player to the registered players
     registeredPlayers.push({
