@@ -8,9 +8,8 @@ import Player from './Player.js';
 
 // Instantiate the tournament
 let tournament;
-
-// Initialize the tournament with players
-let tournamentPlayers = [];
+let currentScreen = 1;
+let currentRound = 0;
 
 // Global functions for HTML interface
 function startTournament() {
@@ -30,8 +29,8 @@ function startTournament() {
 
     if (allSelected) {
 
-         // Reset tournament
-         tournamentPlayers = [];
+         // Create torunament players array
+         const tournamentPlayers = [];
 
          // Build player list
          for (let i = 0; i < 8; i++) {
@@ -45,9 +44,10 @@ function startTournament() {
              }
          }
 
-        tournament = new Tournament();
-        // Start the tournament
-        tournament.startTournament(tournamentPlayers);
+        // Create a new tournament
+        tournament = new Tournament(tournamentPlayers);
+
+        gotoNextStep(currentRound=0);
     } else {
         alert('Please select all players before starting the tournament.');
         return;
