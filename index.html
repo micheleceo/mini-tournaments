@@ -107,8 +107,9 @@
         </select>
         </div>
         <div class="navigation-buttons">
-            <button onclick="switchScreen(3, 2)">&lt</button>
-            <button onclick="gotoNextStep(2)">Next step</button>
+            <button onclick="alert('Not implemented yet')">&lt</button> 
+           <!--  <button disabled onclick="gotoPreviousStep(currentRound=2)">&lt</button> -->
+            <button onclick="gotoNextStep(currentRound=2)">Next step</button>
         </div>
     </div>
 
@@ -136,7 +137,8 @@
             </div>
         </div>
         <div class="navigation-buttons">
-            <button onclick="switchScreen(4, 3)">&lt</button>
+            <button onclick="alert('Not implemented yet')">&lt</button> 
+          <!--  <button disabled onclick="gotoPreviousStep(currentRound=3)">&lt</button> -->
             <button onclick="gotoNextStep(3)">Next step</button>
         </div>
     </div>
@@ -152,7 +154,8 @@
             <option value="relative-gamesWon">Games won minus games lose</option>
         </select>
         <div class="navigation-buttons">
-            <button onclick="switchScreen(5, 3)">&lt</button>
+            <button onclick="alert('Not implemented yet')">&lt</button> 
+            <!--<button disabled onclick="switchScreen(5, 3)">&lt</button> -->
             <button onclick="calculateTournamentScore()">Calculate score</button>
         </div>
     </div>
@@ -208,6 +211,23 @@
             <tbody id="players-tbody">
             </tbody>
           </table>
+        </div>
+      </div>
+
+      <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Not implemented</h4>
+            </div>
+            <div class="modal-body">
+              <p>Il funzionamento non è ancora stato implementato.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+            </div>
+          </div>
         </div>
       </div>
 

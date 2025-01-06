@@ -97,6 +97,12 @@ class Tournament {
         }
     }
 
+    gotoPreviousStep(currentRoundNumber) {
+        const currrentRoundIndex = currentRoundNumber - 1;
+        this.player = this.round[currrentRoundIndex].playersList;
+        switchScreen(currentRoundNumber, currentRoundNumber-1);
+    }
+
 
     organizePlayers(select,currentRoundNumber) {
         const roundIndex = currentRoundNumber - 1;
@@ -192,6 +198,8 @@ class Tournament {
             this.player[i*4+2].saveMatchResults(roundIndex,this.round[roundIndex].match[i].team[1].gamesWon, this.round[roundIndex].match[i].team[0].gamesWon,teamBRatingIncrement);
             this.player[i*4+3].saveMatchResults(roundIndex,this.round[roundIndex].match[i].team[1].gamesWon, this.round[roundIndex].match[i].team[0].gamesWon,teamBRatingIncrement);
         }
+
+        this.round.playersList = this.player;
     }
 
     /**

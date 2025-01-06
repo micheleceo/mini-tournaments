@@ -6,6 +6,8 @@ class Round {
         constructor() {
             this.match = [];
         }
+
+        playersList = [];
     }
 
     export default Round;
