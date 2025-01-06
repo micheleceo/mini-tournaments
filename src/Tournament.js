@@ -7,70 +7,6 @@ class Tournament {
 		this.rounds = [];
 	}
 
-	/**
-	 * Record the match points from the current round, shuffle the players, and set up
-	 * the matches for the next round. If the current round is 3, switch to the final
-	 * ranking screen.
-	 * @param {number} currentRoundNumber - The current round number.
-	 */
-	gotoNextStep(currentRoundNumber) {
-		if (currentRoundNumber > 0) {
-			this.saveRoundResults(currentRoundNumber);
-		}
-
-		switch (currentRoundNumber) {
-			case 0:
-				//  Organize players an create round 1
-				const slected_Citerion = document.getElementById(
-					"selection-criterion-players"
-				);
-				if (slected_Citerion.value == "rating-balance") {
-					this.balancePlayersTeams();
-				} else {
-					this.shufflePlayers();
-				}
-				this.setupRound(currentRoundNumber + 1);
-				// Go to Round 1
-				switchScreen(1, 2);
-				break;
-			case 1:
-				//  Organize players and create round 2
-				const selectElement1 = document.getElementById(
-					"selection-criterion-1"
-				);
-				this.organizePlayers(selectElement1, currentRoundNumber);
-				if (selectElement1.value == "semifinal_final") {
-					const selectElement2 = document.getElementById(
-						"selection-criterion-2"
-					);
-					selectElement2.style.display = "none";
-				}
-				this.setupRound(currentRoundNumber + 1);
-				// Go to Round 2
-				switchScreen(2, 3);
-				break;
-			case 2:
-				//  Organize players and create a new round
-				const selectElement = document.getElementById(
-					"selection-criterion-1"
-				);
-				if (selectElement.value == "semifinal_final") {
-					// Go to score calculation
-					switchScreen(3, 5);
-				} else {
-					// Setup round 3
-					this.setupRound(currentRoundNumber + 1);
-					switchScreen(3, 4);
-				}
-				break;
-			case 3:
-				switchScreen(4, 5);
-				break;
-			default:
-				throw new Error(`Unknown round number: ${currentRoundNumber}`);
-		}
-	}
-
 	gotoPreviousStep(currentRoundNumber) {
 		const currrentRoundIndex = currentRoundNumber - 1;
 		this.players = this.rounds[currrentRoundIndex].playersList;
@@ -152,18 +88,6 @@ class Tournament {
 		this.players.forEach((player) =>
 			console.log(`${player.name} ${player.initialRating}`)
 		);
-	}
-
-	setupRound(roundNumber) {
-		let teamIndex = (roundNumber - 1) * 4;
-		for (let i = 0; i < 4; i++) {
-			const teamElements = document.getElementById(
-				`team${++teamIndex}-players`
-			);
-			teamElements.innerHTML = `${this.players[i * 2].name} <br> ${
-				this.players[i * 2 + 1].name
-			}`;
-		}
 	}
 
 	saveRoundResults(roundNumber) {

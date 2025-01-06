@@ -9,7 +9,7 @@ import Player from "./Player.js";
 // Instantiate the tournament
 let tournament;
 let currentScreen = 1;
-let currentRound = 0;
+let currentRoundNumber = 0;
 
 // Global functions for HTML interface
 function startTournament() {
@@ -57,15 +57,87 @@ function startTournament() {
 		// Create a new tournament
 		tournament = new Tournament(tournamentPlayers);
 
-		gotoNextStep((currentRound = 0));
+		gotoNextStep((currentRoundNumber = 0));
 	} else {
 		alert("Please select all players before starting the tournament.");
 		return;
 	}
 }
 
-function gotoNextStep(currentRound) {
-	tournament.gotoNextStep(currentRound);
+function gotoNextStep(currentRoundNumber) {
+	/**
+	 * Record the match points from the current round, shuffle the players, and set up
+	 * the matches for the next round. If the current round is 3, switch to the final
+	 * ranking screen.
+	 * @param {number} currentRoundNumber - The current round number.
+	 */
+	if (currentRoundNumber > 0) {
+		tournament.saveRoundResults(currentRoundNumber);
+	}
+
+	switch (currentRoundNumber) {
+		case 0:
+			//  Organize players an create round 1
+			const slected_Citerion = document.getElementById(
+				"selection-criterion-players"
+			);
+			if (slected_Citerion.value == "rating-balance") {
+				tournament.balancePlayersTeams();
+			} else {
+				tournament.shufflePlayers();
+			}
+			setupRound(currentRoundNumber + 1);
+			// Go to Round 1
+			switchScreen(1, 2);
+			break;
+		case 1:
+			//  Organize players and create round 2
+			const selectElement1 = document.getElementById(
+				"selection-criterion-1"
+			);
+			tournament.organizePlayers(selectElement1, currentRoundNumber);
+			if (selectElement1.value == "semifinal_final") {
+				const selectElement2 = document.getElementById(
+					"selection-criterion-2"
+				);
+				selectElement2.style.display = "none";
+			}
+			setupRound(currentRoundNumber + 1);
+			// Go to Round 2
+			switchScreen(2, 3);
+			break;
+		case 2:
+			//  Organize players and create a new round
+			const selectElement = document.getElementById(
+				"selection-criterion-1"
+			);
+			if (selectElement.value == "semifinal_final") {
+				// Go to score calculation
+				switchScreen(3, 5);
+			} else {
+				// Setup round 3
+				setupRound(currentRoundNumber + 1);
+				switchScreen(3, 4);
+			}
+			break;
+		case 3:
+			switchScreen(4, 5);
+			break;
+		default:
+			throw new Error(`Unknown round number: ${currentRoundNumber}`);
+	}
+}
+
+function setupRound(roundNumber) {
+	let teamIndex = (roundNumber - 1) * 4;
+	for (let i = 0; i < 4; i++) {
+		const teamElements = document.getElementById(
+			`team${++teamIndex}-players`
+		);
+		teamElements.innerHTML = `${tournament.players[i * 2].name} <br> ${
+			tournament.players[i * 2 + 1].name
+		}`;
+	}
 }
 
 function gotoPreviousStep(currentRound) {
