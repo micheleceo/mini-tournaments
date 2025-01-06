@@ -17,7 +17,12 @@ function startTournament() {
         if (select.value === '') {
         allSelected = false;
         }
-    });
+    }); 
+
+    const matchInputs = document.querySelectorAll('.match input');
+    matchInputs.forEach((input) => {
+    input.value = '';
+    }); 
 
     if (allSelected) {
         tournament = new Tournament();
@@ -31,6 +36,10 @@ function startTournament() {
 
 function gotoNextStep(currentRound) {
     tournament.gotoNextStep(currentRound);
+}
+
+function gotoPreviousStep(currentRound) {
+    tournament.gotoPreviousStep(currentRound);
 }
 
 function calculateTournamentScore() {
@@ -370,6 +379,7 @@ async function requestToDoGet() {
 window.handleSelectChange = handleSelectChange;
 window.startTournament = startTournament;
 window.gotoNextStep = gotoNextStep;
+window.gotoPreviousStep = gotoPreviousStep;
 window.calculateTournamentScore = calculateTournamentScore;
 window.recordTournamentResults = recordTournamentResults;
 window.restartTournament = restartTournament;
@@ -388,6 +398,7 @@ export {
     startTournament,
     handleSelectChange,
     gotoNextStep,
+    gotoPreviousStep,
     calculateTournamentScore,
     recordTournamentResults,
     restartTournament,
