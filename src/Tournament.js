@@ -8,30 +8,10 @@ class Tournament {
         this.round=[];
     }
 
-    startTournament(registeredPlayers) {
+    startTournament(tournamentPlayers) {
        
         // Reset tournament
-        this.player = [];
-
-        // Build player list
-        for (let i = 0; i < 8; i++) {
-            const playerSelect = document.getElementById(`player${i+1}-select`);
-            const playerName = playerSelect.value.trim() || playerSelect.getAttribute('data-default');
-            const playerId = registeredPlayers.findIndex(rp  => rp.name === playerName);
-            if (playerId !== -1) {
-                this.player.push(new Player(registeredPlayers[playerId].name,registeredPlayers[playerId].rating));
-            } else {
-                console.error(`Cannot find player: ${playerName}`);
-            }
-           
-        }
-        
-        //console.log("Tournament player list: ",this.player);
-
-        /*this.buttonToround2 = document.getElementById('toround2');
-        this.buttonToround3 = document.getElementById('toround3');*/
-      /*  this.buttonToround2.hidden = true;
-        this.buttonToround3.hidden = true;*/
+        this.player = tournamentPlayers;
 
         this.gotoNextStep(this.currentRound);
 

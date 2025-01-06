@@ -4,9 +4,13 @@ let registeredPlayers;
 let loggedIn = false;
 
 import Tournament from './Tournament.js';
+import Player from './Player.js';
 
 // Instantiate the tournament
 let tournament;
+
+// Initialize the tournament with players
+let tournamentPlayers = [];
 
 // Global functions for HTML interface
 function startTournament() {
@@ -25,9 +29,25 @@ function startTournament() {
     }); 
 
     if (allSelected) {
+
+         // Reset tournament
+         tournamentPlayers = [];
+
+         // Build player list
+         for (let i = 0; i < 8; i++) {
+             const playerSelect = document.getElementById(`player${i+1}-select`);
+             const playerName = playerSelect.value.trim() || playerSelect.getAttribute('data-default');
+             const playerId = registeredPlayers.findIndex(rp  => rp.name === playerName);
+             if (playerId !== -1) {
+                tournamentPlayers.push(new Player(registeredPlayers[playerId].name,registeredPlayers[playerId].rating));
+             } else {
+                 console.error(`Cannot find player: ${playerName}`);
+             }
+         }
+
         tournament = new Tournament();
         // Start the tournament
-        tournament.startTournament(registeredPlayers);
+        tournament.startTournament(tournamentPlayers);
     } else {
         alert('Please select all players before starting the tournament.');
         return;
