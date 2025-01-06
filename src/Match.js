@@ -1,10 +1,10 @@
 class Match {
-    /**
-     * Initializes a new Match instance with an empty list of teams.
-     */
-        constructor() {
-            this.team = [];
-        }
-    }
+	/**
+	 * Initializes a new Match instance with an empty list of teams.
+	 */
+	constructor() {
+		this.team = [];
+	}
+}
 
-    export default Match;
+export default Match;

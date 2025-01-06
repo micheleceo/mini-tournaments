@@ -1,13 +1,12 @@
-
 class Round {
-    /**
-     * Creates an instance of Round with an empty list of matches.
-     */
-        constructor() {
-            this.match = [];
-        }
+	/**
+	 * Creates an instance of Round with an empty list of matches.
+	 */
+	constructor() {
+		this.match = [];
+	}
 
-        playersList = [];
-    }
+	playersList = [];
+}
 
-    export default Round;
+export default Round;
