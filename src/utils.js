@@ -46,9 +46,54 @@ function calculteTeamRating(player1Rating, player2Rating) {
   return (player1Rating + player2Rating) / 2;
 }
 
+
+	/**
+	 * Shuffles the players array using the Fisher-Yates algorithm to randomize the order of players.
+	 */
+	function shufflePlayers(playersList) {
+    let newPlayersList = playersList.slice();
+		//Fisher-Yates algorithm
+		for (let i = newPlayersList.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[newPlayersList[i], newPlayersList[j]] = [
+				newPlayersList[j],
+				newPlayersList[i],
+			];
+		}
+
+    return newPlayersList;
+	}
+
+	/**
+	 * Balances teams by sorting players based on their ratings and pairing the highest-rated player
+	 * with the lowest-rated player, the second highest with the second lowest, and so on. It then
+	 * reorders the player list for the first round matches.
+	 */
+	function balancePlayersTeams(playersList) {
+    let newPlayersList = playersList.slice();
+		newPlayersList.sort((a, b) => b.initialRating - a.initialRating);
+		console.log(">>>>Tournament player order by rating: ");
+		newPlayersList.forEach((player) =>
+			console.log(`${player.name} ${player.initialRating}`)
+		);
+		//The player with the highest rating goes on a team with the player with the lowest rating
+		const round1Players = [0, 7, 1, 6, 2, 5, 3, 4].map(
+			(index) => newPlayersList[index]
+		);
+		console.log(">>>>Round1 player ordered for match: ");
+		newPlayersList = round1Players;
+		newPlayersList.forEach((player) =>
+			console.log(`${player.name} ${player.initialRating}`)
+		);
+
+    return newPlayersList;
+	}
+
 export {
   calculateTeamRatingIncrement,
   calculateExpectedScore,
   calculateResult,
   calculteTeamRating,
+  shufflePlayers,
+  balancePlayersTeams
 };
