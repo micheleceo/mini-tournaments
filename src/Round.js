@@ -2,11 +2,11 @@ class Round {
 	/**
 	 * Creates an instance of Round with an empty list of matches.
 	 */
-	constructor() {
+	constructor(playersList) {
+		this.beforePlayersList = playersList;
 		this.match = [];
+		this.afterPlayersList = [];
 	}
-
-	playersList = [];
 }
 
 export default Round;

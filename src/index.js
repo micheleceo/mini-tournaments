@@ -5,6 +5,8 @@ let loggedIn = false;
 
 import Tournament from "./Tournament.js";
 import Player from "./Player.js";
+import Round from "./Round.js";
+import { balancePlayersTeams } from "./utils.js";
 
 // Instantiate the tournament
 let tournament;
@@ -12,7 +14,29 @@ let currentScreen = 1;
 let currentRoundNumber = 0;
 
 // Global functions for HTML interface
-function startTournament() {
+
+function startRound1() {
+    initializeTournament();
+
+	let round1InitialPlayersList = [];
+	//  Organize players an create round 1
+	const slected_Citerion = document.getElementById(
+		"selection-criterion-players"
+	);
+	if (slected_Citerion.value == "rating-balance") {
+		round1InitialPlayersList = balancePlayersTeams(tournament.playersList);
+	} else {
+		round1InitialPlayersList = balancePlayersTeams(tournament.playersList);
+	}
+
+	tournament.rounds.push(new Round(round1InitialPlayersList));
+	
+	setupRound(1);
+	// Go to Round 1
+	switchScreen(1, 2);
+}
+
+function initializeTournament() {
 	const selects = document.querySelectorAll(".player-select");
 	let allSelected = true;
 
@@ -57,92 +81,81 @@ function startTournament() {
 		// Create a new tournament
 		tournament = new Tournament(tournamentPlayers);
 
-		gotoNextStep((currentRoundNumber = 0));
 	} else {
 		alert("Please select all players before starting the tournament.");
 		return;
 	}
 }
 
-function gotoNextStep(currentRoundNumber) {
-	/**
-	 * Record the match points from the current round, shuffle the players, and set up
-	 * the matches for the next round. If the current round is 3, switch to the final
-	 * ranking screen.
-	 * @param {number} currentRoundNumber - The current round number.
-	 */
-	if (currentRoundNumber > 0) {
-		tournament.saveRoundResults(currentRoundNumber);
+
+function startRound2() {
+	tournament.saveRoundResults(1);
+
+	//  Organize players and create round 2
+	const selectElement1 = document.getElementById(
+		"selection-criterion-1"
+	);
+	tournament.organizePlayers(selectElement1, currentRoundNumber);
+	if (selectElement1.value == "semifinal_final") {
+		const selectElement2 = document.getElementById(
+			"selection-criterion-2"
+		);
+		selectElement2.style.display = "none";
 	}
 
-	switch (currentRoundNumber) {
-		case 0:
-			//  Organize players an create round 1
-			const slected_Citerion = document.getElementById(
-				"selection-criterion-players"
-			);
-			if (slected_Citerion.value == "rating-balance") {
-				tournament.balancePlayersTeams();
-			} else {
-				tournament.shufflePlayers();
-			}
-			setupRound(currentRoundNumber + 1);
-			// Go to Round 1
-			switchScreen(1, 2);
-			break;
-		case 1:
-			//  Organize players and create round 2
-			const selectElement1 = document.getElementById(
-				"selection-criterion-1"
-			);
-			tournament.organizePlayers(selectElement1, currentRoundNumber);
-			if (selectElement1.value == "semifinal_final") {
-				const selectElement2 = document.getElementById(
-					"selection-criterion-2"
-				);
-				selectElement2.style.display = "none";
-			}
-			setupRound(currentRoundNumber + 1);
-			// Go to Round 2
-			switchScreen(2, 3);
-			break;
-		case 2:
-			//  Organize players and create a new round
-			const selectElement = document.getElementById(
-				"selection-criterion-1"
-			);
-			if (selectElement.value == "semifinal_final") {
-				// Go to score calculation
-				switchScreen(3, 5);
-			} else {
-				// Setup round 3
-				setupRound(currentRoundNumber + 1);
-				switchScreen(3, 4);
-			}
-			break;
-		case 3:
-			switchScreen(4, 5);
-			break;
-		default:
-			throw new Error(`Unknown round number: ${currentRoundNumber}`);
+	//TODO: modify next step button text to "Go to score calculation"
+	setupRound(2);
+	// Go to Round 2
+	switchScreen(2, 3);
+}
+
+function startRound3() {
+	tournament.saveRoundResults(2);
+
+	//  Organize players and create a new round
+	const selectElement = document.getElementById(
+		"selection-criterion-1"
+	);
+	if (selectElement.value == "semifinal_final") {
+		// Go to score calculation
+		switchScreen(3, 5);
+	} else {
+		// Setup round 3
+		setupRound(3);
+		switchScreen(3, 4);
 	}
 }
 
+function gotoScoreCalculation() {
+	switchScreen(4, 5);
+}
+
+function gotoPreviousStep(currentRoundNumber) {
+	const currrentRoundIndex = currentRoundNumber - 1;
+	this.players = this.rounds[currrentRoundIndex].playersList;
+	switchScreen(currentRoundNumber, currentRoundNumber - 1);
+}
+
 function setupRound(roundNumber) {
+	let roundIndex = roundNumber - 1;
 	let teamIndex = (roundNumber - 1) * 4;
 	for (let i = 0; i < 4; i++) {
 		const teamElements = document.getElementById(
 			`team${++teamIndex}-players`
 		);
-		teamElements.innerHTML = `${tournament.players[i * 2].name} <br> ${
+		teamElements.innerHTML = `${
+			tournament.rounds[roundIndex].beforePlayersList[i * 2].name
+		} <br> 
+		  ${tournament.rounds[roundIndex].beforePlayersList[i * 2 + 1].name}`;
+		/*teamElements.innerHTML = `${tournament.players[i * 2].name} <br> ${
 			tournament.players[i * 2 + 1].name
-		}`;
+		}`;*/
 	}
 }
 
-function gotoPreviousStep(currentRound) {
+/*function gotoPreviousStep(currentRound) {
 	tournament.gotoPreviousStep(currentRound);
-}
+}*/
 
 function calculateTournamentScore() {
 	tournament.calculateTournamentScore();
@@ -480,8 +493,7 @@ async function showPasswordPopup() {
 
 // Assegna le funzioni all'oggetto window
 window.handleSelectChange = handleSelectChange;
-window.startTournament = startTournament;
-window.gotoNextStep = gotoNextStep;
+window.startTournament = initializeTournament;
 window.gotoPreviousStep = gotoPreviousStep;
 window.calculateTournamentScore = calculateTournamentScore;
 window.recordTournamentResults = recordTournamentResults;
@@ -495,12 +507,20 @@ window.showPasswordPopup = showPasswordPopup;
 window.resetSelects = resetSelects;
 window.resetInputs = resetInputs;
 window.registeredPlayers = registeredPlayers;
+window.startRound1 = startRound1;
+window.startRound2 = startRound2;
+window.startRound3 = startRound3;
+window.gotoScoreCalculation = gotoScoreCalculation;
+
 
 // Esporta le funzioni se necessario
 export {
-	startTournament,
+	initializeTournament as startTournament,
 	handleSelectChange,
-	gotoNextStep,
+	gotoScoreCalculation,
+	startRound1,
+	startRound2,
+	startRound3,
 	gotoPreviousStep,
 	calculateTournamentScore,
 	recordTournamentResults,
