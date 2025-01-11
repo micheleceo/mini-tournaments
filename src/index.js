@@ -31,7 +31,7 @@ function startRound1() {
 
 	tournament.rounds.push(new Round(round1InitialPlayersList));
 	
-	setupRound(1);
+	setupRound(currentRoundNumber=1);
 	// Go to Round 1
 	switchScreen(1, 2);
 }
@@ -95,7 +95,7 @@ function startRound2() {
 	const selectElement1 = document.getElementById(
 		"selection-criterion-1"
 	);
-	tournament.organizePlayers(selectElement1, currentRoundNumber);
+	organizePlayers(selectElement1, 2);
 	if (selectElement1.value == "semifinal_final") {
 		const selectElement2 = document.getElementById(
 			"selection-criterion-2"
@@ -104,7 +104,7 @@ function startRound2() {
 	}
 
 	//TODO: modify next step button text to "Go to score calculation"
-	setupRound(2);
+	setupRound(currentRoundNumber=2);
 	// Go to Round 2
 	switchScreen(2, 3);
 }
