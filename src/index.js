@@ -304,6 +304,8 @@ function recordTournamentResults() {
 		// Convert data to JSON
 		const jsonData = JSON.stringify(data, null, 2); // Il 2 indica l'indentazione
 		exportJSON(jsonData);
+		const jsonTournament = JSON.stringify(tournament, null, 2);
+		exportJSON(jsonTournament);
 	}
 }
 
