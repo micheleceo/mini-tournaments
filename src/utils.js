@@ -11,7 +11,7 @@ function calculateTeamRatingIncrement(
 	opponentTeamRating,
 	teamActualScore
 ) {
-	//TODO: valeutare se renderlo variabile
+	//TODO: valutare se renderlo variabile
 	const K_FACTOR = 32; // Adjust this factor to change the strength of the rating system
 
 	const teamExpectedScore = calculateExpectedScore(
