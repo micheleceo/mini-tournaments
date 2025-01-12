@@ -3,7 +3,7 @@ class Tournament {
 		this.tournamentID = "";
 		this.playersList = players.slice();
 		//this.currentRound = 0;
-		this.teams = [];
+		//this.teams = [];
 		this.rounds = [];
 	}
 
@@ -13,131 +13,6 @@ class Tournament {
 		switchScreen(currentRoundNumber, currentRoundNumber - 1);
 	}*/
 
-	organizePlayersForRound(select, currentRoundNumber) {
-		const roundIndex = currentRoundNumber - 1;
-
-		switch (select.value) {
-			case "semifinal_final":
-				//Winners vs Winners and Loosers vs Loosers
-				this.playersList.sort(
-					(a, b) =>
-						b.matchResult[roundIndex].ratingIncrement -
-						a.matchResult[roundIndex].ratingIncrement
-				);
-				console.log(
-					">>>>>Player rating increment after round: " +
-						currentRoundNumber
-				);
-				this.playersList.forEach((player) =>
-					console.log(
-						`${player.name} ${player.matchResult[roundIndex].ratingIncrement}`
-					)
-				);
-				break;
-			case "random":
-				// Shuffle players
-				this.shufflePlayers();
-				break;
-			case "wvsl_cross":
-				// Winners vs Losers crossed
-				this.playersList.sort(
-					(a, b) =>
-						b.matchResult[roundIndex].gamesWon -
-						a.matchResult[roundIndex].gamesWon
-				);
-				const roundPlayers = [0, 7, 1, 6, 2, 5, 3, 4].map(
-					(index) => this.playersList[index]
-				);
-				this.playersList = roundPlayers;
-			default:
-				break;
-		}
-	}
-
-
-
-	saveRoundResults(roundNumber) {
-		let teamIndex = (roundNumber - 1) * 4;
-		let roundIndex = roundNumber - 1;
-
-		const team = [];
-		//Create the teams
-		for (let i = 0; i < 4; i++) {
-			team.push(
-				new Team(
-					this.rounds[roundIndex].beforeplayersList[i * 2],
-					this.rounds[roundIndex].beforeplayersList[i * 2 + 1],
-					parseInt(
-						document.getElementById(`team${++teamIndex}-gamesWon`)
-							.value
-					) || 0
-				)
-			);
-		}
-
-		//Create the matches
-		const match = [];
-		match.push(new Match());
-		match[0].team.push(team[0], team[1]);
-		match.push(new Match());
-		match[1].team.push(team[2], team[3]);
-
-		//Create and add the round to the torunament
-		//this.rounds.push(new Round());
-		this.rounds[roundIndex].match.push(match[0], match[1]);
-
-		//Iteration through the 2 matches, calculate the result and update the player results with the rating increment
-		for (let i = 0; i < 2; i++) {
-			const result = calculateResult(
-				this.rounds[roundIndex].match[i].team[0].gamesWon,
-				this.rounds[roundIndex].match[i].team[1].gamesWon
-			);
-			const teamAInitialRating = calculteTeamRating(
-				this.rounds[roundIndex].beforeplayersList[i * 4 + 0].initialRating,
-				this.rounds[roundIndex].beforeplayersList[i * 4 + 1].initialRating
-			);
-			const teamBInitialRating = calculteTeamRating(
-				this.rounds[roundIndex].beforeplayersList[i * 4 + 2].initialRating,
-				this.rounds[roundIndex].beforeplayersList[i * 4 + 3].initialRating
-			);
-			const [teamARatingIncrement, teamBRatingIncrement] =
-				calculateTeamRatingIncrement(
-					teamAInitialRating,
-					teamBInitialRating,
-					result
-				);
-
-
-			//TODO: partire da qui
-			
-			this.playersList[i * 4 + 0].saveMatchResults(
-				roundIndex,
-				this.rounds[roundIndex].match[i].team[0].gamesWon,
-				this.rounds[roundIndex].match[i].team[1].gamesWon,
-				teamARatingIncrement
-			);
-			this.playersList[i * 4 + 1].saveMatchResults(
-				roundIndex,
-				this.rounds[roundIndex].match[i].team[0].gamesWon,
-				this.rounds[roundIndex].match[i].team[1].gamesWon,
-				teamARatingIncrement
-			);
-			this.playersList[i * 4 + 2].saveMatchResults(
-				roundIndex,
-				this.rounds[roundIndex].match[i].team[1].gamesWon,
-				this.rounds[roundIndex].match[i].team[0].gamesWon,
-				teamBRatingIncrement
-			);
-			this.playersList[i * 4 + 3].saveMatchResults(
-				roundIndex,
-				this.rounds[roundIndex].match[i].team[1].gamesWon,
-				this.rounds[roundIndex].match[i].team[0].gamesWon,
-				teamBRatingIncrement
-			);
-		}
-
-		this.rounds[roundIndex].afterPlayersList = this.playersList;
-	}
 
 	/**
 	 * Calculates the tournament score for each player based on the selected scoring criterion.
@@ -150,7 +25,7 @@ class Tournament {
 	 * based on their scores, and the results are displayed in the ranking table.
 	 */
 
-	calculateTournamentScore() {
+	calculateTournamentScore(selectedCriterion) {
 		// Calculate tournament final rating increment
 		this.playersList.forEach((player) => {
 			// Reset all fields just to be sure
@@ -178,11 +53,7 @@ class Tournament {
 			});
 		});
 
-		const selectElement1 = document.getElementById(
-			"score-calculation-criterion"
-		);
-
-		switch (selectElement1.value) {
+		switch (selectedCriterion) {
 			case "win-lose-draw":
 				this.playersList.forEach((player) => {
 					player.tournamentScore =
@@ -215,27 +86,9 @@ class Tournament {
 			(a, b) => b.tournamentScore - a.tournamentScore
 		);
 
-		// Create tournament ranking
-		const rankigTable = document.getElementById("ranking-table");
-		const tbody = rankigTable.querySelector("tbody");
-
-		const rankingHTML = playersRanking
-			.map(
-				(player, index) => `
-            <tr>
-                <td>${index + 1}°</td>
-                <td>${player.name}</td> 
-                <td>${player.tournamentScore.toFixed(2)}</td>
-                <td>${player.tournamentRatingIncrement.toFixed(2)}</td>
-            </tr>
-        `
-			)
-			.join("");
-
-		// Insert HTML generated in tbody
-		tbody.innerHTML = rankingHTML;
-
-		switchScreen(5, 6);
+		//TODO: riprendere da qui per pulire il codice
+        return playersRanking;
+		
 	}
 
 	recordTournamentResults(registeredPlayers) {
@@ -296,22 +149,7 @@ class Tournament {
 		// Formatta la data
 		return romaDateTime;
 	}
-
-	restartTournament() {
-		// Reset all fileds
-		resetInputs();
-
-		switchScreen(6, 1);
-	}
 }
 
 export default Tournament;
-import Player from "./Player.js";
-import Team from "./Team.js";
-import Match from "./Match.js";
-import Round from "./Round.js";
-import {
-	calculateResult,
-	calculteTeamRating,
-	calculateTeamRatingIncrement,
-} from "./utils.js";
+

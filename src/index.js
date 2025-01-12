@@ -6,37 +6,18 @@ let loggedIn = false;
 import Tournament from "./Tournament.js";
 import Player from "./Player.js";
 import Round from "./Round.js";
-import { balancePlayersTeams } from "./utils.js";
+import { balancePlayersTeams, calculateResult, shufflePlayers, winnersVsLosersCrossed, winnersVsWinners } from "./utils.js";
+import { calculateTeamRatingIncrement } from "./utils.js";
+import MatchResult from "./MatchResult.js";
 
-// Instantiate the tournament
 let tournament;
 let currentScreen = 1;
 let currentRoundNumber = 0;
 
+
 // Global functions for HTML interface
 
-function startRound1() {
-    initializeTournament();
-
-	let round1InitialPlayersList = [];
-	//  Organize players an create round 1
-	const slected_Citerion = document.getElementById(
-		"selection-criterion-players"
-	);
-	if (slected_Citerion.value == "rating-balance") {
-		round1InitialPlayersList = balancePlayersTeams(tournament.playersList);
-	} else {
-		round1InitialPlayersList = balancePlayersTeams(tournament.playersList);
-	}
-
-	tournament.rounds.push(new Round(round1InitialPlayersList));
-	
-	setupRound(currentRoundNumber=1);
-	// Go to Round 1
-	switchScreen(1, 2);
-}
-
-function initializeTournament() {
+function startTournament() {
 	const selects = document.querySelectorAll(".player-select");
 	let allSelected = true;
 
@@ -81,36 +62,84 @@ function initializeTournament() {
 		// Create a new tournament
 		tournament = new Tournament(tournamentPlayers);
 
+		startRound1();
+
 	} else {
 		alert("Please select all players before starting the tournament.");
 		return;
 	}
 }
 
+function startRound1() {
+	let round1PlayersList = [];
+
+	//  Organize players an create round 1
+	const slected_Citerion = document.getElementById(
+		"selection-criterion-players"
+	);
+	if (slected_Citerion.value == "rating-balance") {
+		round1PlayersList = balancePlayersTeams(tournament.playersList);
+	} else if (slected_Citerion.value == "random") {
+		round1PlayersList = shufflePlayers(tournament.playersList);
+	}
+
+	// Create round 1
+	let round1 = new Round(round1PlayersList);
+	if(tournament.rounds.length == 0)
+		tournament.rounds.push(round1);
+	else {
+		tournament.rounds[0] = round1;
+	}
+	
+	setupRound(currentRoundNumber=1);
+	// Go to Round 1
+	switchScreen(1, 2);
+}
+
 
 function startRound2() {
-	tournament.saveRoundResults(1);
+	let round2PlayersList = [];
 
-	//  Organize players and create round 2
+	//TODO: ripartire da qui e controllare dove vengono salvati i MathcResult
+	setRoundResults(currentRoundNumber=1);
+
 	const selectElement1 = document.getElementById(
 		"selection-criterion-1"
-	);
-	organizePlayers(selectElement1, 2);
-	if (selectElement1.value == "semifinal_final") {
-		const selectElement2 = document.getElementById(
-			"selection-criterion-2"
-		);
-		selectElement2.style.display = "none";
+	); 
+
+	switch (selectElement1.value) {
+		case "semifinal_final":
+			round2PlayersList = winnersVsWinners(0,tournament.rounds[0].playersList);
+			const selectElement2 = document.getElementById(
+				"selection-criterion-2"
+			);
+			selectElement2.style.display = "none";
+			break;
+		case "random":
+			round2PlayersList = shufflePlayers(tournament.rounds[0].playersList);
+			break;
+		case "wvsl_cross":
+			round2PlayersList = winnersVsLosersCrossed(0,tournament.rounds[0].playersList);
+			break;
+	}
+
+	// Create round 2
+	let round2 = new Round(round2PlayersList);
+	if(tournament.rounds.length == 1)
+		tournament.rounds.push(round2);
+	else {
+		tournament.rounds[0] = round2;
 	}
 
 	//TODO: modify next step button text to "Go to score calculation"
 	setupRound(currentRoundNumber=2);
+
 	// Go to Round 2
 	switchScreen(2, 3);
 }
 
-function startRound3() {
-	tournament.saveRoundResults(2);
+function nextStep() {
+	setRoundResults(currentRoundNumber=2);
 
 	//  Organize players and create a new round
 	const selectElement = document.getElementById(
@@ -121,10 +150,11 @@ function startRound3() {
 		switchScreen(3, 5);
 	} else {
 		// Setup round 3
-		setupRound(3);
+		setupRound(currentRoundNumber=3);
 		switchScreen(3, 4);
 	}
 }
+
 
 function gotoScoreCalculation() {
 	switchScreen(4, 5);
@@ -144,21 +174,91 @@ function setupRound(roundNumber) {
 			`team${++teamIndex}-players`
 		);
 		teamElements.innerHTML = `${
-			tournament.rounds[roundIndex].beforePlayersList[i * 2].name
+			tournament.rounds[roundIndex].playersList[i * 2].name
 		} <br> 
-		  ${tournament.rounds[roundIndex].beforePlayersList[i * 2 + 1].name}`;
-		/*teamElements.innerHTML = `${tournament.players[i * 2].name} <br> ${
-			tournament.players[i * 2 + 1].name
-		}`;*/
+		  ${tournament.rounds[roundIndex].playersList[i * 2 + 1].name}`;
 	}
 }
 
-/*function gotoPreviousStep(currentRound) {
-	tournament.gotoPreviousStep(currentRound);
-}*/
+function setRoundResults(roundNumber) {
+	let roundIndex = roundNumber - 1;
+	let teamIndex = roundIndex * 4;
+
+	//Iteration through the 2 matches, calculate the result and update the player results with the rating increment
+	for (let i = 0; i < 2; i++) {
+
+		let teamA = tournament.rounds[roundIndex].matches[i].teams[0];
+		let teamB = tournament.rounds[roundIndex].matches[i].teams[1];
+
+        const teamAgamesWon = parseInt(
+			document.getElementById(`team${++teamIndex}-gamesWon`).value 
+		) || 0;
+		teamA.gamesWon = teamAgamesWon;
+
+		const teamBgamesWon = parseInt(
+			document.getElementById(`team${++teamIndex}-gamesWon`).value
+		) || 0;
+		teamB.gamesWon = teamBgamesWon;
+
+		//Update player results with the rating increment
+		
+		//Calculate rating increment
+		const [teamARatingIncrement, teamBRatingIncrement] =
+			calculateTeamRatingIncrement(
+				teamA.initialRating,
+				teamB.initialRating,
+				calculateResult(
+					teamAgamesWon,
+					teamBgamesWon)
+			);
+
+		let teamAmatchResult = new MatchResult(
+			teamAgamesWon,
+			teamBgamesWon,
+			teamARatingIncrement
+		);
+		tournament.rounds[roundIndex].playersList[i * 4 + 0].saveMatchResults(roundIndex,teamAmatchResult);
+		tournament.rounds[roundIndex].playersList[i * 4 + 1].saveMatchResults(roundIndex,teamAmatchResult);
+
+		let teamBmatchResult = new MatchResult(
+			teamBgamesWon,
+			teamAgamesWon,
+			teamBRatingIncrement
+		);
+		tournament.rounds[roundIndex].playersList[i * 4 + 2].saveMatchResults(roundIndex,teamBmatchResult);
+		tournament.rounds[roundIndex].playersList[i * 4 + 3].saveMatchResults(roundIndex,teamBmatchResult);
+	
+	}
+}
 
 function calculateTournamentScore() {
-	tournament.calculateTournamentScore();
+	const selectElement = document.getElementById(
+		"score-calculation-criterion"
+	);
+	const playersRanking = tournament.calculateTournamentScore(selectElement.value);
+
+	// Display the ranking table
+	// Create tournament ranking
+	const rankigTable = document.getElementById("ranking-table");
+	const tbody = rankigTable.querySelector("tbody");
+
+	const rankingHTML = playersRanking
+		.map(
+			(player, index) => `
+		<tr>
+			<td>${index + 1}°</td>
+			<td>${player.name}</td> 
+			<td>${player.tournamentScore.toFixed(2)}</td>
+			<td>${player.tournamentRatingIncrement.toFixed(2)}</td>
+		</tr>
+	`
+		)
+		.join("");
+
+	// Insert HTML generated in tbody
+	tbody.innerHTML = rankingHTML;
+
+	switchScreen(5, 6);
 }
 
 function recordTournamentResults() {
@@ -194,7 +294,10 @@ function exportJSON(jsonData) {
 }
 
 function restartTournament() {
-	tournament.restartTournament();
+	// Reset all fileds
+	resetInputs();
+
+	switchScreen(6, 1);
 }
 
 function switchScreen(currentScreen, nextScreen) {
@@ -493,7 +596,7 @@ async function showPasswordPopup() {
 
 // Assegna le funzioni all'oggetto window
 window.handleSelectChange = handleSelectChange;
-window.startTournament = initializeTournament;
+window.startTournament = startTournament;
 window.gotoPreviousStep = gotoPreviousStep;
 window.calculateTournamentScore = calculateTournamentScore;
 window.recordTournamentResults = recordTournamentResults;
@@ -509,18 +612,18 @@ window.resetInputs = resetInputs;
 window.registeredPlayers = registeredPlayers;
 window.startRound1 = startRound1;
 window.startRound2 = startRound2;
-window.startRound3 = startRound3;
+window.nextStep = nextStep;
 window.gotoScoreCalculation = gotoScoreCalculation;
 
 
 // Esporta le funzioni se necessario
 export {
-	initializeTournament as startTournament,
+	startTournament,
 	handleSelectChange,
 	gotoScoreCalculation,
 	startRound1,
 	startRound2,
-	startRound3,
+	nextStep,
 	gotoPreviousStep,
 	calculateTournamentScore,
 	recordTournamentResults,
@@ -535,3 +638,5 @@ export {
 	resetSelects,
 	registeredPlayers,
 };
+
+
