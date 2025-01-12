@@ -6,7 +6,7 @@ let loggedIn = false;
 import Tournament from "./Tournament.js";
 import Player from "./Player.js";
 import Round from "./Round.js";
-import { balancePlayersTeams, calculateResult, shufflePlayers, winnersVsLosersCrossed, winnersVsWinners } from "./utils.js";
+import { balancePlayersTeams, calculateKFactor, calculateResult, shufflePlayers, winnersVsLosersCrossed, winnersVsWinners } from "./utils.js";
 import { calculateTeamRatingIncrement } from "./utils.js";
 import MatchResult from "./MatchResult.js";
 
@@ -51,7 +51,9 @@ function startTournament() {
 				tournamentPlayers.push(
 					new Player(
 						registeredPlayers[playerId].name,
-						registeredPlayers[playerId].rating
+						registeredPlayers[playerId].rating,
+						registeredPlayers[playerId].totalMatchesWon+registeredPlayers[playerId].totalMatchesDrawn+registeredPlayers[playerId].totalMatchesLost,
+						registeredPlayers[playerId].KFactor = calculateKFactor(registeredPlayers[playerId])
 					)
 				);
 			} else {
@@ -264,7 +266,7 @@ function setRoundResults(roundNumber) {
 	}
 }
 
-function calculateTournamentScore() {
+function gotoFinalRanking() {
 	const selectElement = document.getElementById(
 		"score-calculation-criterion"
 	);
@@ -633,7 +635,7 @@ async function showPasswordPopup() {
 window.handleSelectChange = handleSelectChange;
 window.startTournament = startTournament;
 window.gotoPreviousStep = gotoPreviousStep;
-window.calculateTournamentScore = calculateTournamentScore;
+window.gotoFinalRanking = gotoFinalRanking;
 window.recordTournamentResults = recordTournamentResults;
 window.restartTournament = restartTournament;
 window.switchScreen = switchScreen;
@@ -660,7 +662,7 @@ export {
 	startRound2,
 	nextStep,
 	gotoPreviousStep,
-	calculateTournamentScore,
+	gotoFinalRanking,
 	recordTournamentResults,
 	restartTournament,
 	switchScreen,

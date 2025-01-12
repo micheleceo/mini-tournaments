@@ -4,8 +4,8 @@ class Tournament {
 		this.partecipantsPlayersList = players.map(player => ({
 			name: player.name,
 			initialRating: player.initialRating,
-			totalMatchesPlayed: player.totalMatchesWon + player.totalMatchesLost + player.totalMatchesDrawn,
-			K: this.calulateKFactor(player) 
+			totalMatchesPlayed: player.totalMatchesPlayed,
+			K: calculateKFactor(player) 
 		}));
 		this.playersList = players.slice();
 		//this.currentRound = 0;
@@ -13,23 +13,6 @@ class Tournament {
 		this.rounds = [];
 	}
 
-	calulateKFactor(player) {
-		if (player.totalMatchesPlayed <= 10) {
-			return 40;
-		} else if (player.totalMatchesPlayed <= 25) {
-			if (player.rating < 1500) {
-				return 30;
-			}
-			else
-				return 25;
-		}else {
-			if (player.rating < 1800) {
-				return 20;
-			}
-			else
-				return 15;
-		}
-	}
 
 	/*gotoPreviousStep(currentRoundNumber) {
 		const currrentRoundIndex = currentRoundNumber - 1;
@@ -177,3 +160,4 @@ class Tournament {
 
 export default Tournament;
 
+import { calculateKFactor } from "./utils.js";

@@ -1,3 +1,32 @@
+
+/**
+ * Calculates the K-factor for a given player.
+ *
+ * The K-factor is a constant used in the Elo rating system
+ * to determine how much a player's rating changes after each game.
+ * The K-factor is based on the number of games played and the rating of the player.
+ *
+ * @param {Object} player - The player to calculate the K-factor for
+ * @returns {number} The K-factor for the player
+ */
+function calculateKFactor(player) {
+	if (player.totalMatchesPlayed <= 10) {
+		return 40;
+	} else if (player.totalMatchesPlayed <= 25) {
+		if (player.rating < 1500) {
+			return 30;
+		}
+		else
+			return 25;
+	}else {
+		if (player.rating < 1800) {
+			return 20;
+		}
+		else
+			return 15;
+	}
+}
+
 /**
  * Calculates the rating increment for a team based on the outcome of a match.
  *
@@ -146,5 +175,6 @@ export {
 	shufflePlayers,
 	balancePlayersTeams,
 	winnersVsWinners,
-	winnersVsLosersCrossed
+	winnersVsLosersCrossed,
+	calculateKFactor
 };
