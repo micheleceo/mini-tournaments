@@ -128,7 +128,7 @@ function startRound2() {
 	if(tournament.rounds.length == 1)
 		tournament.rounds.push(round2);
 	else {
-		tournament.rounds[0] = round2;
+		tournament.rounds[1] = round2;
 	}
 
 	//TODO: modify next step button text to "Go to score calculation"
@@ -147,17 +147,50 @@ function nextStep() {
 	);
 	if (selectElement.value == "semifinal_final") {
 		// Go to score calculation
-		switchScreen(3, 5);
+		gotoScoreCalculationFromRound(currentRoundNumber=2);
 	} else {
 		// Setup round 3
-		setupRound(currentRoundNumber=3);
-		switchScreen(3, 4);
+		startRound3();
 	}
 }
 
+function startRound3() {
+	let round3PlayersList = [];
 
-function gotoScoreCalculation() {
-	switchScreen(4, 5);
+	const selectElement1 = document.getElementById(
+		"selection-criterion-1"
+	); 
+
+	switch (selectElement1.value) {
+		case "random":
+			round3PlayersList = shufflePlayers(tournament.rounds[1].playersList);
+			break;
+		case "wvsl_cross":
+			round3PlayersList = winnersVsLosersCrossed(1,tournament.rounds[1].playersList);
+			break;
+	}
+
+	// Create round 3
+	let round3 = new Round(round3PlayersList);
+	if(tournament.rounds.length == 2)
+		tournament.rounds.push(round3);
+	else {
+		tournament.rounds[2] = round3;
+	}
+
+	//TODO: Modify next step button text to "Go to score calculation"
+	setupRound(currentRoundNumber=3);
+
+	// Go to Round 3
+	switchScreen(3, 4);
+}
+
+//TODO: aggiustare la funzione per switchare dal 3 o dal 4 al 5
+function gotoScoreCalculationFromRound(currentRoundNumber) {
+	if(currentRoundNumber == 3) {
+		setRoundResults(currentRoundNumber=3);
+	}
+	switchScreen(currentRoundNumber+1, 5);
 }
 
 function gotoPreviousStep(currentRoundNumber) {
@@ -613,14 +646,14 @@ window.registeredPlayers = registeredPlayers;
 window.startRound1 = startRound1;
 window.startRound2 = startRound2;
 window.nextStep = nextStep;
-window.gotoScoreCalculation = gotoScoreCalculation;
+window.gotoScoreCalculationFromRound = gotoScoreCalculationFromRound;
 
 
 // Esporta le funzioni se necessario
 export {
 	startTournament,
 	handleSelectChange,
-	gotoScoreCalculation,
+	gotoScoreCalculationFromRound,
 	startRound1,
 	startRound2,
 	nextStep,
