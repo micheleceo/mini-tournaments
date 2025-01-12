@@ -14,7 +14,7 @@ let tournament;
 let currentScreen = 1;
 let currentRoundNumber = 0;
 
-
+// TODO: implement previous step button
 // Global functions for HTML interface
 
 function startTournament() {
