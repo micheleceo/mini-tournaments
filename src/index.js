@@ -305,20 +305,24 @@ function recordTournamentResults() {
 	} else {
 		// Convert data to JSON
 		const jsonData = JSON.stringify(data, null, 2); // Il 2 indica l'indentazione
-		exportJSON(jsonData);
-		const jsonTournament = JSON.stringify(tournament, null, 2);
-		exportJSON(jsonTournament);
+		exportJSON(jsonData, `Updated_Players_${tournament.tournamentID}.json`);
+		const tournamentLog = {
+			tournamentID: tournament.tournamentID,
+			playerList: tournament.initialPlayersList
+		};
+		const jsonTournament = JSON.stringify(tournamentLog, null, 2);
+		exportJSON(jsonTournament,`Tournament_Log_${tournament.tournamentID}.json`);
 	}
 }
 
-function exportJSON(jsonData) {
+function exportJSON(jsonData , fileName) {
 	// Create an invisible link element to download the JSON file
 	const link = document.createElement("a");
 	link.setAttribute(
 		"href",
 		"data:text/json;charset=utf-8," + encodeURIComponent(jsonData)
 	);
-	link.setAttribute("download", "registeredPlayers.json"); // Nome del file da scaricare
+	link.setAttribute("download", fileName); // Nome del file da scaricare
 
 	// Add the link to the DOM is necessary to trigger the download
 	document.body.appendChild(link);
