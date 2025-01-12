@@ -30,7 +30,7 @@ but there is no memory at the moment.
 
 ![Hone screen](/assets/screenshots/home-screen.png)
 
--   You can view the registerd players with the relative rating (calculated with the ELO method)
+-   You can view the registerd players with the relative rating (calculated with the ELO method some details [here](/doc/K_factor.md))
 -   You can select the playes starting from the first select and so on
 -   You can add a new one for the torunament, there is no memory so it'll be deleted for the next tornament
 -   You can reset the select box in case of error
