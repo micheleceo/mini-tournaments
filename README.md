@@ -39,7 +39,7 @@ but there is no memory at the moment.
     
 -  Finally start the tournament!!!
 
-![Round1](/assets/screenshots/Round1.png)
+![Round1](/assets/screenshots/Round1.jpg)
 
 - After the **round 1** is finished insert the results
 - For the next round you can select:
@@ -56,7 +56,7 @@ but there is no memory at the moment.
 - After the **round 2** is finished insert the results and go to next step
  
 
-![Score Calculation](/assets/screenshots/ScoreCalculation.png)
+![Score Calculation](/assets/screenshots/ScoreCalculation.jpg)
 
 
 
