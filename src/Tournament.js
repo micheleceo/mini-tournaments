@@ -1,18 +1,15 @@
 class Tournament {
 	constructor(players) {
 		this.tournamentID = "";
+		this.initialPlayersList = players.map(player => ({
+			name: player.name,
+			initialRating: player.initialRating,
+			totalMatchesPlayed: player.totalMatchesPlayed,
+			KFactor: calculateKFactor(player) 
+		}));
 		this.playersList = players.slice();
-		//this.currentRound = 0;
-		//this.teams = [];
 		this.rounds = [];
 	}
-
-	/*gotoPreviousStep(currentRoundNumber) {
-		const currrentRoundIndex = currentRoundNumber - 1;
-		this.players = this.rounds[currrentRoundIndex].playersList;
-		switchScreen(currentRoundNumber, currentRoundNumber - 1);
-	}*/
-
 
 	/**
 	 * Calculates the tournament score for each player based on the selected scoring criterion.
@@ -23,8 +20,12 @@ class Tournament {
 	 * according to the selected criterion, which can be 'win-lose-draw', 'rating-increment',
 	 * 'total-gamesWon', or 'relative-gamesWon'. The players are then ranked in descending order
 	 * based on their scores, and the results are displayed in the ranking table.
+	 *
+	 * @param {string} selectedCriterion - The scoring criterion to use for calculating the tournament
+	 * score. Can be 'win-lose-draw', 'rating-increment', 'total-gamesWon', or 'relative-gamesWon'.
+	 * @return {Array} playersRanking - The ranking table, with players sorted in descending order by
+	 * their tournament score.
 	 */
-
 	calculateTournamentScore(selectedCriterion) {
 		// Calculate tournament final rating increment
 		this.playersList.forEach((player) => {
@@ -86,9 +87,7 @@ class Tournament {
 			(a, b) => b.tournamentScore - a.tournamentScore
 		);
 
-		//TODO: riprendere da qui per pulire il codice
         return playersRanking;
-		
 	}
 
 	recordTournamentResults(registeredPlayers) {
@@ -126,10 +125,10 @@ class Tournament {
 		});
 	}
 
-	/**
-	 * Restituisce la data e l'ora attuale della zona di Roma in formato stringa.
-	 * @returns {string} Data e ora attuali in formato "AAAA-MM-DD-HH-MM"
-	 */
+	    /**
+     * Returns the current date and time in the Rome timezone as a string.
+     * @returns {string} Current date and time in the format "YYYY-MM-DD-HH-MM"
+     */
 	getTournamentID() {
 		const now = new Date();
 		const options = {
@@ -146,10 +145,11 @@ class Tournament {
 			.toLocaleString("it-IT", options)
 			.replace(/\//g, "-");
 
-		// Formatta la data
+		// Set the tournament ID to the current date and time in Rome
 		return romaDateTime;
 	}
 }
 
 export default Tournament;
 
+import { calculateKFactor } from "./utils.js";

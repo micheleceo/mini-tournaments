@@ -6,7 +6,7 @@ let loggedIn = false;
 import Tournament from "./Tournament.js";
 import Player from "./Player.js";
 import Round from "./Round.js";
-import { balancePlayersTeams, calculateResult, shufflePlayers, winnersVsLosersCrossed, winnersVsWinners } from "./utils.js";
+import { balancePlayersTeams, calculateKFactor, calculateResult, shufflePlayers, winnersVsLosersCrossed, winnersVsWinners } from "./utils.js";
 import { calculateTeamRatingIncrement } from "./utils.js";
 import MatchResult from "./MatchResult.js";
 
@@ -51,7 +51,9 @@ function startTournament() {
 				tournamentPlayers.push(
 					new Player(
 						registeredPlayers[playerId].name,
-						registeredPlayers[playerId].rating
+						registeredPlayers[playerId].rating,
+						registeredPlayers[playerId].totalMatchesWon+registeredPlayers[playerId].totalMatchesDrawn+registeredPlayers[playerId].totalMatchesLost,
+						registeredPlayers[playerId].KFactor = calculateKFactor(registeredPlayers[playerId])
 					)
 				);
 			} else {
@@ -264,7 +266,7 @@ function setRoundResults(roundNumber) {
 	}
 }
 
-function calculateTournamentScore() {
+function gotoFinalRanking() {
 	const selectElement = document.getElementById(
 		"score-calculation-criterion"
 	);
@@ -303,18 +305,49 @@ function recordTournamentResults() {
 	} else {
 		// Convert data to JSON
 		const jsonData = JSON.stringify(data, null, 2); // Il 2 indica l'indentazione
-		exportJSON(jsonData);
+		exportJSON(jsonData, `Updated_Players_${tournament.tournamentID}.json`);
+
+		// Save tournament log
+		let roundsLight = [];
+		tournament.rounds.forEach((round) => {
+			roundsLight.push(createRoundLight(round));
+		});
+		const tournamentLog = {
+			tournamentID: tournament.tournamentID,
+			playerList: tournament.initialPlayersList,
+			rounds: roundsLight,
+		};
+		const jsonTournament = JSON.stringify(tournamentLog, null, 2);
+		exportJSON(jsonTournament,`Tournament_Log_${tournament.tournamentID}.json`);
 	}
 }
 
-function exportJSON(jsonData) {
+function createRoundLight(round) {
+	const roundLight = {
+	  matches: round.matches.map(match => ({
+		teamA: {
+		  playerA1: match.teams[0].playerA.name,
+		  playerA2: match.teams[0].playerB.name,
+		  gamesWon: match.teams[0].gamesWon
+		},
+		teamB: {
+		  playerB1: match.teams[1].playerA.name,
+		  playerB2: match.teams[1].playerB.name,
+		  gamesWon: match.teams[1].gamesWon
+		}
+	  }))
+	};
+	return roundLight;
+  }
+
+function exportJSON(jsonData , fileName) {
 	// Create an invisible link element to download the JSON file
 	const link = document.createElement("a");
 	link.setAttribute(
 		"href",
 		"data:text/json;charset=utf-8," + encodeURIComponent(jsonData)
 	);
-	link.setAttribute("download", "registeredPlayers.json"); // Nome del file da scaricare
+	link.setAttribute("download", fileName); // Nome del file da scaricare
 
 	// Add the link to the DOM is necessary to trigger the download
 	document.body.appendChild(link);
@@ -334,9 +367,7 @@ function restartTournament() {
 }
 
 function switchScreen(currentScreen, nextScreen) {
-	document
-		.getElementById(`screen${currentScreen}`)
-		.classList.remove("active");
+	document.getElementById(`screen${currentScreen}`).classList.remove("active");
 	document.getElementById(`screen${nextScreen}`).classList.add("active");
 }
 
@@ -504,6 +535,7 @@ function insertNewPlayer() {
 	resetSelects();
 }
 
+//TODO: spostare la funzione in PList.js
 function displayPlayersList() {
 	const modal = document.getElementById("playesrsListModal");
 	const playersTbody = document.getElementById("players-tbody");
@@ -631,7 +663,7 @@ async function showPasswordPopup() {
 window.handleSelectChange = handleSelectChange;
 window.startTournament = startTournament;
 window.gotoPreviousStep = gotoPreviousStep;
-window.calculateTournamentScore = calculateTournamentScore;
+window.gotoFinalRanking = gotoFinalRanking;
 window.recordTournamentResults = recordTournamentResults;
 window.restartTournament = restartTournament;
 window.switchScreen = switchScreen;
@@ -658,7 +690,7 @@ export {
 	startRound2,
 	nextStep,
 	gotoPreviousStep,
-	calculateTournamentScore,
+	gotoFinalRanking,
 	recordTournamentResults,
 	restartTournament,
 	switchScreen,

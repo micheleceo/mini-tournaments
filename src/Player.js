@@ -1,11 +1,13 @@
 class Player {
-	constructor(name, initialRating) {
+	constructor(name, initialRating, totalMatchesPlayed, KFactor) {
 		if (typeof initialRating !== "number") {
 			throw new TypeError("Rating must be a number");
 		}
 		// Initialize the player with the name and rating
 		this.name = name;
 		this.initialRating = initialRating;
+		this.totalMatchesPlayed = totalMatchesPlayed;
+		this.KFactor =  KFactor;
 
 		// Save matches results during the tournament
 		this.matchResult = [];
