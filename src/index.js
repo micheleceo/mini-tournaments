@@ -306,14 +306,39 @@ function recordTournamentResults() {
 		// Convert data to JSON
 		const jsonData = JSON.stringify(data, null, 2); // Il 2 indica l'indentazione
 		exportJSON(jsonData, `Updated_Players_${tournament.tournamentID}.json`);
+
+		// Save tournament log
+		let roundsLight = [];
+		tournament.rounds.forEach((round) => {
+			roundsLight.push(createRoundLight(round));
+		});
 		const tournamentLog = {
 			tournamentID: tournament.tournamentID,
-			playerList: tournament.initialPlayersList
+			playerList: tournament.initialPlayersList,
+			rounds: roundsLight,
 		};
 		const jsonTournament = JSON.stringify(tournamentLog, null, 2);
 		exportJSON(jsonTournament,`Tournament_Log_${tournament.tournamentID}.json`);
 	}
 }
+
+function createRoundLight(round) {
+	const roundLight = {
+	  matches: round.matches.map(match => ({
+		teamA: {
+		  playerA1: match.teams[0].playerA.name,
+		  playerA2: match.teams[0].playerB.name,
+		  gamesWon: match.teams[0].gamesWon
+		},
+		teamB: {
+		  playerB1: match.teams[1].playerA.name,
+		  playerB2: match.teams[1].playerB.name,
+		  gamesWon: match.teams[1].gamesWon
+		}
+	  }))
+	};
+	return roundLight;
+  }
 
 function exportJSON(jsonData , fileName) {
 	// Create an invisible link element to download the JSON file
@@ -342,9 +367,7 @@ function restartTournament() {
 }
 
 function switchScreen(currentScreen, nextScreen) {
-	document
-		.getElementById(`screen${currentScreen}`)
-		.classList.remove("active");
+	document.getElementById(`screen${currentScreen}`).classList.remove("active");
 	document.getElementById(`screen${nextScreen}`).classList.add("active");
 }
 
@@ -512,6 +535,7 @@ function insertNewPlayer() {
 	resetSelects();
 }
 
+//TODO: spostare la funzione in PList.js
 function displayPlayersList() {
 	const modal = document.getElementById("playesrsListModal");
 	const playersTbody = document.getElementById("players-tbody");
