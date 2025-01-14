@@ -7,7 +7,7 @@ class Player {
 		this.name = name;
 		this.initialRating = initialRating;
 		this.totalMatchesPlayed = totalMatchesPlayed;
-		this.KFactor =  KFactor;
+		//this.KFactor =  KFactor;
 
 		// Save matches results during the tournament
 		this.matchResult = [];

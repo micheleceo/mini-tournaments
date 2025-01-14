@@ -5,7 +5,7 @@ class Tournament {
 			name: player.name,
 			initialRating: player.initialRating,
 			totalMatchesPlayed: player.totalMatchesPlayed,
-			KFactor: calculateKFactor(player) 
+			//KFactor: calculateKFactor(player) 
 		}));
 		this.playersList = players.slice();
 		this.rounds = [];

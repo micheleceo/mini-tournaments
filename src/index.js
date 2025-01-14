@@ -53,7 +53,7 @@ function startTournament() {
 						registeredPlayers[playerId].name,
 						registeredPlayers[playerId].rating,
 						registeredPlayers[playerId].totalMatchesWon+registeredPlayers[playerId].totalMatchesDrawn+registeredPlayers[playerId].totalMatchesLost,
-						registeredPlayers[playerId].KFactor = calculateKFactor(registeredPlayers[playerId])
+						//registeredPlayers[playerId].KFactor = calculateKFactor(registeredPlayers[playerId])
 					)
 				);
 			} else {
@@ -338,7 +338,7 @@ function createRoundLight(round) {
 	  }))
 	};
 	return roundLight;
-  }
+}
 
 function exportJSON(jsonData , fileName) {
 	// Create an invisible link element to download the JSON file
