@@ -306,6 +306,7 @@ function recordTournamentResults() {
 		// Convert data to JSON
 		const jsonData = JSON.stringify(data, null, 2); // Il 2 indica l'indentazione
 		exportJSON(jsonData, `Updated_Players_${tournament.tournamentID}.json`);
+	}
 
 		// Save tournament log
 		let roundsLight = [];
@@ -319,7 +320,7 @@ function recordTournamentResults() {
 		};
 		const jsonTournament = JSON.stringify(tournamentLog, null, 2);
 		exportJSON(jsonTournament,`Tournament_Log_${tournament.tournamentID}.json`);
-	}
+	
 }
 
 function createRoundLight(round) {
