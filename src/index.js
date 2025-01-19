@@ -7,6 +7,8 @@ import Tournament from "./Tournament.js";
 import Player from "./models/Player.js";
 import Round from "./models/Round.js";
 import { balancePlayersTeams, calculateResult } from "./utils.js";
+import { requestToDoGet , showPasswordPopup, requestToDoPost } from "./requests.js";
+import { displayPlayersList } from "./displayPlayersList.js";
 
 // Instantiate the tournament
 let tournament;
@@ -212,7 +214,6 @@ function setRoundResults(roundNumber) {
 
 	//this.rounds[roundIndex].afterPlayersList = aPL;
 }
-
 
 function calculateTournamentScore() {
 	tournament.calculateTournamentScore();
@@ -426,13 +427,17 @@ function insertNewPlayer() {
 	resetSelects();
 }
 
-function displayPlayersList() {
+function showPlayersList() {
+	displayPlayersList(registeredPlayers);
+}
+
+function displayPlayersListOLD() {
 	const modal = document.getElementById("playesrsListModal");
 	const playersTbody = document.getElementById("players-tbody");
 	const nameHeader = document.getElementById("name-header");
 	const ratingHeader = document.getElementById("rating-header");
 
-	let sortBy = "name"; // Default sort by name
+	let sortBy = "rating"; // Default sort by name
 	let sortOrder = "asc"; // Default sort order ascending
 
 	function renderPlayersList() {
@@ -486,68 +491,18 @@ function displayPlayersList() {
 	});
 }
 
-let url =
-	"https://script.google.com/macros/s/AKfycbx44BoWtW35013PtfBDmyb00pd7c1z1yewlXFcFxtcxgYo_Ch_7cUhEWrgJ-ak3k"; // Replace with your deployed script URL
-
-//Grdrive requests
-async function requestToDoGet() {
-	let jsonfile;
-
-	try {
-		const response = await fetch(url);
-		if (!response.ok) {
-			throw new Error(
-				`Network response was not ok: ${response.statusText}`
-			);
-		}
-
-		jsonfile = await response.json();
-		return jsonfile;
-	} catch (error) {
-		console.error(
-			"There has been a problem with your fetch operation:",
-			error
-		);
-		return "error";
-	}
-}
-
-async function requestToDoPost(json_data) {
-	try {
-		const response = await fetch(url, {
-			method: "POST",
-			body: JSON.stringify(json_data),
-		});
-
-		if (!response.ok) {
-			throw new Error(
-				`Network response was not ok: ${response.statusText}`
-			);
-		}
-
-		const data = await response.json();
-	} catch (error) {
-		console.error(
-			"There has been a problem with your fetch operation:",
-			error
-		);
-	}
-}
-
-async function showPasswordPopup() {
-	const password = prompt("Please enter the password:");
-	url = url + password + "/exec";
-	const response = await requestToDoGet();
-
+async function login() {
+	const response = await showPasswordPopup();
 	if (response === "error") {
-		alert("Incorrect password!");
-	} else {
+        alert("Incorrect password!");
+    } else {
 		loggedIn = true;
-		data = response;
-		registeredPlayers = data.data;
-		resetSelects();
+        data = response;
+        registeredPlayers = data.data;
+        resetSelects();
 	}
 }
+
 
 // Assegna le funzioni all'oggetto window
 window.handleSelectChange = handleSelectChange;
@@ -569,6 +524,8 @@ window.startRound1 = startRound1;
 window.startRound2 = startRound2;
 window.startRound3 = startRound3;
 window.gotoScoreCalculation = gotoScoreCalculationFromRound;
+window.login = login;
+window.showPlayersList = showPlayersList;
 
 
 // Esporta le funzioni se necessario
@@ -588,8 +545,9 @@ export {
 	cancel,
 	insertNewPlayer,
 	displayPlayersList,
-	showPasswordPopup,
 	resetInputs,
 	resetSelects,
 	registeredPlayers,
+	login,
+	showPlayersList
 };

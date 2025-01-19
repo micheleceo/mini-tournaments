@@ -1,13 +1,15 @@
+import { calculateKFactor } from "../utils.js";
+
 class Player {
-	constructor(name, initialRating, totalMatchesPlayed, KFactor) {
+	constructor(name, initialRating, totalMatchesPlayed) {
 		if (typeof initialRating !== "number") {
 			throw new TypeError("Rating must be a number");
 		}
-		// Initialize the player with the name and rating
+		// Initialize the player with the info needed for the tournament
 		this.name = name;
 		this.initialRating = initialRating;
 		this.totalMatchesPlayed = totalMatchesPlayed;
-		//this.KFactor =  KFactor;
+		this.KFactor =  calculateKFactor(this);
 
 		// Save matches results during the tournament
 		this.matchResult = [];

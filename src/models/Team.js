@@ -24,4 +24,4 @@ class Team {
 }
 
 export default Team;
-import { calculateTeamRating } from "./utils.js";
+import { calculateTeamRating } from "../utils.js";

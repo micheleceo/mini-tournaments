@@ -1,13 +1,3 @@
-import Player from "./Player.js";
-import Team from "./Team.js";
-import Match from "./Match.js";
-import Round from "./Round.js";
-import {
-	calculateResult,
-	calculateTeamRatingIncrement,
-} from "./utils.js";
-
-
 class Tournament {
 	constructor(players) {
 		this.tournamentID = "";
@@ -41,6 +31,7 @@ class Tournament {
 				this.shufflePlayers();
 				break;
 			case "wvsl_cross":
+				//TODO: controllare che vada bene
 				// Winners vs Losers crossed
 				this.playersList.sort(
 					(a, b) =>
@@ -53,6 +44,8 @@ class Tournament {
 				this.playersList = roundPlayers;
 			default:
 				break;
+
+			//TODO: valutare se occorre mettere un altro criterio per il terzo round
 		}
 	}
 
