@@ -32,13 +32,13 @@ function calculateKFactor(player) {
  *
  * @param {number} teamRating - The current rating of the team.
  * @param {number} opponentTeamRating - The current rating of the opposing team.
- * @param {number} teamActualScore - The actual score of the team in the match (0 or 1).
+ * @param {number} teamResult - The actual score of the team in the match (0 or 1).
  * @returns {Array<number>} The rating increments for the team and the opponent team.
  */
 function calculateTeamRatingIncrement(
 	teamRating,
 	opponentTeamRating,
-	teamActualScore
+	teamResult
 ) {
 	//TODO: valutare se renderlo variabile
 	const K_FACTOR = 32; // Adjust this factor to change the strength of the rating system
@@ -52,8 +52,8 @@ function calculateTeamRatingIncrement(
 		teamRating
 	);
 
-	const teamRatingChange = K_FACTOR * (teamActualScore - teamExpectedScore);
-	const opponentteamRatingChange = K_FACTOR * (1 - teamActualScore - opponentTeamExpectedScore);
+	const teamRatingChange = K_FACTOR * (teamResult - teamExpectedScore);
+	const opponentteamRatingChange = K_FACTOR * (1 - teamResult - opponentTeamExpectedScore);
 
 	return [teamRatingChange, opponentteamRatingChange];
 }

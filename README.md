@@ -30,7 +30,7 @@ but there is no memory at the moment.
 
 ![Hone screen](/assets/screenshots/home-screen.png)
 
--   You can view the registerd players with the relative rating (calculated with the ELO method some details [here](/doc/K_factor.md))
+-   You can view the registerd players with the relative rating (calculated with the ELO method)
 -   You can select the playes starting from the first select and so on
 -   You can add a new one for the torunament, there is no memory so it'll be deleted for the next tornament
 -   You can reset the select box in case of error
@@ -39,7 +39,7 @@ but there is no memory at the moment.
     -   _Rating:_ balance criterion:Set up matches putting the player with the highest rating with the player who has the lowest rating and so on.
 -   Finally start the tournament!!!
 
-![Round1](/assets/screenshots/Round1.jpg)
+![Round1](/assets/screenshots/Round1.png)
 
 -   After the **round 1** is finished insert the results
 -   For the next round you can select:
@@ -47,19 +47,11 @@ but there is no memory at the moment.
     -   _Semi-final and final:_ In this case there will'be just another round.
         The winning teams will face each other for the first and second place
         The losing teams vill face each other for the third and the fourth place
-    - *Winners vs Loosers:* in this case the winning players will be separated
-       and will play in the same team with the losing players. There will be
-       a balnce with the players rating increment obtained in the round 1.
-- Select the criterion and go to next step
-        
+    -   _Winners vs Loosers:_ in this case the winning players will be separated
+        and will play in the same team with the losing players. There will be
+        a balnce with the players rating increment obtained in the round 1.
+-   Select the criterion and go to next step
 
-- After the **round 2** is finished insert the results and go to next step
- 
+-   After the **round 2** is finished insert the results and go to next step
 
-![Score Calculation](/assets/screenshots/ScoreCalculation.jpg)
-
-
-
-  
-
-
+![Score Calculation](/assets/screenshots/ScoreCalculation.png)
