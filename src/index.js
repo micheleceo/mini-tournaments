@@ -6,7 +6,7 @@ let loggedIn = false;
 import Tournament from "./Tournament.js";
 import Player from "./models/Player.js";
 import Round from "./models/Round.js";
-import { balancePlayersTeams, calculateResult } from "./utils.js";
+import { balancePlayersTeams, calculateResult, calculateTeamRatingIncrement } from "./utils.js";
 import { requestToDoGet , showPasswordPopup, requestToDoPost } from "./requests.js";
 import { displayPlayersList } from "./displayPlayersList.js";
 
