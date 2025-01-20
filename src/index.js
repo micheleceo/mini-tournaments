@@ -15,8 +15,6 @@ let tournament;
 let currentScreen = 1;
 let currentRoundNumber = 0;
 
-// Global functions for HTML interface
-
 function startRound1() {
     initializeTournament();
 
@@ -25,15 +23,22 @@ function startRound1() {
 	const slected_Citerion = document.getElementById(
 		"selection-criterion-players"
 	);
-	if (slected_Citerion.value == "rating-balance") {
-		round1PlayersList = balancePlayersTeams(tournament.playersList);
-	} else {
-		round1PlayersList = balancePlayersTeams(tournament.playersList);
+
+	switch(slected_Citerion.value) {
+		case "rating-balance":
+			round1PlayersList = balancePlayersTeams(tournament.playersList);
+			break;
+		case "random":
+			round1PlayersList = shufflePlayers(tournament.playersList);
+			break;
+		default:
+			break;
 	}
 
 	tournament.rounds.push(new Round(round1PlayersList));
 	
 	setupRound(currentRoundNumber=1);
+
 	// Go to Round 1
 	switchScreen(1, 2);
 }
@@ -57,7 +62,7 @@ function initializeTournament() {
 		// Create torunament players array
 		const tournamentPlayers = [];
 
-		// Build player list
+		// Build players list
 		for (let i = 0; i < 8; i++) {
 			const playerSelect = document.getElementById(
 				`player${i + 1}-select`
@@ -72,7 +77,8 @@ function initializeTournament() {
 				tournamentPlayers.push(
 					new Player(
 						registeredPlayers[playerId].name,
-						registeredPlayers[playerId].rating
+						registeredPlayers[playerId].rating,
+						registeredPlayers[playerId].totalMatchesWon+registeredPlayers[playerId].totalMatchesDrawn+registeredPlayers[playerId].totalMatchesLost
 					)
 				);
 			} else {

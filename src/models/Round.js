@@ -17,7 +17,7 @@ class Round {
 		);
 		}
 
-		// Save the round matches
+		// Create the round matches
 		this.matches.push(new Match());
 		this.matches[0].teams.push(team[0], team[1]);
 		this.matches.push(new Match());
