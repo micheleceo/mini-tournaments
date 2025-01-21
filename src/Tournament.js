@@ -1,7 +1,7 @@
 class Tournament {
-	constructor(players) {
+	constructor() {
 		this.tournamentID = "";
-		this.playersList = players.slice();
+	//	this.playersList = players.slice();
 		this.rounds = [];
 	}
 

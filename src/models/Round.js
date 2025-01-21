@@ -3,7 +3,7 @@ class Round {
 	 * Creates an instance of Round with an empty list of matches.
 	 */
 	constructor(roundPlayersList) {
-		this.playersList = roundPlayersList.slice();
+	//	this.playersList = roundPlayersList.slice();
 		this.matches = [];
 
 		// Create the teams
@@ -11,8 +11,8 @@ class Round {
 		for (let i = 0; i < 4; i++) {
 		team.push(
 			new Team(
-				this.playersList[i * 2],
-				this.playersList[i * 2 + 1],
+				roundPlayersList[i * 2],
+				roundPlayersList[i * 2 + 1],
 			)
 		);
 		}
@@ -24,6 +24,8 @@ class Round {
 		this.matches[1].teams.push(team[2], team[3]);
 
 	}
+
+//	afterPlayersList = [];
   
 }
 

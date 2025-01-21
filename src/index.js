@@ -6,38 +6,50 @@ let loggedIn = false;
 import Tournament from "./Tournament.js";
 import Player from "./models/Player.js";
 import Round from "./models/Round.js";
-import { balancePlayersTeams, calculateResult, calculateTeamRatingIncrement } from "./utils.js";
-import { requestToDoGet , showPasswordPopup, requestToDoPost } from "./requests.js";
+import {
+	balancePlayersTeams,
+	calculateResult,
+	calculateTeamsRatingIncrement,
+	winnersVsWinners,
+} from "./utils/ELO.js";
+import {
+	requestToDoGet,
+	showPasswordPopup,
+	requestToDoPost,
+} from "./requests.js";
 import { displayPlayersList } from "./displayPlayersList.js";
+import MatchResult from "./models/MatchResult.js";
 
 // Instantiate the tournament
 let tournament;
 let currentScreen = 1;
 let currentRoundNumber = 0;
 
-function startRound1() {
-    initializeTournament();
+// Create torunament players array
+let tournamentPlayers = [];
+let roundsPlayersList = [];
+let roundsUpdatedPlayersList = [];
 
-	let round1PlayersList = [];
+function startRound1() {
+	initializeTournament();
+
 	//  Organize players an create round 1
-	const slected_Citerion = document.getElementById(
+	const slectedCriterion = document.getElementById(
 		"selection-criterion-players"
 	);
 
-	switch(slected_Citerion.value) {
+	switch (slectedCriterion.value) {
 		case "rating-balance":
-			round1PlayersList = balancePlayersTeams(tournament.playersList);
+			roundsPlayersList.push(balancePlayersTeams(tournamentPlayers));
 			break;
 		case "random":
-			round1PlayersList = shufflePlayers(tournament.playersList);
+			roundsPlayersList.push(shufflePlayers(tournamentPlayers));
 			break;
 		default:
 			break;
 	}
 
-	tournament.rounds.push(new Round(round1PlayersList));
-	
-	setupRound(currentRoundNumber=1);
+	setupRound((currentRoundNumber = 1));
 
 	// Go to Round 1
 	switchScreen(1, 2);
@@ -59,9 +71,6 @@ function initializeTournament() {
 	});
 
 	if (allSelected) {
-		// Create torunament players array
-		const tournamentPlayers = [];
-
 		// Build players list
 		for (let i = 0; i < 8; i++) {
 			const playerSelect = document.getElementById(
@@ -78,7 +87,9 @@ function initializeTournament() {
 					new Player(
 						registeredPlayers[playerId].name,
 						registeredPlayers[playerId].rating,
-						registeredPlayers[playerId].totalMatchesWon+registeredPlayers[playerId].totalMatchesDrawn+registeredPlayers[playerId].totalMatchesLost
+						registeredPlayers[playerId].totalMatchesWon +
+							registeredPlayers[playerId].totalMatchesDrawn +
+							registeredPlayers[playerId].totalMatchesLost
 					)
 				);
 			} else {
@@ -87,8 +98,8 @@ function initializeTournament() {
 		}
 
 		// Create a new tournament
-		tournament = new Tournament(tournamentPlayers);
-
+		tournament = new Tournament();
+		//	roundsBeforePlayersList.push(tournamentPlayers);
 	} else {
 		alert("Please select all players before starting the tournament.");
 		return;
@@ -96,23 +107,34 @@ function initializeTournament() {
 }
 
 function startRound2() {
-	
-	setRoundResults(currentRoundNumber=1);
+	saveRound((currentRoundNumber = 1));
 
 	//  Organize players and create round 2
-	const selectElement1 = document.getElementById(
-		"selection-criterion-1"
-	);
-	organizePlayers(selectElement1, 2);
-	if (selectElement1.value == "semifinal_final") {
-		const selectElement2 = document.getElementById(
-			"selection-criterion-2"
-		);
-		selectElement2.style.display = "none";
+	const selectElement1 = document.getElementById("selection-criterion-1");
+
+	switch (selectElement1.value) {
+		case "semifinal_final":
+			roundsPlayersList.push(
+				winnersVsWinners(roundsUpdatedPlayersList[0], 0)
+			);
+			const selectElement2 = document.getElementById(
+				"selection-criterion-2"
+			);
+			selectElement2.style.display = "none";
+			break;
+		case "winners_vs_losers":
+		//TODO: implementare da foglio
+		case "random":
+			roundsPlayersList.push(
+				shufflePlayers(roundsUpdatedPlayersList[0], 0)
+			);
+			break;
+		default:
+			break;
 	}
 
 	//TODO: modify next step button text to "Go to score calculation"
-	setupRound(currentRoundNumber=2);
+	setupRound((currentRoundNumber = 2));
 
 	// Go to Round 2
 	switchScreen(2, 3);
@@ -122,9 +144,7 @@ function startRound3() {
 	tournament.saveRoundResults(2);
 
 	//  Organize players and create a new round
-	const selectElement = document.getElementById(
-		"selection-criterion-1"
-	);
+	const selectElement = document.getElementById("selection-criterion-1");
 	if (selectElement.value == "semifinal_final") {
 		// Go to score calculation
 		gotoScoreCalculationFromRound(2);
@@ -136,7 +156,7 @@ function startRound3() {
 }
 
 function gotoScoreCalculationFromRound(roundNumber) {
-	switchScreen(roundNumber+1, 5);
+	switchScreen(roundNumber + 1, 5);
 }
 
 function gotoPreviousStep(currentRoundNumber) {
@@ -153,72 +173,86 @@ function setupRound(roundNumber) {
 			`team${++teamIndex}-players`
 		);
 		teamElements.innerHTML = `${
-			tournament.rounds[roundIndex].playersList[i * 2].name
+			roundsPlayersList[roundIndex][i * 2].name
 		} <br> 
-		  ${tournament.rounds[roundIndex].playersList[i * 2 + 1].name}`;
+		  ${roundsPlayersList[roundIndex][i * 2 + 1].name}`;
 	}
 }
 
-function setRoundResults(roundNumber) {
+function saveRound(roundNumber) {
 	let roundIndex = roundNumber - 1;
 	let teamIndex = roundIndex * 4;
 
+	//TODO: valutare se serve salvare il round nel torneo già da adesso
+	tournament.rounds.push(new Round(roundsPlayersList[roundIndex]));
+	let roundUpdatedPlayersList = [...roundsPlayersList[roundIndex]];
+
 	//Iteration through the 2 matches, calculate the result and update the player results with the rating increment
 	for (let i = 0; i < 2; i++) {
+		//TODO: forse meglio una funzione saveRound
+		const teamAgamesWon =
+			parseInt(
+				document.getElementById(`team${++teamIndex}-gamesWon`).value
+			) || 0;
+		tournament.rounds[roundIndex].matches[i].teams[0].gamesWon =
+			teamAgamesWon;
+		const teamA = tournament.rounds[roundIndex].matches[i].teams[0];
 
-        const teamAgamesWon = parseInt(
-			document.getElementById(`team${teamIndex+1}-gamesWon`).value 
-		) || 0;
-		tournament.rounds[roundIndex].matches[i].teams[teamIndex].gamesWon = teamAgamesWon;
-		const teamAInitialRating = tournament.rounds[roundIndex].matches[i].teams[teamIndex].initialRating;
+		const teamBgamesWon =
+			parseInt(
+				document.getElementById(`team${++teamIndex}-gamesWon`).value
+			) || 0;
+		tournament.rounds[roundIndex].matches[i].teams[1].gamesWon =
+			teamBgamesWon;
+		const teamB = tournament.rounds[roundIndex].matches[i].teams[1];
 
-		const teamBgamesWon = parseInt(
-			document.getElementById(`team${teamIndex+2}-gamesWon`).value
-		) || 0;
-		tournament.rounds[roundIndex].matches[i].teams[++teamIndex].gamesWon = teamBgamesWon;
-		const teamBInitialRating = tournament.rounds[roundIndex].matches[i].teams[teamIndex].initialRating;
-		
 		const [teamARatingIncrement, teamBRatingIncrement] =
-			calculateTeamRatingIncrement(
-				teamAInitialRating,
-				teamBInitialRating,
-				calculateResult(
-					teamAgamesWon,
-					teamBgamesWon)
+			calculateTeamsRatingIncrement(
+				teamA,
+				teamB,
+				calculateResult(teamAgamesWon, teamBgamesWon)
 			);
 
+		roundUpdatedPlayersList[i * 4 + 0].addMatchResults(
+			roundIndex,
+			new MatchResult(teamAgamesWon, teamBgamesWon, teamARatingIncrement)
+		);
 
-		//TODO: partire da qui
-		//Update after round players list with the rating increment
-		let afterPlayersList = [...this.rounds[roundIndex].beforePlayersList];
-		this.rounds[roundIndex].afterPlayersList = afterPlayersList;
-		afterPlayersList[i * 4 + 0].saveMatchResults(
+		roundUpdatedPlayersList[i * 4 + 1].addMatchResults(
 			roundIndex,
-			this.rounds[roundIndex].match[i].team[0].gamesWon,
-			this.rounds[roundIndex].match[i].team[1].gamesWon,
+			new MatchResult(teamBgamesWon, teamAgamesWon, teamBRatingIncrement)
+		);
+		roundUpdatedPlayersList[i * 4 + 2].addMatchResults(
+			roundIndex,
+			new MatchResult(teamAgamesWon, teamBgamesWon, teamARatingIncrement)
+		);
+
+		roundUpdatedPlayersList[i * 4 + 3].addMatchResults(
+			roundIndex,
+			new MatchResult(teamBgamesWon, teamAgamesWon, teamBRatingIncrement)
+		);
+
+		/*	roundUpdatedPlayersList[i * 4 + 1].saveMatchResults(
+			roundIndex,
+			tournament.rounds[roundIndex].matches[i].teams[0].gamesWon,
+			tournament.rounds[roundIndex].matches[i].teams[1].gamesWon,
 			teamARatingIncrement
 		);
-		afterPlayersList[i * 4 + 1].saveMatchResults(
+		roundUpdatedPlayersList[i * 4 + 2].saveMatchResults(
 			roundIndex,
-			this.rounds[roundIndex].match[i].team[0].gamesWon,
-			this.rounds[roundIndex].match[i].team[1].gamesWon,
-			teamARatingIncrement
-		);
-		afterPlayersList[i * 4 + 2].saveMatchResults(
-			roundIndex,
-			this.rounds[roundIndex].match[i].team[1].gamesWon,
-			this.rounds[roundIndex].match[i].team[0].gamesWon,
+			tournament.rounds[roundIndex].matches[i].teams[1].gamesWon,
+			tournament.rounds[roundIndex].matches[i].teams[0].gamesWon,
 			teamBRatingIncrement
 		);
-		afterPlayersList[i * 4 + 3].saveMatchResults(
+		roundUpdatedPlayersList[i * 4 + 3].saveMatchResults(
 			roundIndex,
-			this.rounds[roundIndex].match[i].team[1].gamesWon,
-			this.rounds[roundIndex].match[i].team[0].gamesWon,
+			tournament.rounds[roundIndex].matches[i].teams[1].gamesWon,
+			tournament.rounds[roundIndex].matches[i].teams[0].gamesWon,
 			teamBRatingIncrement
-		);
+		);*/
 	}
 
-	//this.rounds[roundIndex].afterPlayersList = aPL;
+	roundsUpdatedPlayersList.push(roundUpdatedPlayersList);
 }
 
 function calculateTournamentScore() {
@@ -440,15 +474,14 @@ function showPlayersList() {
 async function login() {
 	const response = await showPasswordPopup();
 	if (response === "error") {
-        alert("Incorrect password!");
-    } else {
+		alert("Incorrect password!");
+	} else {
 		loggedIn = true;
-        data = response;
-        registeredPlayers = data.data;
-        resetSelects();
+		data = response;
+		registeredPlayers = data.data;
+		resetSelects();
 	}
 }
-
 
 // Assegna le funzioni all'oggetto window
 window.handleSelectChange = handleSelectChange;
@@ -473,7 +506,6 @@ window.gotoScoreCalculation = gotoScoreCalculationFromRound;
 window.login = login;
 window.showPlayersList = showPlayersList;
 
-
 // Esporta le funzioni se necessario
 export {
 	initializeTournament as startTournament,
@@ -495,5 +527,5 @@ export {
 	resetSelects,
 	registeredPlayers,
 	login,
-	showPlayersList
+	showPlayersList,
 };

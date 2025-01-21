@@ -7,10 +7,11 @@ class Team {
    */
 
   constructor(playerA, playerB) {
-    //TODO: se non serve basta meettere solo i nomi dei giocatori (al massimo il reting iniziale)
+    //TODO: se non serve basta meettere solo i nomi dei giocatori
     this.playerA = playerA;
     this.playerB = playerB;
     this.initialRating = calculateTeamRating(playerA.initialRating, playerB.initialRating);
+    this.KFactor = calculateTeamKFactor(playerA.KFactor, playerB.KFactor);
     this.gamesWon = 0;
   }
 
@@ -24,4 +25,4 @@ class Team {
 }
 
 export default Team;
-import { calculateTeamRating } from "../utils.js";
+import { calculateTeamRating, calculateTeamKFactor } from "../utils/ELO.js";
