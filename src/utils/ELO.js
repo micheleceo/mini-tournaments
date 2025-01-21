@@ -1,14 +1,15 @@
 
 /**
- * Calculates the K-factor for a given player.
+ * Determines the K-factor for a player based on their total matches played and rating.
  *
- * The K-factor is a constant used in the Elo rating system
- * to determine how much a player's rating changes after each game.
- * The K-factor is based on the number of games played and the rating of the player.
- *
- * @param {Object} player - The player to calculate the K-factor for
- * @returns {number} The K-factor for the player
+ * The K-factor is used to adjust the player's rating after each match. 
+ * A higher K-factor means more significant rating changes, while a lower K-factor results 
+ * in more stable ratings. The K-factor is calculated based on the player's total matches played
+ * @param {number} totalMatchesPlayed - The total number of matches the player has played.
+ * @param {number} rating - The current rating of the player.
+ * @returns {number} The calculated K-factor for the player.
  */
+
 function calculateKFactor(totalMatchesPlayed,rating) {
 	if (totalMatchesPlayed <= 10) {
 		return 40;
@@ -27,13 +28,16 @@ function calculateKFactor(totalMatchesPlayed,rating) {
 	}
 }
 
+
 /**
- * Calculates the rating increment for a team based on the outcome of a match.
+ * Calculates the rating increment for two teams based on their ratings and the result of their match.
  *
- * @param {number} teamRating - The current rating of the team.
- * @param {number} opponentTeamRating - The current rating of the opposing team.
- * @param {number} teamResult - The actual score of the team in the match (0 or 1).
- * @returns {Array<number>} The rating increments for the team and the opponent team.
+ * The rating increment is calculated using the Elo rating system, which takes into account the expected score of each team based on their ratings.
+ * The difference between the expected score and the actual score is used to determine the rating change for each team.
+ * @param {Team} team - The team for which to calculate the rating increment.
+ * @param {Team} opponentTeam - The opponent team.
+ * @param {number} teamResult - The actual result of the match for the team, from 0 (loss) to 1 (win).
+ * @returns {number[]} An array with two elements, the rating change for the team and the opponent team, respectively.
  */
 function calculateTeamsRatingIncrement(
 	team,
@@ -41,16 +45,16 @@ function calculateTeamsRatingIncrement(
 	teamResult
 ) {
 	const teamExpectedScore = calculateExpectedScore(
-		team.rating,
-		opponentTeam.rating
+		team.initialRating,
+		opponentTeam.initialRating
 	);
 	const opponentTeamExpectedScore = calculateExpectedScore(
-		opponentTeam.rating,
-		team.rating
+		opponentTeam.initialRating,
+		team.initialRating
 	);
 
-	const teamRatingChange = team.K_FACTOR * (teamResult - teamExpectedScore);
-	const opponentteamRatingChange = opponentTeam.K_FACTOR * (1 - teamResult - opponentTeamExpectedScore);
+	const teamRatingChange = team.KFactor * (teamResult - teamExpectedScore);
+	const opponentteamRatingChange = opponentTeam.KFactor * (1 - teamResult - opponentTeamExpectedScore);
 
 	return [teamRatingChange, opponentteamRatingChange];
 }
@@ -89,7 +93,8 @@ export {
 	calculateResult,
 	calculateTeamRating,
 	calculateKFactor,
-	calculateTeamKFactor
+	calculateTeamKFactor,
+	calculateTeamsRatingIncrement
 };
 
 

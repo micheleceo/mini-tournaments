@@ -6,23 +6,30 @@ let loggedIn = false;
 import Tournament from "./Tournament.js";
 import Player from "./models/Player.js";
 import Round from "./models/Round.js";
+import MatchResult from "./models/MatchResult.js";
+import { displayPlayersList } from "./displayPlayersList.js";
+
+import {
+	calculateResult,
+	calculateTeamsRatingIncrement
+} from "./utils/ELO.js";
+
 import {
 	balancePlayersTeams,
-	calculateResult,
-	calculateTeamsRatingIncrement,
-	winnersVsWinners,
-} from "./utils/ELO.js";
+	shufflePlayers,
+	winnersVsWinners
+} from "./utils/PlayersOrganizer.js";
+
 import {
 	requestToDoGet,
 	showPasswordPopup,
-	requestToDoPost,
+	requestToDoPost
 } from "./requests.js";
-import { displayPlayersList } from "./displayPlayersList.js";
-import MatchResult from "./models/MatchResult.js";
+
+
 
 // Instantiate the tournament
 let tournament;
-let currentScreen = 1;
 let currentRoundNumber = 0;
 
 // Create torunament players array
@@ -140,8 +147,9 @@ function startRound2() {
 	switchScreen(2, 3);
 }
 
-function startRound3() {
-	tournament.saveRoundResults(2);
+
+function nextStep() {
+	saveRound((currentRoundNumber = 2));
 
 	//  Organize players and create a new round
 	const selectElement = document.getElementById("selection-criterion-1");
@@ -149,13 +157,32 @@ function startRound3() {
 		// Go to score calculation
 		gotoScoreCalculationFromRound(2);
 	} else {
+		//  Organize players and create round 2
+		const selectElement2 = document.getElementById("selection-criterion-2");
+		switch (selectElement2.value) {
+			case "winners_vs_losers":
+				roundsPlayersList.push(
+					winnersVsWinners(roundsUpdatedPlayersList[1], 0)
+				);
+			break;
+			case "random":
+				roundsPlayersList.push(
+					shufflePlayers(roundsUpdatedPlayersList[1], 0)
+				);
+				break;
+			default:
+				break;
+		}
 		// Setup round 3
-		setupRound(3);
+		setupRound(currentRoundNumber=3);
 		switchScreen(3, 4);
 	}
 }
 
 function gotoScoreCalculationFromRound(roundNumber) {
+	if(roundNumber == 3){
+		saveRound((currentRoundNumber = 3));
+	}
 	switchScreen(roundNumber + 1, 5);
 }
 
@@ -194,16 +221,14 @@ function saveRound(roundNumber) {
 			parseInt(
 				document.getElementById(`team${++teamIndex}-gamesWon`).value
 			) || 0;
-		tournament.rounds[roundIndex].matches[i].teams[0].gamesWon =
-			teamAgamesWon;
+		tournament.rounds[roundIndex].matches[i].teams[0].gamesWon = teamAgamesWon;
 		const teamA = tournament.rounds[roundIndex].matches[i].teams[0];
 
 		const teamBgamesWon =
 			parseInt(
 				document.getElementById(`team${++teamIndex}-gamesWon`).value
 			) || 0;
-		tournament.rounds[roundIndex].matches[i].teams[1].gamesWon =
-			teamBgamesWon;
+		tournament.rounds[roundIndex].matches[i].teams[1].gamesWon = teamBgamesWon;
 		const teamB = tournament.rounds[roundIndex].matches[i].teams[1];
 
 		const [teamARatingIncrement, teamBRatingIncrement] =
@@ -501,10 +526,10 @@ window.resetInputs = resetInputs;
 window.registeredPlayers = registeredPlayers;
 window.startRound1 = startRound1;
 window.startRound2 = startRound2;
-window.startRound3 = startRound3;
 window.gotoScoreCalculation = gotoScoreCalculationFromRound;
 window.login = login;
 window.showPlayersList = showPlayersList;
+window.nextStep = nextStep;
 
 // Esporta le funzioni se necessario
 export {
@@ -512,8 +537,7 @@ export {
 	handleSelectChange,
 	gotoScoreCalculationFromRound as gotoScoreCalculation,
 	startRound1,
-	startRound2,
-	startRound3,
+	startRound2,	
 	gotoPreviousStep,
 	calculateTournamentScore,
 	recordTournamentResults,
@@ -528,4 +552,5 @@ export {
 	registeredPlayers,
 	login,
 	showPlayersList,
+	nextStep
 };

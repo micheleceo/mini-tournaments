@@ -40,6 +40,14 @@ function balancePlayersTeams(playersList) {
 	return newPlayersList;
 }
 
+/**
+ * Sorts the players list based on their rating increments after the given round index. This
+ * function is used to set up the matches for the next round after the first round, putting
+ * the winners of the first round against each other and the losers against each other.
+ * @param {number} roundIndex - The index of the round for which the player rating increments
+ * are used for sorting.
+ * @returns {Player[]} The sorted players list.
+ */
 function winnersVsWinners(playersList,roundIndex){
 
 	let newPlayersList = playersList.slice();
@@ -86,5 +94,5 @@ export {
 	shufflePlayers,
 	balancePlayersTeams,
 	winnersVsWinners,
-	winnersVsLosersCrossed,
+	winnersVsLosersCrossed
 };
