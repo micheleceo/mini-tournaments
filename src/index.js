@@ -35,6 +35,7 @@ let currentRoundNumber = 0;
 // Create torunament players array
 let tournamentPlayers = [];
 let roundsPlayersList = [];
+//TODO: risolvere prolebi di copia degli array
 let roundsUpdatedPlayersList = [];
 
 function startRound1() {
@@ -47,10 +48,10 @@ function startRound1() {
 
 	switch (slectedCriterion.value) {
 		case "rating-balance":
-			roundsPlayersList.push(balancePlayersTeams(tournamentPlayers));
+			roundsPlayersList.push(balancePlayersTeams(tournament.playersList));
 			break;
 		case "random":
-			roundsPlayersList.push(shufflePlayers(tournamentPlayers));
+			roundsPlayersList.push(shufflePlayers(tournament.playersList));
 			break;
 		default:
 			break;
@@ -105,7 +106,7 @@ function initializeTournament() {
 		}
 
 		// Create a new tournament
-		tournament = new Tournament();
+		tournament = new Tournament(tournamentPlayers);
 		//	roundsBeforePlayersList.push(tournamentPlayers);
 	} else {
 		alert("Please select all players before starting the tournament.");
@@ -257,27 +258,40 @@ function saveRound(roundNumber) {
 			new MatchResult(teamBgamesWon, teamAgamesWon, teamBRatingIncrement)
 		);
 
-		/*	roundUpdatedPlayersList[i * 4 + 1].saveMatchResults(
-			roundIndex,
-			tournament.rounds[roundIndex].matches[i].teams[0].gamesWon,
-			tournament.rounds[roundIndex].matches[i].teams[1].gamesWon,
-			teamARatingIncrement
-		);
-		roundUpdatedPlayersList[i * 4 + 2].saveMatchResults(
-			roundIndex,
-			tournament.rounds[roundIndex].matches[i].teams[1].gamesWon,
-			tournament.rounds[roundIndex].matches[i].teams[0].gamesWon,
-			teamBRatingIncrement
-		);
-		roundUpdatedPlayersList[i * 4 + 3].saveMatchResults(
-			roundIndex,
-			tournament.rounds[roundIndex].matches[i].teams[1].gamesWon,
-			tournament.rounds[roundIndex].matches[i].teams[0].gamesWon,
-			teamBRatingIncrement
-		);*/
 	}
 
 	roundsUpdatedPlayersList.push(roundUpdatedPlayersList);
+	tournament.playersList = roundUpdatedPlayersList;
+}
+
+function gotoFinalRanking() {
+	const selectScoreCriterion = document.getElementById(
+		"score-calculation-criterion"
+	);
+	const playersRanking = tournament.calculateTournamentScore(selectScoreCriterion.value);
+
+	// Display the ranking table
+	// Create tournament ranking
+	const rankigTable = document.getElementById("ranking-table");
+	const tbody = rankigTable.querySelector("tbody");
+
+	const rankingHTML = playersRanking
+		.map(
+			(player, index) => `
+		<tr>
+			<td>${index + 1}°</td>
+			<td>${player.name}</td> 
+			<td>${player.tournamentScore.toFixed(2)}</td>
+			<td>${player.tournamentRatingIncrement.toFixed(2)}</td>
+		</tr>
+	`
+		)
+		.join("");
+
+	// Insert HTML generated in tbody
+	tbody.innerHTML = rankingHTML;
+
+	switchScreen(5, 6);
 }
 
 function calculateTournamentScore() {
@@ -530,6 +544,7 @@ window.gotoScoreCalculation = gotoScoreCalculationFromRound;
 window.login = login;
 window.showPlayersList = showPlayersList;
 window.nextStep = nextStep;
+window.gotoFinalRanking = gotoFinalRanking;
 
 // Esporta le funzioni se necessario
 export {
@@ -552,5 +567,6 @@ export {
 	registeredPlayers,
 	login,
 	showPlayersList,
-	nextStep
+	nextStep,
+	gotoFinalRanking
 };

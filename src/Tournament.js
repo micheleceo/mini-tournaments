@@ -1,10 +1,15 @@
 class Tournament {
-	constructor() {
+	constructor(tournamentPlayers) {
 		this.tournamentID = "";
-	//	this.playersList = players.slice();
+		this.playersList = tournamentPlayers.slice();
 		this.rounds = [];
 	}
 
+	setPLayersList(playersList) {
+		this.playersList = playersList.slice();
+	}
+
+	//TODO: prelevare winlose da mettere in index e cancellare il resto
 	organizePlayersForRound(select, currentRoundNumber) {
 		const roundIndex = currentRoundNumber - 1;
 
@@ -65,7 +70,7 @@ class Tournament {
 	 * based on their scores, and the results are displayed in the ranking table.
 	 */
 
-	calculateTournamentScore() {
+	calculateTournamentScore(selectScoreCriterion) {
 		// Calculate tournament final rating increment
 		this.playersList.forEach((player) => {
 			// Reset all fields just to be sure
@@ -93,11 +98,8 @@ class Tournament {
 			});
 		});
 
-		const selectElement1 = document.getElementById(
-			"score-calculation-criterion"
-		);
 
-		switch (selectElement1.value) {
+		switch (selectScoreCriterion) {
 			case "win-lose-draw":
 				this.playersList.forEach((player) => {
 					player.tournamentScore =
@@ -130,27 +132,9 @@ class Tournament {
 			(a, b) => b.tournamentScore - a.tournamentScore
 		);
 
-		// Create tournament ranking
-		const rankigTable = document.getElementById("ranking-table");
-		const tbody = rankigTable.querySelector("tbody");
+		return playersRanking;
 
-		const rankingHTML = playersRanking
-			.map(
-				(player, index) => `
-            <tr>
-                <td>${index + 1}°</td>
-                <td>${player.name}</td> 
-                <td>${player.tournamentScore.toFixed(2)}</td>
-                <td>${player.tournamentRatingIncrement.toFixed(2)}</td>
-            </tr>
-        `
-			)
-			.join("");
 
-		// Insert HTML generated in tbody
-		tbody.innerHTML = rankingHTML;
-
-		switchScreen(5, 6);
 	}
 
 	recordTournamentResults(registeredPlayers) {
