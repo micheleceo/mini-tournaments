@@ -46,7 +46,7 @@ but there is no memory at the moment.
     -   _Random:_ (like above)
     -   _Semi-final and final:_ In this case there will'be just another round.
         The winning teams will face each other for the first and second place
-        The losing teams vill face each other for the third and the fourth place
+        The losing teams will face each other for the third and the fourth place
     -   _Winners vs Loosers:_ in this case the winning players will be separated
         and will play in the same team with the losing players. There will be
         a balnce with the players rating increment obtained in the round 1.
