@@ -8,8 +8,7 @@ class Team {
 
   constructor(playerA, playerB) {
     //TODO: se non serve basta meettere solo i nomi dei giocatori
-    this.playerA = playerA;
-    this.playerB = playerB;
+    this.player = [playerA.name, playerB.name];
     this.initialRating = calculateTeamRating(playerA.initialRating, playerB.initialRating);
     this.KFactor = calculateTeamKFactor(playerA.KFactor, playerB.KFactor);
     this.gamesWon = 0;

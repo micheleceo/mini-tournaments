@@ -12,7 +12,7 @@ class Player {
 		this.KFactor =  calculateKFactor(totalMatchesPlayed, initialRating);
 
 		// Save matches results during the tournament
-		this.matchResult = [];
+		this.matchesResult = [];
 
 		// Save the player's statistics after the tournament is finisched
 		this.tournamentGamesWon = 0;
@@ -32,12 +32,15 @@ class Player {
 	 * @param {number} matchGamesLost - The number of games lost by the player's team in the match.
 	 * @param {number} matchRatingIncrement - The rating increment for the player after the match.
 	 */
-	addMatchResults(roundindex, matchResult){
+	/*addMatchResults(roundindex, matchResult){
 		if (this.matchResult.length < roundindex + 1) {
 			this.matchResult.push(matchResult);
 		} else {
 			this.matchResult[roundindex] = matchResult;
 		}
+	}*/
+	setMatchResults(roundIndex,matchResult){
+		this.matchesResult[roundIndex] = matchResult
 	}
 }
 

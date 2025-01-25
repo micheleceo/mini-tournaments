@@ -15,8 +15,10 @@ class MatchResult {
 		this.gamesWon = gamesWon;
 		this.gamesLost = gamesLost;
 		this.ratingIncrement = ratingIncrement;
-		this.result = calculateResult(gamesWon, gamesLost);
+	}
 
+	getResult() {
+		calculateResult(this.gamesWon, this.gamesLost);
 	}
 }
 

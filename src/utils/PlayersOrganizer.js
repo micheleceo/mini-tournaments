@@ -21,6 +21,7 @@ function shufflePlayers(playersList) {
  * reorders the player list for the first round matches.
  */
 function balancePlayersTeams(playersList) {
+	
 	let newPlayersList = playersList.slice();
 	newPlayersList.sort((a, b) => b.initialRating - a.initialRating);
 	console.log(">>>>Tournament player order by rating: ");
@@ -54,8 +55,8 @@ function winnersVsWinners(playersList,roundIndex){
 	//Winners vs Winners and Loosers vs Loosers
 	newPlayersList.sort(
 		(a, b) =>
-			b.matchResult[roundIndex].ratingIncrement -
-			a.matchResult[roundIndex].ratingIncrement
+			b.matchesResult[roundIndex].ratingIncrement -
+			a.matchesResult[roundIndex].ratingIncrement
 	);
 	console.log(
 		">>>>>Player rating increment for round " +
@@ -64,7 +65,7 @@ function winnersVsWinners(playersList,roundIndex){
 	);
 	newPlayersList.forEach((player) =>
 		console.log(
-			`${player.name} ${player.matchResult[roundIndex].ratingIncrement}`
+			`${player.name} ${player.matchesResult[roundIndex].ratingIncrement}`
 		)
 	);
 
@@ -77,8 +78,8 @@ function winnersVsLosersCrossed(roundIndex, playersList) {
 	//Winners vs Losers crossed
 	newPlayersList.sort(
 		(a, b) =>
-			b.matchResult[roundIndex].gamesWon -
-			a.matchResult[roundIndex].gamesWon				
+			b.matchesResult[roundIndex].gamesWon -
+			a.matchesResult[roundIndex].gamesWon				
 	)
 
 	const roundPlayers = [0, 7, 1, 6, 2, 5, 3, 4].map(
@@ -94,5 +95,5 @@ export {
 	shufflePlayers,
 	balancePlayersTeams,
 	winnersVsWinners,
-	winnersVsLosersCrossed
+	winnersVsLosersCrossed,
 };

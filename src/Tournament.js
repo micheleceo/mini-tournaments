@@ -1,12 +1,16 @@
+import Round from "./models/Round.js";
+
 class Tournament {
 	constructor(tournamentPlayers) {
 		this.tournamentID = "";
-		this.playersList = tournamentPlayers.slice();
+		this.playersList = tournamentPlayers;
+		this.finalPlayersList = [];
 		this.rounds = [];
 	}
 
-	setPLayersList(playersList) {
-		this.playersList = playersList.slice();
+	createRound(roundNumber, round) {
+		const roundIndex = roundNumber - 1;
+		this.rounds[roundIndex] = round;
 	}
 
 	//TODO: prelevare winlose da mettere in index e cancellare il resto
@@ -59,6 +63,10 @@ class Tournament {
 		this.rounds[roundIndex].afterPlayersList = this.playersList;
 	}
 
+	setFinalPlayersList() {
+		this.finalPlayersList = this.rounds[this.rounds.length - 1].playersAfterRound;
+	}
+
 	/**
 	 * Calculates the tournament score for each player based on the selected scoring criterion.
 	 * Resets and updates player statistics, calculates scores, and generates a ranking table.
@@ -72,7 +80,7 @@ class Tournament {
 
 	calculateTournamentScore(selectScoreCriterion) {
 		// Calculate tournament final rating increment
-		this.playersList.forEach((player) => {
+		this.finalPlayersList.forEach((player) => {
 			// Reset all fields just to be sure
 			player.tournamentRatingIncrement = 0;
 			player.tournamentGamesWon = 0;
@@ -83,7 +91,7 @@ class Tournament {
 			player.tournamentScore = 0;
 
 			// Update all torunament stuff
-			player.matchResult.forEach((matchResult) => {
+			player.matchesResult.forEach((matchResult) => {
 				player.tournamentRatingIncrement += matchResult.ratingIncrement;
 				player.tournamentGamesWon += matchResult.gamesWon;
 				player.tournamentGamesLost += matchResult.gamesLost;
@@ -101,24 +109,24 @@ class Tournament {
 
 		switch (selectScoreCriterion) {
 			case "win-lose-draw":
-				this.playersList.forEach((player) => {
+				this.finalPlayersList.forEach((player) => {
 					player.tournamentScore =
 						player.tournamentMatchesWon * 3 +
 						player.tournamentMatchesDrawn * 0.5;
 				});
 				break;
 			case "rating-increment":
-				this.playersList.forEach((player) => {
+				this.finalPlayersList.forEach((player) => {
 					player.tournamentScore = player.tournamentRatingIncrement;
 				});
 				break;
 			case "total-gamesWon":
-				this.playersList.forEach((player) => {
+				this.finalPlayersList.forEach((player) => {
 					player.tournamentScore = player.tournamentGamesWon;
 				});
 				break;
 			case "relative-gamesWon":
-				this.playersList.forEach((player) => {
+				this.finalPlayersList.forEach((player) => {
 					player.tournamentScore =
 						player.tournamentGamesWon - player.tournamentGamesLost;
 				});
@@ -128,7 +136,7 @@ class Tournament {
 		}
 
 		// Sort players by score in descending order
-		const playersRanking = [...this.playersList].sort(
+		const playersRanking = [...this.finalPlayersList].sort(
 			(a, b) => b.tournamentScore - a.tournamentScore
 		);
 
