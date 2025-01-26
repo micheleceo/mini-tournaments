@@ -235,8 +235,6 @@ function saveRound(roundNumber) {
 	let roundIndex = roundNumber - 1;
 	let teamIndex = roundIndex * 4;
 
-	//TODO: Qui si potrebbe implementare un ciclo e chiamrar la funzione updateResults con un array di risultati
-	// Fatti controllare che funzioni
 	let teamsGamesWon = [];
 	for (let i = 0; i < 4; i++) {
 		teamsGamesWon.push(
@@ -245,27 +243,6 @@ function saveRound(roundNumber) {
 			) || 0
 		);
 	}
-	
-
-	/*const team1gamesWon =
-		parseInt(
-			document.getElementById(`team${++teamIndex}-gamesWon`).value
-		) || 0;
-
-	const team2gamesWon =
-		parseInt(
-			document.getElementById(`team${++teamIndex}-gamesWon`).value
-		) || 0;
-
-	const team3gamesWon =
-		parseInt(
-			document.getElementById(`team${++teamIndex}-gamesWon`).value
-		) || 0;
-
-	const team4gamesWon =
-		parseInt(
-			document.getElementById(`team${++teamIndex}-gamesWon`).value
-		) || 0;*/
 
 	tournament.rounds[roundIndex].updateResults(
 		teamsGamesWon[0],
