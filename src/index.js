@@ -8,18 +8,18 @@ import Player from "./models/Player.js";
 import Round from "./models/Round.js";
 import { displayPlayersList } from "./displayPlayersList.js";
 
-
 import {
 	balancePlayersTeams,
 	shufflePlayers,
-	winnersVsLosersCrossed,
-	winnersVsWinners
+	winnersWithLosersCrossed,
+	winnersVsWinners,
+	fixedRotation,
 } from "./utils/PlayersOrganizer.js";
 
 import {
 	requestToDoGet,
 	showPasswordPopup,
-	requestToDoPost
+	requestToDoPost,
 } from "./requests.js";
 
 // Instantiate the tournament
@@ -42,9 +42,7 @@ function startRound1() {
 
 	switch (slectedCriterion.value) {
 		case "rating-balance":
-			round1PlayersList = balancePlayersTeams(
-				tournament.playersList
-			);
+			round1PlayersList = balancePlayersTeams(tournament.playersList);
 			break;
 		case "random":
 			round1PlayersList = shufflePlayers(tournament.playersList);
@@ -120,27 +118,35 @@ function startRound2() {
 	const selectElement1 = document.getElementById("selection-criterion-1");
 
 	let round2PlayersList;
+	const selectElement2 = document.getElementById(
+		"selection-criterion-2"
+	);
 
 	switch (selectElement1.value) {
 		case "semifinal_final":
-			round2PlayersList  = winnersVsWinners(
+			round2PlayersList = winnersVsWinners(
 				tournament.rounds[0].playersAfterRound,
 				0
 			);
 			// Hide the second selection criterion
-			const selectElement2 = document.getElementById(
-				"selection-criterion-2"
-			);
 			selectElement2.style.display = "none";
 			break;
 		case "winners_with_losers_cross":
-			round2PlayersList = winnersVsLosersCrossed(
+			round2PlayersList = winnersWithLosersCrossed(
 				tournament.rounds[0].playersAfterRound,
 				0
 			);
-			break
+			selectElement2.value = "winners_with_losers_cross";
+			break;
+		case "fixed_rotation":
+			round2PlayersList = fixedRotation(
+				tournament.rounds[0].playersAfterRound,
+				0
+			);
+			selectElement2.value = "fixed_rotation";
+			break;
 		case "random":
-			round2PlayersList  = shufflePlayers(
+			round2PlayersList = shufflePlayers(
 				tournament.rounds[0].playersAfterRound,
 				0
 			);
@@ -151,7 +157,6 @@ function startRound2() {
 
 	const round2 = new Round(round2PlayersList);
 	tournament.createRound((roundNumber = 2), round2);
-
 
 	//TODO: modify next step button text to "Go to score calculation"
 	setupGUIForRound(2);
@@ -172,7 +177,6 @@ function nextStep() {
 }
 
 function startRound3() {
-
 	saveRound(2);
 
 	let round3PlayersList;
@@ -181,10 +185,22 @@ function startRound3() {
 	const selectElement2 = document.getElementById("selection-criterion-2");
 	switch (selectElement2.value) {
 		case "winners_with_losers_cross":
-			round3PlayersList = winnersVsLosersCrossed(tournament.rounds[1].playersAfterRound, 1);
+			round3PlayersList = winnersWithLosersCrossed(
+				tournament.rounds[1].playersAfterRound,
+				1
+			);
+			break;
+		case "fixed_rotation":
+			round3PlayersList = fixedRotation(
+				tournament.rounds[1].playersAfterRound,
+				1
+			);
 			break;
 		case "random":
-			round3PlayersList = shufflePlayers(tournament.rounds[1].playersAfterRound, 1);
+			round3PlayersList = shufflePlayers(
+				tournament.rounds[1].playersAfterRound,
+				1
+			);
 			break;
 		default:
 			break;
@@ -250,7 +266,6 @@ function saveRound(roundNumber) {
 		teamsGamesWon[2],
 		teamsGamesWon[3]
 	);
-
 }
 
 function gotoFinalRanking() {
@@ -535,7 +550,7 @@ export {
 	login,
 	showPlayersList,
 	nextStep,
-	gotoFinalRanking,
+	gotoFinalRanking
 };
 
 // Assegna le funzioni all'oggetto window

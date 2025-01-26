@@ -109,9 +109,29 @@ function winnersWithLosersCrossed(playersList,roundIndex) {
 	return newPlayersList;
 }
 
+
+function fixedRotation(playersList,roundIndex) {
+
+	let tempPlayerList = playersList.slice();
+	let newPlayersList = [];
+
+	if(roundIndex === 0){
+		newPlayersList = [0, 4, 1, 5, 6, 2, 7, 3].map(
+			(index) => tempPlayerList[index]
+		);
+	}
+	else if(roundIndex === 1){
+		newPlayersList = [0, 4, 2, 6, 5, 1, 7, 3].map(
+			(index) => tempPlayerList[index]
+		);
+	}
+	return newPlayersList;
+}
+
 export {
 	shufflePlayers,
 	balancePlayersTeams,
 	winnersVsWinners,
-	winnersWithLosersCrossed as winnersVsLosersCrossed,
+	winnersWithLosersCrossed,
+	fixedRotation
 };
