@@ -72,21 +72,39 @@ function winnersVsWinners(playersList,roundIndex){
 	return newPlayersList;
 }
 
-function winnersVsLosersCrossed(roundIndex, playersList) {
+function winnersVsLosersCrossed(playersList,roundIndex) {
 
-	let newPlayersList = playersList.slice();
+	let newPlayersList = [];//playersList.slice();
+
+	const court1Players = playersList.slice(0, 4);
 	//Winners vs Losers crossed
-	newPlayersList.sort(
+	court1Players.sort(
+		(a, b) =>
+			b.matchesResult[roundIndex].gamesWon -
+			a.matchesResult[roundIndex].gamesWon				
+	)
+	const court2Players = playersList.slice(4, 8);
+	court2Players.sort(
 		(a, b) =>
 			b.matchesResult[roundIndex].gamesWon -
 			a.matchesResult[roundIndex].gamesWon				
 	)
 
-	const roundPlayers = [0, 7, 1, 6, 2, 5, 3, 4].map(
-		(index) => newPlayersList[index]
-	);
+    newPlayersList.push(court1Players[0]);
+	newPlayersList.push(court2Players[3]);
+	newPlayersList.push(court1Players[1]);
+	newPlayersList.push(court2Players[2]);
 
-	newPlayersList = roundPlayers;
+	newPlayersList.push(court2Players[0]);
+	newPlayersList.push(court1Players[3]);
+	newPlayersList.push(court2Players[1]);
+	newPlayersList.push(court1Players[2]);
+    //OLD MAPPING
+	/*const roundPlayers = [0, 7, 1, 6, 2, 5, 3, 4].map(
+		(index) => newPlayersList[index]
+	);*/
+
+	//newPlayersList = roundPlayers;
 
 	return newPlayersList;
 }

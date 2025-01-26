@@ -12,6 +12,7 @@ import { displayPlayersList } from "./displayPlayersList.js";
 import {
 	balancePlayersTeams,
 	shufflePlayers,
+	winnersVsLosersCrossed,
 	winnersVsWinners
 } from "./utils/PlayersOrganizer.js";
 
@@ -23,7 +24,7 @@ import {
 
 // Instantiate the tournament
 let tournament;
-let roundNumber = 0;
+let roundNumber;
 
 // Create torunament players array
 let tournamentPlayers = [];
@@ -133,8 +134,11 @@ function startRound2() {
 			);
 			selectElement2.style.display = "none";
 			break;
-		case "winners_vs_losers":
-		//TODO: implementare da foglio
+		case "winners_vs_losers_cross":
+			round2PlayersList = winnersVsLosersCrossed(
+				tournament.rounds[0].playersAfterRound,
+				0
+			);
 		case "random":
 			round2PlayersList  = shufflePlayers(
 				tournament.rounds[0].playersAfterRound,
@@ -176,6 +180,7 @@ function startRound3() {
 	//  Organize players and create round 3
 	const selectElement2 = document.getElementById("selection-criterion-2");
 	switch (selectElement2.value) {
+		//TODO: ripredenre da qui, definire i critere per il terzo round
 		case "winners_vs_losers":
 			round3PlayersList = winnersVsWinners(tournament.rounds[1].playersAfterRound, 1);
 			break;
