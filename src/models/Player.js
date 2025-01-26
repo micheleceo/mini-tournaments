@@ -1,16 +1,18 @@
+import { calculateKFactor } from "../utils/ELO.js";
+
 class Player {
-	constructor(name, initialRating, totalMatchesPlayed, KFactor) {
+	constructor(name, initialRating, totalMatchesPlayed) {
 		if (typeof initialRating !== "number") {
 			throw new TypeError("Rating must be a number");
 		}
-		// Initialize the player with the name and rating
+		// Initialize the player with the info needed for the tournament
 		this.name = name;
 		this.initialRating = initialRating;
 		this.totalMatchesPlayed = totalMatchesPlayed;
-		//this.KFactor =  KFactor;
+		this.KFactor =  calculateKFactor(totalMatchesPlayed, initialRating);
 
 		// Save matches results during the tournament
-		this.matchResult = [];
+		this.matchesResult = [];
 
 		// Save the player's statistics after the tournament is finisched
 		this.tournamentGamesWon = 0;
@@ -30,15 +32,18 @@ class Player {
 	 * @param {number} matchGamesLost - The number of games lost by the player's team in the match.
 	 * @param {number} matchRatingIncrement - The rating increment for the player after the match.
 	 */
-	saveMatchResults(roundindex, matchResult){
+	/*addMatchResults(roundindex, matchResult){
 		if (this.matchResult.length < roundindex + 1) {
 			this.matchResult.push(matchResult);
 		} else {
 			this.matchResult[roundindex] = matchResult;
 		}
+	}*/
+	setMatchResults(roundIndex,matchResult){
+		this.matchesResult[roundIndex] = matchResult
 	}
 }
 
 //export default Player;
 export default Player;
-import MatchResult from "./MatchResult.js";
+

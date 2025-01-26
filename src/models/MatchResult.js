@@ -1,3 +1,5 @@
+import { calculateResult } from '../utils/ELO.js';
+
 /**
  * Represents the result of a match for a team, including the number of games won and lost, and the rating increment.
  */
@@ -13,6 +15,10 @@ class MatchResult {
 		this.gamesWon = gamesWon;
 		this.gamesLost = gamesLost;
 		this.ratingIncrement = ratingIncrement;
+	}
+
+	getResult() {
+		calculateResult(this.gamesWon, this.gamesLost);
 	}
 }
 

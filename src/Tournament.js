@@ -1,14 +1,25 @@
+import Round from "./models/Round.js";
+
 class Tournament {
-	constructor(players) {
+	constructor(tournamentPlayers) {
 		this.tournamentID = "";
-		this.initialPlayersList = players.map(player => ({
-			name: player.name,
-			initialRating: player.initialRating,
-			totalMatchesPlayed: player.totalMatchesPlayed,
-			//KFactor: calculateKFactor(player) 
-		}));
-		this.playersList = players.slice();
+		this.playersList = tournamentPlayers;
+		this.finalPlayersList = [];
 		this.rounds = [];
+	}
+
+	createRound(roundNumber, round) {
+		const roundIndex = roundNumber - 1;
+		this.rounds[roundIndex] = round;
+	}
+
+	saveRoundMatches(roundNumber) {
+		const roundIndex = roundNumber - 1;
+		this.rounds[roundIndex].afterPlayersList = this.playersList;
+	}
+
+	setFinalPlayersList() {
+		this.finalPlayersList = this.rounds[this.rounds.length - 1].playersAfterRound;
 	}
 
 	/**
@@ -20,15 +31,11 @@ class Tournament {
 	 * according to the selected criterion, which can be 'win-lose-draw', 'rating-increment',
 	 * 'total-gamesWon', or 'relative-gamesWon'. The players are then ranked in descending order
 	 * based on their scores, and the results are displayed in the ranking table.
-	 *
-	 * @param {string} selectedCriterion - The scoring criterion to use for calculating the tournament
-	 * score. Can be 'win-lose-draw', 'rating-increment', 'total-gamesWon', or 'relative-gamesWon'.
-	 * @return {Array} playersRanking - The ranking table, with players sorted in descending order by
-	 * their tournament score.
 	 */
-	calculateTournamentScore(selectedCriterion) {
+
+	calculateTournamentScore(selectScoreCriterion) {
 		// Calculate tournament final rating increment
-		this.playersList.forEach((player) => {
+		this.finalPlayersList.forEach((player) => {
 			// Reset all fields just to be sure
 			player.tournamentRatingIncrement = 0;
 			player.tournamentGamesWon = 0;
@@ -39,7 +46,7 @@ class Tournament {
 			player.tournamentScore = 0;
 
 			// Update all torunament stuff
-			player.matchResult.forEach((matchResult) => {
+			player.matchesResult.forEach((matchResult) => {
 				player.tournamentRatingIncrement += matchResult.ratingIncrement;
 				player.tournamentGamesWon += matchResult.gamesWon;
 				player.tournamentGamesLost += matchResult.gamesLost;
@@ -54,26 +61,27 @@ class Tournament {
 			});
 		});
 
-		switch (selectedCriterion) {
+
+		switch (selectScoreCriterion) {
 			case "win-lose-draw":
-				this.playersList.forEach((player) => {
+				this.finalPlayersList.forEach((player) => {
 					player.tournamentScore =
 						player.tournamentMatchesWon * 3 +
 						player.tournamentMatchesDrawn * 0.5;
 				});
 				break;
 			case "rating-increment":
-				this.playersList.forEach((player) => {
+				this.finalPlayersList.forEach((player) => {
 					player.tournamentScore = player.tournamentRatingIncrement;
 				});
 				break;
 			case "total-gamesWon":
-				this.playersList.forEach((player) => {
+				this.finalPlayersList.forEach((player) => {
 					player.tournamentScore = player.tournamentGamesWon;
 				});
 				break;
 			case "relative-gamesWon":
-				this.playersList.forEach((player) => {
+				this.finalPlayersList.forEach((player) => {
 					player.tournamentScore =
 						player.tournamentGamesWon - player.tournamentGamesLost;
 				});
@@ -83,11 +91,13 @@ class Tournament {
 		}
 
 		// Sort players by score in descending order
-		const playersRanking = [...this.playersList].sort(
+		const playersRanking = [...this.finalPlayersList].sort(
 			(a, b) => b.tournamentScore - a.tournamentScore
 		);
 
-        return playersRanking;
+		return playersRanking;
+
+
 	}
 
 	recordTournamentResults(registeredPlayers) {
@@ -125,10 +135,10 @@ class Tournament {
 		});
 	}
 
-	    /**
-     * Returns the current date and time in the Rome timezone as a string.
-     * @returns {string} Current date and time in the format "YYYY-MM-DD-HH-MM"
-     */
+	/**
+	 * Restituisce la data e l'ora attuale della zona di Roma in formato stringa.
+	 * @returns {string} Data e ora attuali in formato "AAAA-MM-DD-HH-MM"
+	 */
 	getTournamentID() {
 		const now = new Date();
 		const options = {
@@ -145,11 +155,16 @@ class Tournament {
 			.toLocaleString("it-IT", options)
 			.replace(/\//g, "-");
 
-		// Set the tournament ID to the current date and time in Rome
+		// Formatta la data
 		return romaDateTime;
+	}
+
+	restartTournament() {
+		// Reset all fileds
+		resetInputs();
+
+		switchScreen(6, 1);
 	}
 }
 
 export default Tournament;
-
-import { calculateKFactor } from "./utils.js";
