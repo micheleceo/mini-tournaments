@@ -13,51 +13,6 @@ class Tournament {
 		this.rounds[roundIndex] = round;
 	}
 
-	//TODO: prelevare winlose da mettere in index e cancellare il resto
-	organizePlayersForRound(select, currentRoundNumber) {
-		const roundIndex = currentRoundNumber - 1;
-
-		switch (select.value) {
-			case "semifinal_final":
-				//Winners vs Winners and Loosers vs Loosers
-				this.playersList.sort(
-					(a, b) =>
-						b.matchResult[roundIndex].ratingIncrement -
-						a.matchResult[roundIndex].ratingIncrement
-				);
-				console.log(
-					">>>>>Player rating increment after round: " +
-						currentRoundNumber
-				);
-				this.playersList.forEach((player) =>
-					console.log(
-						`${player.name} ${player.matchResult[roundIndex].ratingIncrement}`
-					)
-				);
-				break;
-			case "random":
-				// Shuffle players
-				this.shufflePlayers();
-				break;
-			case "wvsl_cross":
-				//TODO: controllare che vada bene
-				// Winners vs Losers crossed
-				this.playersList.sort(
-					(a, b) =>
-						b.matchResult[roundIndex].gamesWon -
-						a.matchResult[roundIndex].gamesWon
-				);
-				const roundPlayers = [0, 7, 1, 6, 2, 5, 3, 4].map(
-					(index) => this.playersList[index]
-				);
-				this.playersList = roundPlayers;
-			default:
-				break;
-
-			//TODO: valutare se occorre mettere un altro criterio per il terzo round
-		}
-	}
-
 	saveRoundMatches(roundNumber) {
 		const roundIndex = roundNumber - 1;
 		this.rounds[roundIndex].afterPlayersList = this.playersList;

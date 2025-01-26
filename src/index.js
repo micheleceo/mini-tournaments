@@ -113,7 +113,6 @@ function initializeTournament() {
 	}
 }
 
-//TODO: ok fino al round1 provare a fare il round2
 function startRound2() {
 	saveRound(1);
 
@@ -237,7 +236,18 @@ function saveRound(roundNumber) {
 	let teamIndex = roundIndex * 4;
 
 	//TODO: Qui si potrebbe implementare un ciclo e chiamrar la funzione updateResults con un array di risultati
-	const team1gamesWon =
+	// Fatti controllare che funzioni
+	let teamsGamesWon = [];
+	for (let i = 0; i < 4; i++) {
+		teamsGamesWon.push(
+			parseInt(
+				document.getElementById(`team${++teamIndex}-gamesWon`).value
+			) || 0
+		);
+	}
+	
+
+	/*const team1gamesWon =
 		parseInt(
 			document.getElementById(`team${++teamIndex}-gamesWon`).value
 		) || 0;
@@ -255,13 +265,13 @@ function saveRound(roundNumber) {
 	const team4gamesWon =
 		parseInt(
 			document.getElementById(`team${++teamIndex}-gamesWon`).value
-		) || 0;
+		) || 0;*/
 
 	tournament.rounds[roundIndex].updateResults(
-		team1gamesWon,
-		team2gamesWon,
-		team3gamesWon,
-		team4gamesWon
+		teamsGamesWon[0],
+		teamsGamesWon[1],
+		teamsGamesWon[2],
+		teamsGamesWon[3]
 	);
 
 }
