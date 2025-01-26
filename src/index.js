@@ -133,11 +133,12 @@ function startRound2() {
 			);
 			selectElement2.style.display = "none";
 			break;
-		case "winners_vs_losers_cross":
+		case "winners_with_losers_cross":
 			round2PlayersList = winnersVsLosersCrossed(
 				tournament.rounds[0].playersAfterRound,
 				0
 			);
+			break
 		case "random":
 			round2PlayersList  = shufflePlayers(
 				tournament.rounds[0].playersAfterRound,
@@ -179,9 +180,8 @@ function startRound3() {
 	//  Organize players and create round 3
 	const selectElement2 = document.getElementById("selection-criterion-2");
 	switch (selectElement2.value) {
-		//TODO: ripredenre da qui, definire i critere per il terzo round
-		case "winners_vs_losers":
-			round3PlayersList = winnersVsWinners(tournament.rounds[1].playersAfterRound, 1);
+		case "winners_with_losers_cross":
+			round3PlayersList = winnersVsLosersCrossed(tournament.rounds[1].playersAfterRound, 1);
 			break;
 		case "random":
 			round3PlayersList = shufflePlayers(tournament.rounds[1].playersAfterRound, 1);

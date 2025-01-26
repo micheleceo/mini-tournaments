@@ -72,7 +72,7 @@ function winnersVsWinners(playersList,roundIndex){
 	return newPlayersList;
 }
 
-function winnersVsLosersCrossed(playersList,roundIndex) {
+function winnersWithLosersCrossed(playersList,roundIndex) {
 
 	let newPlayersList = [];//playersList.slice();
 
@@ -91,14 +91,14 @@ function winnersVsLosersCrossed(playersList,roundIndex) {
 	)
 
     newPlayersList.push(court1Players[0]);
-	newPlayersList.push(court2Players[3]);
-	newPlayersList.push(court1Players[1]);
 	newPlayersList.push(court2Players[2]);
+	newPlayersList.push(court1Players[1]);
+	newPlayersList.push(court2Players[3]);
 
 	newPlayersList.push(court2Players[0]);
-	newPlayersList.push(court1Players[3]);
-	newPlayersList.push(court2Players[1]);
 	newPlayersList.push(court1Players[2]);
+	newPlayersList.push(court2Players[1]);
+	newPlayersList.push(court1Players[3]);
     //OLD MAPPING
 	/*const roundPlayers = [0, 7, 1, 6, 2, 5, 3, 4].map(
 		(index) => newPlayersList[index]
@@ -113,5 +113,5 @@ export {
 	shufflePlayers,
 	balancePlayersTeams,
 	winnersVsWinners,
-	winnersVsLosersCrossed,
+	winnersWithLosersCrossed as winnersVsLosersCrossed,
 };
