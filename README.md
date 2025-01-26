@@ -67,5 +67,5 @@ but there is no memory at the moment.
 
 This is an example of final ranking screen:
 
-![Final Ranking](/assets/screenshots/FInal_rankig.jpg)
+![Final Ranking](/assets/screenshots/Final_rankig.jpg)
 
