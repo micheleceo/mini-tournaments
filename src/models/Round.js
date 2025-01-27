@@ -76,16 +76,6 @@ class Round {
 
 	}
 
-	/*getAfterRoundPlayersList() {
-		const playersAfterRound = [];
-		this.matches.forEach((match) => {
-			match.teams.forEach((team) => {
-				playersAfterRound.push(team.player[0]);
-				playersAfterRound.push(team.player[1]);
-			});
-		});
-		return playersAfterRound;
-	}*/
 }
 
 export default Round;

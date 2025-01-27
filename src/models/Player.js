@@ -24,26 +24,10 @@ class Player {
 		this.tournamentScore = 0;
 	}
 
-	/**
-	 * Records a new round, updates round for the player, and updates game wins and relative points.
-	 *
-	 * @param {number} roundindex - The index of the round being recorded.
-	 * @param {number} matchGamesWon - The number of games won by the player's team in the match.
-	 * @param {number} matchGamesLost - The number of games lost by the player's team in the match.
-	 * @param {number} matchRatingIncrement - The rating increment for the player after the match.
-	 */
-	/*addMatchResults(roundindex, matchResult){
-		if (this.matchResult.length < roundindex + 1) {
-			this.matchResult.push(matchResult);
-		} else {
-			this.matchResult[roundindex] = matchResult;
-		}
-	}*/
 	setMatchResults(roundIndex,matchResult){
-		this.matchesResult[roundIndex] = matchResult
+		this.matchesResult[roundIndex] = matchResult;
 	}
 }
 
-//export default Player;
 export default Player;
 
