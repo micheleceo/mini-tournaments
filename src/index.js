@@ -26,9 +26,6 @@ import {
 let tournament;
 let roundNumber;
 
-// Create torunament players array
-let tournamentPlayers = [];
-
 function startRound1() {
 	//Inizilize the tournament with the selected players list
 	initializeTournament();
@@ -75,6 +72,9 @@ function initializeTournament() {
 	matchInputs.forEach((input) => {
 		input.value = "";
 	});
+
+	// Create torunament players array
+	let tournamentPlayers = [];
 
 	if (allSelected) {
 		// Build players list
