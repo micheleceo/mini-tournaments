@@ -19,7 +19,8 @@ class Tournament {
 	}
 
 	setFinalPlayersList() {
-		this.finalPlayersList = this.rounds[this.rounds.length - 1].playersAfterRound;
+		this.finalPlayersList =
+			this.rounds[this.rounds.length - 1].playersAfterRound;
 	}
 
 	/**
@@ -61,7 +62,6 @@ class Tournament {
 			});
 		});
 
-
 		switch (selectScoreCriterion) {
 			case "win-lose-draw":
 				this.finalPlayersList.forEach((player) => {
@@ -96,14 +96,16 @@ class Tournament {
 		);
 
 		return playersRanking;
-
-
 	}
 
 	recordTournamentResults(registeredPlayers) {
 		this.tournamentID = this.getTournamentID();
 
-		this.playersList.forEach((player) => {
+		const maxScore = Math.max(
+			...this.finalPlayersList.map((player) => player.tournamentScore)
+		);
+
+		this.finalPlayersList.forEach((player) => {
 			const index = registeredPlayers.findIndex(
 				(registeredPlayers) => registeredPlayers.name === player.name
 			);
@@ -121,12 +123,9 @@ class Tournament {
 				registeredPlayers[index].totalMatchesLost +=
 					player.tournamentMatchesLost;
 
-				const maxScore = Math.max(
-					...this.playersList.map((player) => player.tournamentScore)
-				);
-				if (player.score >= maxScore) {
+				if (player.tournamentScore >= maxScore) {
 					registeredPlayers[index].totalTournamentsWon++;
-				} else if (player.score < maxScore) {
+				} else if (player.tournamentScore < maxScore) {
 					registeredPlayers[index].totalTournamentsLost++;
 				}
 			} else {

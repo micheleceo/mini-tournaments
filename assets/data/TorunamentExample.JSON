@@ -1,0 +1,2085 @@
+{
+  "tournamentID": "28-01-2025, 19:55",
+  "playersList": [
+    {
+      "name": "Pippo Franco",
+      "initialRating": 1592.2847116313924,
+      "totalMatchesPlayed": 5,
+      "KFactor": 40,
+      "matchesResult": [
+        {
+          "gamesWon": 0,
+          "gamesLost": 2,
+          "ratingIncrement": -26.53241735880566
+        },
+        {
+          "gamesWon": 8,
+          "gamesLost": 5,
+          "ratingIncrement": 0.13694503161218147
+        },
+        {
+          "gamesWon": 2,
+          "gamesLost": 5,
+          "ratingIncrement": -6.1945587351562414
+        }
+      ],
+      "tournamentGamesWon": 10,
+      "tournamentGamesLost": 12,
+      "tournamentMatchesWon": 1,
+      "tournamentMatchesDrawn": 0,
+      "tournamentMatchesLost": 2,
+      "tournamentRatingIncrement": -32.590031062349716,
+      "tournamentScore": 10
+    },
+    {
+      "name": "Felice Loffo",
+      "initialRating": 222.03739071952336,
+      "totalMatchesPlayed": 5,
+      "KFactor": 40,
+      "matchesResult": [
+        {
+          "gamesWon": 8,
+          "gamesLost": 5,
+          "ratingIncrement": 13.611489800882094
+        },
+        {
+          "gamesWon": 5,
+          "gamesLost": 8,
+          "ratingIncrement": -0.14939457994056388
+        },
+        {
+          "gamesWon": 0,
+          "gamesLost": 1,
+          "ratingIncrement": -0.7155835369777076
+        }
+      ],
+      "tournamentGamesWon": 13,
+      "tournamentGamesLost": 14,
+      "tournamentMatchesWon": 1,
+      "tournamentMatchesDrawn": 0,
+      "tournamentMatchesLost": 2,
+      "tournamentRatingIncrement": 12.746511683963822,
+      "tournamentScore": 13
+    },
+    {
+      "name": "Franca Mente",
+      "initialRating": 401.87055756715426,
+      "totalMatchesPlayed": 5,
+      "KFactor": 40,
+      "matchesResult": [
+        {
+          "gamesWon": 5,
+          "gamesLost": 8,
+          "ratingIncrement": -14.848897964598647
+        },
+        {
+          "gamesWon": 1,
+          "gamesLost": 2,
+          "ratingIncrement": -0.07100490983239031
+        },
+        {
+          "gamesWon": 2,
+          "gamesLost": 5,
+          "ratingIncrement": -6.1945587351562414
+        }
+      ],
+      "tournamentGamesWon": 8,
+      "tournamentGamesLost": 15,
+      "tournamentMatchesWon": 0,
+      "tournamentMatchesDrawn": 0,
+      "tournamentMatchesLost": 3,
+      "tournamentRatingIncrement": -21.11446160958728,
+      "tournamentScore": 8
+    },
+    {
+      "name": "Bianca Neri",
+      "initialRating": 698.4515447837616,
+      "totalMatchesPlayed": 5,
+      "KFactor": 40,
+      "matchesResult": [
+        {
+          "gamesWon": 2,
+          "gamesLost": 0,
+          "ratingIncrement": 26.53241735880566
+        },
+        {
+          "gamesWon": 1,
+          "gamesLost": 2,
+          "ratingIncrement": -0.07100490983239031
+        },
+        {
+          "gamesWon": 5,
+          "gamesLost": 2,
+          "ratingIncrement": 4.258759130419916
+        }
+      ],
+      "tournamentGamesWon": 8,
+      "tournamentGamesLost": 4,
+      "tournamentMatchesWon": 2,
+      "tournamentMatchesDrawn": 0,
+      "tournamentMatchesLost": 1,
+      "tournamentRatingIncrement": 30.720171579393188,
+      "tournamentScore": 8
+    },
+    {
+      "name": "Gemma Preziosa",
+      "initialRating": 1698.4515447837616,
+      "totalMatchesPlayed": 52,
+      "KFactor": 20,
+      "matchesResult": [
+        {
+          "gamesWon": 5,
+          "gamesLost": 8,
+          "ratingIncrement": -14.848897964598647
+        },
+        {
+          "gamesWon": 2,
+          "gamesLost": 1,
+          "ratingIncrement": 0.03550245491619641
+        },
+        {
+          "gamesWon": 1,
+          "gamesLost": 0,
+          "ratingIncrement": 0.4770556913184709
+        }
+      ],
+      "tournamentGamesWon": 8,
+      "tournamentGamesLost": 9,
+      "tournamentMatchesWon": 2,
+      "tournamentMatchesDrawn": 0,
+      "tournamentMatchesLost": 1,
+      "tournamentRatingIncrement": -14.33633981836398,
+      "tournamentScore": 8
+    },
+    {
+      "name": "Guglielmo Cancelli",
+      "initialRating": 1601.8705575671543,
+      "totalMatchesPlayed": 52,
+      "KFactor": 20,
+      "matchesResult": [
+        {
+          "gamesWon": 2,
+          "gamesLost": 0,
+          "ratingIncrement": 26.53241735880566
+        },
+        {
+          "gamesWon": 2,
+          "gamesLost": 1,
+          "ratingIncrement": 0.03550245491619641
+        },
+        {
+          "gamesWon": 0,
+          "gamesLost": 1,
+          "ratingIncrement": -0.7155835369777076
+        }
+      ],
+      "tournamentGamesWon": 4,
+      "tournamentGamesLost": 2,
+      "tournamentMatchesWon": 2,
+      "tournamentMatchesDrawn": 0,
+      "tournamentMatchesLost": 1,
+      "tournamentRatingIncrement": 25.85233627674415,
+      "tournamentScore": 4
+    },
+    {
+      "name": "Bruno Biondi",
+      "initialRating": 1415.0373907195235,
+      "totalMatchesPlayed": 52,
+      "KFactor": 20,
+      "matchesResult": [
+        {
+          "gamesWon": 0,
+          "gamesLost": 2,
+          "ratingIncrement": -26.53241735880566
+        },
+        {
+          "gamesWon": 5,
+          "gamesLost": 8,
+          "ratingIncrement": -0.14939457994056388
+        },
+        {
+          "gamesWon": 1,
+          "gamesLost": 0,
+          "ratingIncrement": 0.4770556913184709
+        }
+      ],
+      "tournamentGamesWon": 6,
+      "tournamentGamesLost": 10,
+      "tournamentMatchesWon": 1,
+      "tournamentMatchesDrawn": 0,
+      "tournamentMatchesLost": 2,
+      "tournamentRatingIncrement": -26.204756247427753,
+      "tournamentScore": 6
+    },
+    {
+      "name": "Flip Trmon",
+      "initialRating": 1885.2847116313924,
+      "totalMatchesPlayed": 52,
+      "KFactor": 15,
+      "matchesResult": [
+        {
+          "gamesWon": 8,
+          "gamesLost": 5,
+          "ratingIncrement": 13.611489800882094
+        },
+        {
+          "gamesWon": 8,
+          "gamesLost": 5,
+          "ratingIncrement": 0.13694503161218147
+        },
+        {
+          "gamesWon": 5,
+          "gamesLost": 2,
+          "ratingIncrement": 4.258759130419916
+        }
+      ],
+      "tournamentGamesWon": 21,
+      "tournamentGamesLost": 12,
+      "tournamentMatchesWon": 3,
+      "tournamentMatchesDrawn": 0,
+      "tournamentMatchesLost": 0,
+      "tournamentRatingIncrement": 18.007193962914194,
+      "tournamentScore": 21
+    }
+  ],
+  "finalPlayersList": [
+    {
+      "name": "Flip Trmon",
+      "initialRating": 1885.2847116313924,
+      "totalMatchesPlayed": 52,
+      "KFactor": 15,
+      "matchesResult": [
+        {
+          "gamesWon": 8,
+          "gamesLost": 5,
+          "ratingIncrement": 13.611489800882094
+        },
+        {
+          "gamesWon": 8,
+          "gamesLost": 5,
+          "ratingIncrement": 0.13694503161218147
+        },
+        {
+          "gamesWon": 5,
+          "gamesLost": 2,
+          "ratingIncrement": 4.258759130419916
+        }
+      ],
+      "tournamentGamesWon": 21,
+      "tournamentGamesLost": 12,
+      "tournamentMatchesWon": 3,
+      "tournamentMatchesDrawn": 0,
+      "tournamentMatchesLost": 0,
+      "tournamentRatingIncrement": 18.007193962914194,
+      "tournamentScore": 21
+    },
+    {
+      "name": "Bianca Neri",
+      "initialRating": 698.4515447837616,
+      "totalMatchesPlayed": 5,
+      "KFactor": 40,
+      "matchesResult": [
+        {
+          "gamesWon": 2,
+          "gamesLost": 0,
+          "ratingIncrement": 26.53241735880566
+        },
+        {
+          "gamesWon": 1,
+          "gamesLost": 2,
+          "ratingIncrement": -0.07100490983239031
+        },
+        {
+          "gamesWon": 5,
+          "gamesLost": 2,
+          "ratingIncrement": 4.258759130419916
+        }
+      ],
+      "tournamentGamesWon": 8,
+      "tournamentGamesLost": 4,
+      "tournamentMatchesWon": 2,
+      "tournamentMatchesDrawn": 0,
+      "tournamentMatchesLost": 1,
+      "tournamentRatingIncrement": 30.720171579393188,
+      "tournamentScore": 8
+    },
+    {
+      "name": "Pippo Franco",
+      "initialRating": 1592.2847116313924,
+      "totalMatchesPlayed": 5,
+      "KFactor": 40,
+      "matchesResult": [
+        {
+          "gamesWon": 0,
+          "gamesLost": 2,
+          "ratingIncrement": -26.53241735880566
+        },
+        {
+          "gamesWon": 8,
+          "gamesLost": 5,
+          "ratingIncrement": 0.13694503161218147
+        },
+        {
+          "gamesWon": 2,
+          "gamesLost": 5,
+          "ratingIncrement": -6.1945587351562414
+        }
+      ],
+      "tournamentGamesWon": 10,
+      "tournamentGamesLost": 12,
+      "tournamentMatchesWon": 1,
+      "tournamentMatchesDrawn": 0,
+      "tournamentMatchesLost": 2,
+      "tournamentRatingIncrement": -32.590031062349716,
+      "tournamentScore": 10
+    },
+    {
+      "name": "Franca Mente",
+      "initialRating": 401.87055756715426,
+      "totalMatchesPlayed": 5,
+      "KFactor": 40,
+      "matchesResult": [
+        {
+          "gamesWon": 5,
+          "gamesLost": 8,
+          "ratingIncrement": -14.848897964598647
+        },
+        {
+          "gamesWon": 1,
+          "gamesLost": 2,
+          "ratingIncrement": -0.07100490983239031
+        },
+        {
+          "gamesWon": 2,
+          "gamesLost": 5,
+          "ratingIncrement": -6.1945587351562414
+        }
+      ],
+      "tournamentGamesWon": 8,
+      "tournamentGamesLost": 15,
+      "tournamentMatchesWon": 0,
+      "tournamentMatchesDrawn": 0,
+      "tournamentMatchesLost": 3,
+      "tournamentRatingIncrement": -21.11446160958728,
+      "tournamentScore": 8
+    },
+    {
+      "name": "Guglielmo Cancelli",
+      "initialRating": 1601.8705575671543,
+      "totalMatchesPlayed": 52,
+      "KFactor": 20,
+      "matchesResult": [
+        {
+          "gamesWon": 2,
+          "gamesLost": 0,
+          "ratingIncrement": 26.53241735880566
+        },
+        {
+          "gamesWon": 2,
+          "gamesLost": 1,
+          "ratingIncrement": 0.03550245491619641
+        },
+        {
+          "gamesWon": 0,
+          "gamesLost": 1,
+          "ratingIncrement": -0.7155835369777076
+        }
+      ],
+      "tournamentGamesWon": 4,
+      "tournamentGamesLost": 2,
+      "tournamentMatchesWon": 2,
+      "tournamentMatchesDrawn": 0,
+      "tournamentMatchesLost": 1,
+      "tournamentRatingIncrement": 25.85233627674415,
+      "tournamentScore": 4
+    },
+    {
+      "name": "Felice Loffo",
+      "initialRating": 222.03739071952336,
+      "totalMatchesPlayed": 5,
+      "KFactor": 40,
+      "matchesResult": [
+        {
+          "gamesWon": 8,
+          "gamesLost": 5,
+          "ratingIncrement": 13.611489800882094
+        },
+        {
+          "gamesWon": 5,
+          "gamesLost": 8,
+          "ratingIncrement": -0.14939457994056388
+        },
+        {
+          "gamesWon": 0,
+          "gamesLost": 1,
+          "ratingIncrement": -0.7155835369777076
+        }
+      ],
+      "tournamentGamesWon": 13,
+      "tournamentGamesLost": 14,
+      "tournamentMatchesWon": 1,
+      "tournamentMatchesDrawn": 0,
+      "tournamentMatchesLost": 2,
+      "tournamentRatingIncrement": 12.746511683963822,
+      "tournamentScore": 13
+    },
+    {
+      "name": "Gemma Preziosa",
+      "initialRating": 1698.4515447837616,
+      "totalMatchesPlayed": 52,
+      "KFactor": 20,
+      "matchesResult": [
+        {
+          "gamesWon": 5,
+          "gamesLost": 8,
+          "ratingIncrement": -14.848897964598647
+        },
+        {
+          "gamesWon": 2,
+          "gamesLost": 1,
+          "ratingIncrement": 0.03550245491619641
+        },
+        {
+          "gamesWon": 1,
+          "gamesLost": 0,
+          "ratingIncrement": 0.4770556913184709
+        }
+      ],
+      "tournamentGamesWon": 8,
+      "tournamentGamesLost": 9,
+      "tournamentMatchesWon": 2,
+      "tournamentMatchesDrawn": 0,
+      "tournamentMatchesLost": 1,
+      "tournamentRatingIncrement": -14.33633981836398,
+      "tournamentScore": 8
+    },
+    {
+      "name": "Bruno Biondi",
+      "initialRating": 1415.0373907195235,
+      "totalMatchesPlayed": 52,
+      "KFactor": 20,
+      "matchesResult": [
+        {
+          "gamesWon": 0,
+          "gamesLost": 2,
+          "ratingIncrement": -26.53241735880566
+        },
+        {
+          "gamesWon": 5,
+          "gamesLost": 8,
+          "ratingIncrement": -0.14939457994056388
+        },
+        {
+          "gamesWon": 1,
+          "gamesLost": 0,
+          "ratingIncrement": 0.4770556913184709
+        }
+      ],
+      "tournamentGamesWon": 6,
+      "tournamentGamesLost": 10,
+      "tournamentMatchesWon": 1,
+      "tournamentMatchesDrawn": 0,
+      "tournamentMatchesLost": 2,
+      "tournamentRatingIncrement": -26.204756247427753,
+      "tournamentScore": 6
+    }
+  ],
+  "rounds": [
+    {
+      "playersBeforeRound": [
+        {
+          "name": "Flip Trmon",
+          "initialRating": 1885.2847116313924,
+          "totalMatchesPlayed": 52,
+          "KFactor": 15,
+          "matchesResult": [
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 13.611489800882094
+            },
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 0.13694503161218147
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 2,
+              "ratingIncrement": 4.258759130419916
+            }
+          ],
+          "tournamentGamesWon": 21,
+          "tournamentGamesLost": 12,
+          "tournamentMatchesWon": 3,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 0,
+          "tournamentRatingIncrement": 18.007193962914194,
+          "tournamentScore": 21
+        },
+        {
+          "name": "Felice Loffo",
+          "initialRating": 222.03739071952336,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 13.611489800882094
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -0.14939457994056388
+            },
+            {
+              "gamesWon": 0,
+              "gamesLost": 1,
+              "ratingIncrement": -0.7155835369777076
+            }
+          ],
+          "tournamentGamesWon": 13,
+          "tournamentGamesLost": 14,
+          "tournamentMatchesWon": 1,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 2,
+          "tournamentRatingIncrement": 12.746511683963822,
+          "tournamentScore": 13
+        },
+        {
+          "name": "Gemma Preziosa",
+          "initialRating": 1698.4515447837616,
+          "totalMatchesPlayed": 52,
+          "KFactor": 20,
+          "matchesResult": [
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -14.848897964598647
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 1,
+              "ratingIncrement": 0.03550245491619641
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 0,
+              "ratingIncrement": 0.4770556913184709
+            }
+          ],
+          "tournamentGamesWon": 8,
+          "tournamentGamesLost": 9,
+          "tournamentMatchesWon": 2,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 1,
+          "tournamentRatingIncrement": -14.33633981836398,
+          "tournamentScore": 8
+        },
+        {
+          "name": "Franca Mente",
+          "initialRating": 401.87055756715426,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -14.848897964598647
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 2,
+              "ratingIncrement": -0.07100490983239031
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 5,
+              "ratingIncrement": -6.1945587351562414
+            }
+          ],
+          "tournamentGamesWon": 8,
+          "tournamentGamesLost": 15,
+          "tournamentMatchesWon": 0,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 3,
+          "tournamentRatingIncrement": -21.11446160958728,
+          "tournamentScore": 8
+        },
+        {
+          "name": "Guglielmo Cancelli",
+          "initialRating": 1601.8705575671543,
+          "totalMatchesPlayed": 52,
+          "KFactor": 20,
+          "matchesResult": [
+            {
+              "gamesWon": 2,
+              "gamesLost": 0,
+              "ratingIncrement": 26.53241735880566
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 1,
+              "ratingIncrement": 0.03550245491619641
+            },
+            {
+              "gamesWon": 0,
+              "gamesLost": 1,
+              "ratingIncrement": -0.7155835369777076
+            }
+          ],
+          "tournamentGamesWon": 4,
+          "tournamentGamesLost": 2,
+          "tournamentMatchesWon": 2,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 1,
+          "tournamentRatingIncrement": 25.85233627674415,
+          "tournamentScore": 4
+        },
+        {
+          "name": "Bianca Neri",
+          "initialRating": 698.4515447837616,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 2,
+              "gamesLost": 0,
+              "ratingIncrement": 26.53241735880566
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 2,
+              "ratingIncrement": -0.07100490983239031
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 2,
+              "ratingIncrement": 4.258759130419916
+            }
+          ],
+          "tournamentGamesWon": 8,
+          "tournamentGamesLost": 4,
+          "tournamentMatchesWon": 2,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 1,
+          "tournamentRatingIncrement": 30.720171579393188,
+          "tournamentScore": 8
+        },
+        {
+          "name": "Pippo Franco",
+          "initialRating": 1592.2847116313924,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 0,
+              "gamesLost": 2,
+              "ratingIncrement": -26.53241735880566
+            },
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 0.13694503161218147
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 5,
+              "ratingIncrement": -6.1945587351562414
+            }
+          ],
+          "tournamentGamesWon": 10,
+          "tournamentGamesLost": 12,
+          "tournamentMatchesWon": 1,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 2,
+          "tournamentRatingIncrement": -32.590031062349716,
+          "tournamentScore": 10
+        },
+        {
+          "name": "Bruno Biondi",
+          "initialRating": 1415.0373907195235,
+          "totalMatchesPlayed": 52,
+          "KFactor": 20,
+          "matchesResult": [
+            {
+              "gamesWon": 0,
+              "gamesLost": 2,
+              "ratingIncrement": -26.53241735880566
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -0.14939457994056388
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 0,
+              "ratingIncrement": 0.4770556913184709
+            }
+          ],
+          "tournamentGamesWon": 6,
+          "tournamentGamesLost": 10,
+          "tournamentMatchesWon": 1,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 2,
+          "tournamentRatingIncrement": -26.204756247427753,
+          "tournamentScore": 6
+        }
+      ],
+      "playersAfterRound": [
+        {
+          "name": "Flip Trmon",
+          "initialRating": 1885.2847116313924,
+          "totalMatchesPlayed": 52,
+          "KFactor": 15,
+          "matchesResult": [
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 13.611489800882094
+            },
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 0.13694503161218147
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 2,
+              "ratingIncrement": 4.258759130419916
+            }
+          ],
+          "tournamentGamesWon": 21,
+          "tournamentGamesLost": 12,
+          "tournamentMatchesWon": 3,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 0,
+          "tournamentRatingIncrement": 18.007193962914194,
+          "tournamentScore": 21
+        },
+        {
+          "name": "Felice Loffo",
+          "initialRating": 222.03739071952336,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 13.611489800882094
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -0.14939457994056388
+            },
+            {
+              "gamesWon": 0,
+              "gamesLost": 1,
+              "ratingIncrement": -0.7155835369777076
+            }
+          ],
+          "tournamentGamesWon": 13,
+          "tournamentGamesLost": 14,
+          "tournamentMatchesWon": 1,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 2,
+          "tournamentRatingIncrement": 12.746511683963822,
+          "tournamentScore": 13
+        },
+        {
+          "name": "Gemma Preziosa",
+          "initialRating": 1698.4515447837616,
+          "totalMatchesPlayed": 52,
+          "KFactor": 20,
+          "matchesResult": [
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -14.848897964598647
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 1,
+              "ratingIncrement": 0.03550245491619641
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 0,
+              "ratingIncrement": 0.4770556913184709
+            }
+          ],
+          "tournamentGamesWon": 8,
+          "tournamentGamesLost": 9,
+          "tournamentMatchesWon": 2,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 1,
+          "tournamentRatingIncrement": -14.33633981836398,
+          "tournamentScore": 8
+        },
+        {
+          "name": "Franca Mente",
+          "initialRating": 401.87055756715426,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -14.848897964598647
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 2,
+              "ratingIncrement": -0.07100490983239031
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 5,
+              "ratingIncrement": -6.1945587351562414
+            }
+          ],
+          "tournamentGamesWon": 8,
+          "tournamentGamesLost": 15,
+          "tournamentMatchesWon": 0,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 3,
+          "tournamentRatingIncrement": -21.11446160958728,
+          "tournamentScore": 8
+        },
+        {
+          "name": "Guglielmo Cancelli",
+          "initialRating": 1601.8705575671543,
+          "totalMatchesPlayed": 52,
+          "KFactor": 20,
+          "matchesResult": [
+            {
+              "gamesWon": 2,
+              "gamesLost": 0,
+              "ratingIncrement": 26.53241735880566
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 1,
+              "ratingIncrement": 0.03550245491619641
+            },
+            {
+              "gamesWon": 0,
+              "gamesLost": 1,
+              "ratingIncrement": -0.7155835369777076
+            }
+          ],
+          "tournamentGamesWon": 4,
+          "tournamentGamesLost": 2,
+          "tournamentMatchesWon": 2,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 1,
+          "tournamentRatingIncrement": 25.85233627674415,
+          "tournamentScore": 4
+        },
+        {
+          "name": "Bianca Neri",
+          "initialRating": 698.4515447837616,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 2,
+              "gamesLost": 0,
+              "ratingIncrement": 26.53241735880566
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 2,
+              "ratingIncrement": -0.07100490983239031
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 2,
+              "ratingIncrement": 4.258759130419916
+            }
+          ],
+          "tournamentGamesWon": 8,
+          "tournamentGamesLost": 4,
+          "tournamentMatchesWon": 2,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 1,
+          "tournamentRatingIncrement": 30.720171579393188,
+          "tournamentScore": 8
+        },
+        {
+          "name": "Pippo Franco",
+          "initialRating": 1592.2847116313924,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 0,
+              "gamesLost": 2,
+              "ratingIncrement": -26.53241735880566
+            },
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 0.13694503161218147
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 5,
+              "ratingIncrement": -6.1945587351562414
+            }
+          ],
+          "tournamentGamesWon": 10,
+          "tournamentGamesLost": 12,
+          "tournamentMatchesWon": 1,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 2,
+          "tournamentRatingIncrement": -32.590031062349716,
+          "tournamentScore": 10
+        },
+        {
+          "name": "Bruno Biondi",
+          "initialRating": 1415.0373907195235,
+          "totalMatchesPlayed": 52,
+          "KFactor": 20,
+          "matchesResult": [
+            {
+              "gamesWon": 0,
+              "gamesLost": 2,
+              "ratingIncrement": -26.53241735880566
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -0.14939457994056388
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 0,
+              "ratingIncrement": 0.4770556913184709
+            }
+          ],
+          "tournamentGamesWon": 6,
+          "tournamentGamesLost": 10,
+          "tournamentMatchesWon": 1,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 2,
+          "tournamentRatingIncrement": -26.204756247427753,
+          "tournamentScore": 6
+        }
+      ],
+      "matches": [
+        {
+          "teams": [
+            {
+              "player": [
+                "Flip Trmon",
+                "Felice Loffo"
+              ],
+              "initialRating": 1053.661051175458,
+              "KFactor": 27.5,
+              "gamesWon": 8
+            },
+            {
+              "player": [
+                "Gemma Preziosa",
+                "Franca Mente"
+              ],
+              "initialRating": 1050.161051175458,
+              "KFactor": 30,
+              "gamesWon": 5
+            }
+          ]
+        },
+        {
+          "teams": [
+            {
+              "player": [
+                "Guglielmo Cancelli",
+                "Bianca Neri"
+              ],
+              "initialRating": 1150.161051175458,
+              "KFactor": 30,
+              "gamesWon": 2
+            },
+            {
+              "player": [
+                "Pippo Franco",
+                "Bruno Biondi"
+              ],
+              "initialRating": 1503.661051175458,
+              "KFactor": 30,
+              "gamesWon": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "playersBeforeRound": [
+        {
+          "name": "Flip Trmon",
+          "initialRating": 1885.2847116313924,
+          "totalMatchesPlayed": 52,
+          "KFactor": 15,
+          "matchesResult": [
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 13.611489800882094
+            },
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 0.13694503161218147
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 2,
+              "ratingIncrement": 4.258759130419916
+            }
+          ],
+          "tournamentGamesWon": 21,
+          "tournamentGamesLost": 12,
+          "tournamentMatchesWon": 3,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 0,
+          "tournamentRatingIncrement": 18.007193962914194,
+          "tournamentScore": 21
+        },
+        {
+          "name": "Pippo Franco",
+          "initialRating": 1592.2847116313924,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 0,
+              "gamesLost": 2,
+              "ratingIncrement": -26.53241735880566
+            },
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 0.13694503161218147
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 5,
+              "ratingIncrement": -6.1945587351562414
+            }
+          ],
+          "tournamentGamesWon": 10,
+          "tournamentGamesLost": 12,
+          "tournamentMatchesWon": 1,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 2,
+          "tournamentRatingIncrement": -32.590031062349716,
+          "tournamentScore": 10
+        },
+        {
+          "name": "Felice Loffo",
+          "initialRating": 222.03739071952336,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 13.611489800882094
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -0.14939457994056388
+            },
+            {
+              "gamesWon": 0,
+              "gamesLost": 1,
+              "ratingIncrement": -0.7155835369777076
+            }
+          ],
+          "tournamentGamesWon": 13,
+          "tournamentGamesLost": 14,
+          "tournamentMatchesWon": 1,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 2,
+          "tournamentRatingIncrement": 12.746511683963822,
+          "tournamentScore": 13
+        },
+        {
+          "name": "Bruno Biondi",
+          "initialRating": 1415.0373907195235,
+          "totalMatchesPlayed": 52,
+          "KFactor": 20,
+          "matchesResult": [
+            {
+              "gamesWon": 0,
+              "gamesLost": 2,
+              "ratingIncrement": -26.53241735880566
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -0.14939457994056388
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 0,
+              "ratingIncrement": 0.4770556913184709
+            }
+          ],
+          "tournamentGamesWon": 6,
+          "tournamentGamesLost": 10,
+          "tournamentMatchesWon": 1,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 2,
+          "tournamentRatingIncrement": -26.204756247427753,
+          "tournamentScore": 6
+        },
+        {
+          "name": "Guglielmo Cancelli",
+          "initialRating": 1601.8705575671543,
+          "totalMatchesPlayed": 52,
+          "KFactor": 20,
+          "matchesResult": [
+            {
+              "gamesWon": 2,
+              "gamesLost": 0,
+              "ratingIncrement": 26.53241735880566
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 1,
+              "ratingIncrement": 0.03550245491619641
+            },
+            {
+              "gamesWon": 0,
+              "gamesLost": 1,
+              "ratingIncrement": -0.7155835369777076
+            }
+          ],
+          "tournamentGamesWon": 4,
+          "tournamentGamesLost": 2,
+          "tournamentMatchesWon": 2,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 1,
+          "tournamentRatingIncrement": 25.85233627674415,
+          "tournamentScore": 4
+        },
+        {
+          "name": "Gemma Preziosa",
+          "initialRating": 1698.4515447837616,
+          "totalMatchesPlayed": 52,
+          "KFactor": 20,
+          "matchesResult": [
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -14.848897964598647
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 1,
+              "ratingIncrement": 0.03550245491619641
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 0,
+              "ratingIncrement": 0.4770556913184709
+            }
+          ],
+          "tournamentGamesWon": 8,
+          "tournamentGamesLost": 9,
+          "tournamentMatchesWon": 2,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 1,
+          "tournamentRatingIncrement": -14.33633981836398,
+          "tournamentScore": 8
+        },
+        {
+          "name": "Bianca Neri",
+          "initialRating": 698.4515447837616,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 2,
+              "gamesLost": 0,
+              "ratingIncrement": 26.53241735880566
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 2,
+              "ratingIncrement": -0.07100490983239031
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 2,
+              "ratingIncrement": 4.258759130419916
+            }
+          ],
+          "tournamentGamesWon": 8,
+          "tournamentGamesLost": 4,
+          "tournamentMatchesWon": 2,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 1,
+          "tournamentRatingIncrement": 30.720171579393188,
+          "tournamentScore": 8
+        },
+        {
+          "name": "Franca Mente",
+          "initialRating": 401.87055756715426,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -14.848897964598647
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 2,
+              "ratingIncrement": -0.07100490983239031
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 5,
+              "ratingIncrement": -6.1945587351562414
+            }
+          ],
+          "tournamentGamesWon": 8,
+          "tournamentGamesLost": 15,
+          "tournamentMatchesWon": 0,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 3,
+          "tournamentRatingIncrement": -21.11446160958728,
+          "tournamentScore": 8
+        }
+      ],
+      "playersAfterRound": [
+        {
+          "name": "Flip Trmon",
+          "initialRating": 1885.2847116313924,
+          "totalMatchesPlayed": 52,
+          "KFactor": 15,
+          "matchesResult": [
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 13.611489800882094
+            },
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 0.13694503161218147
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 2,
+              "ratingIncrement": 4.258759130419916
+            }
+          ],
+          "tournamentGamesWon": 21,
+          "tournamentGamesLost": 12,
+          "tournamentMatchesWon": 3,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 0,
+          "tournamentRatingIncrement": 18.007193962914194,
+          "tournamentScore": 21
+        },
+        {
+          "name": "Pippo Franco",
+          "initialRating": 1592.2847116313924,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 0,
+              "gamesLost": 2,
+              "ratingIncrement": -26.53241735880566
+            },
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 0.13694503161218147
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 5,
+              "ratingIncrement": -6.1945587351562414
+            }
+          ],
+          "tournamentGamesWon": 10,
+          "tournamentGamesLost": 12,
+          "tournamentMatchesWon": 1,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 2,
+          "tournamentRatingIncrement": -32.590031062349716,
+          "tournamentScore": 10
+        },
+        {
+          "name": "Felice Loffo",
+          "initialRating": 222.03739071952336,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 13.611489800882094
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -0.14939457994056388
+            },
+            {
+              "gamesWon": 0,
+              "gamesLost": 1,
+              "ratingIncrement": -0.7155835369777076
+            }
+          ],
+          "tournamentGamesWon": 13,
+          "tournamentGamesLost": 14,
+          "tournamentMatchesWon": 1,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 2,
+          "tournamentRatingIncrement": 12.746511683963822,
+          "tournamentScore": 13
+        },
+        {
+          "name": "Bruno Biondi",
+          "initialRating": 1415.0373907195235,
+          "totalMatchesPlayed": 52,
+          "KFactor": 20,
+          "matchesResult": [
+            {
+              "gamesWon": 0,
+              "gamesLost": 2,
+              "ratingIncrement": -26.53241735880566
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -0.14939457994056388
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 0,
+              "ratingIncrement": 0.4770556913184709
+            }
+          ],
+          "tournamentGamesWon": 6,
+          "tournamentGamesLost": 10,
+          "tournamentMatchesWon": 1,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 2,
+          "tournamentRatingIncrement": -26.204756247427753,
+          "tournamentScore": 6
+        },
+        {
+          "name": "Guglielmo Cancelli",
+          "initialRating": 1601.8705575671543,
+          "totalMatchesPlayed": 52,
+          "KFactor": 20,
+          "matchesResult": [
+            {
+              "gamesWon": 2,
+              "gamesLost": 0,
+              "ratingIncrement": 26.53241735880566
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 1,
+              "ratingIncrement": 0.03550245491619641
+            },
+            {
+              "gamesWon": 0,
+              "gamesLost": 1,
+              "ratingIncrement": -0.7155835369777076
+            }
+          ],
+          "tournamentGamesWon": 4,
+          "tournamentGamesLost": 2,
+          "tournamentMatchesWon": 2,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 1,
+          "tournamentRatingIncrement": 25.85233627674415,
+          "tournamentScore": 4
+        },
+        {
+          "name": "Gemma Preziosa",
+          "initialRating": 1698.4515447837616,
+          "totalMatchesPlayed": 52,
+          "KFactor": 20,
+          "matchesResult": [
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -14.848897964598647
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 1,
+              "ratingIncrement": 0.03550245491619641
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 0,
+              "ratingIncrement": 0.4770556913184709
+            }
+          ],
+          "tournamentGamesWon": 8,
+          "tournamentGamesLost": 9,
+          "tournamentMatchesWon": 2,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 1,
+          "tournamentRatingIncrement": -14.33633981836398,
+          "tournamentScore": 8
+        },
+        {
+          "name": "Bianca Neri",
+          "initialRating": 698.4515447837616,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 2,
+              "gamesLost": 0,
+              "ratingIncrement": 26.53241735880566
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 2,
+              "ratingIncrement": -0.07100490983239031
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 2,
+              "ratingIncrement": 4.258759130419916
+            }
+          ],
+          "tournamentGamesWon": 8,
+          "tournamentGamesLost": 4,
+          "tournamentMatchesWon": 2,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 1,
+          "tournamentRatingIncrement": 30.720171579393188,
+          "tournamentScore": 8
+        },
+        {
+          "name": "Franca Mente",
+          "initialRating": 401.87055756715426,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -14.848897964598647
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 2,
+              "ratingIncrement": -0.07100490983239031
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 5,
+              "ratingIncrement": -6.1945587351562414
+            }
+          ],
+          "tournamentGamesWon": 8,
+          "tournamentGamesLost": 15,
+          "tournamentMatchesWon": 0,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 3,
+          "tournamentRatingIncrement": -21.11446160958728,
+          "tournamentScore": 8
+        }
+      ],
+      "matches": [
+        {
+          "teams": [
+            {
+              "player": [
+                "Flip Trmon",
+                "Pippo Franco"
+              ],
+              "initialRating": 1738.7847116313924,
+              "KFactor": 27.5,
+              "gamesWon": 8
+            },
+            {
+              "player": [
+                "Felice Loffo",
+                "Bruno Biondi"
+              ],
+              "initialRating": 818.5373907195234,
+              "KFactor": 30,
+              "gamesWon": 5
+            }
+          ]
+        },
+        {
+          "teams": [
+            {
+              "player": [
+                "Guglielmo Cancelli",
+                "Gemma Preziosa"
+              ],
+              "initialRating": 1650.161051175458,
+              "KFactor": 20,
+              "gamesWon": 2
+            },
+            {
+              "player": [
+                "Bianca Neri",
+                "Franca Mente"
+              ],
+              "initialRating": 550.1610511754579,
+              "KFactor": 40,
+              "gamesWon": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "playersBeforeRound": [
+        {
+          "name": "Flip Trmon",
+          "initialRating": 1885.2847116313924,
+          "totalMatchesPlayed": 52,
+          "KFactor": 15,
+          "matchesResult": [
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 13.611489800882094
+            },
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 0.13694503161218147
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 2,
+              "ratingIncrement": 4.258759130419916
+            }
+          ],
+          "tournamentGamesWon": 21,
+          "tournamentGamesLost": 12,
+          "tournamentMatchesWon": 3,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 0,
+          "tournamentRatingIncrement": 18.007193962914194,
+          "tournamentScore": 21
+        },
+        {
+          "name": "Bianca Neri",
+          "initialRating": 698.4515447837616,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 2,
+              "gamesLost": 0,
+              "ratingIncrement": 26.53241735880566
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 2,
+              "ratingIncrement": -0.07100490983239031
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 2,
+              "ratingIncrement": 4.258759130419916
+            }
+          ],
+          "tournamentGamesWon": 8,
+          "tournamentGamesLost": 4,
+          "tournamentMatchesWon": 2,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 1,
+          "tournamentRatingIncrement": 30.720171579393188,
+          "tournamentScore": 8
+        },
+        {
+          "name": "Pippo Franco",
+          "initialRating": 1592.2847116313924,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 0,
+              "gamesLost": 2,
+              "ratingIncrement": -26.53241735880566
+            },
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 0.13694503161218147
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 5,
+              "ratingIncrement": -6.1945587351562414
+            }
+          ],
+          "tournamentGamesWon": 10,
+          "tournamentGamesLost": 12,
+          "tournamentMatchesWon": 1,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 2,
+          "tournamentRatingIncrement": -32.590031062349716,
+          "tournamentScore": 10
+        },
+        {
+          "name": "Franca Mente",
+          "initialRating": 401.87055756715426,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -14.848897964598647
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 2,
+              "ratingIncrement": -0.07100490983239031
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 5,
+              "ratingIncrement": -6.1945587351562414
+            }
+          ],
+          "tournamentGamesWon": 8,
+          "tournamentGamesLost": 15,
+          "tournamentMatchesWon": 0,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 3,
+          "tournamentRatingIncrement": -21.11446160958728,
+          "tournamentScore": 8
+        },
+        {
+          "name": "Guglielmo Cancelli",
+          "initialRating": 1601.8705575671543,
+          "totalMatchesPlayed": 52,
+          "KFactor": 20,
+          "matchesResult": [
+            {
+              "gamesWon": 2,
+              "gamesLost": 0,
+              "ratingIncrement": 26.53241735880566
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 1,
+              "ratingIncrement": 0.03550245491619641
+            },
+            {
+              "gamesWon": 0,
+              "gamesLost": 1,
+              "ratingIncrement": -0.7155835369777076
+            }
+          ],
+          "tournamentGamesWon": 4,
+          "tournamentGamesLost": 2,
+          "tournamentMatchesWon": 2,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 1,
+          "tournamentRatingIncrement": 25.85233627674415,
+          "tournamentScore": 4
+        },
+        {
+          "name": "Felice Loffo",
+          "initialRating": 222.03739071952336,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 13.611489800882094
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -0.14939457994056388
+            },
+            {
+              "gamesWon": 0,
+              "gamesLost": 1,
+              "ratingIncrement": -0.7155835369777076
+            }
+          ],
+          "tournamentGamesWon": 13,
+          "tournamentGamesLost": 14,
+          "tournamentMatchesWon": 1,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 2,
+          "tournamentRatingIncrement": 12.746511683963822,
+          "tournamentScore": 13
+        },
+        {
+          "name": "Gemma Preziosa",
+          "initialRating": 1698.4515447837616,
+          "totalMatchesPlayed": 52,
+          "KFactor": 20,
+          "matchesResult": [
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -14.848897964598647
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 1,
+              "ratingIncrement": 0.03550245491619641
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 0,
+              "ratingIncrement": 0.4770556913184709
+            }
+          ],
+          "tournamentGamesWon": 8,
+          "tournamentGamesLost": 9,
+          "tournamentMatchesWon": 2,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 1,
+          "tournamentRatingIncrement": -14.33633981836398,
+          "tournamentScore": 8
+        },
+        {
+          "name": "Bruno Biondi",
+          "initialRating": 1415.0373907195235,
+          "totalMatchesPlayed": 52,
+          "KFactor": 20,
+          "matchesResult": [
+            {
+              "gamesWon": 0,
+              "gamesLost": 2,
+              "ratingIncrement": -26.53241735880566
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -0.14939457994056388
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 0,
+              "ratingIncrement": 0.4770556913184709
+            }
+          ],
+          "tournamentGamesWon": 6,
+          "tournamentGamesLost": 10,
+          "tournamentMatchesWon": 1,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 2,
+          "tournamentRatingIncrement": -26.204756247427753,
+          "tournamentScore": 6
+        }
+      ],
+      "playersAfterRound": [
+        {
+          "name": "Flip Trmon",
+          "initialRating": 1885.2847116313924,
+          "totalMatchesPlayed": 52,
+          "KFactor": 15,
+          "matchesResult": [
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 13.611489800882094
+            },
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 0.13694503161218147
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 2,
+              "ratingIncrement": 4.258759130419916
+            }
+          ],
+          "tournamentGamesWon": 21,
+          "tournamentGamesLost": 12,
+          "tournamentMatchesWon": 3,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 0,
+          "tournamentRatingIncrement": 18.007193962914194,
+          "tournamentScore": 21
+        },
+        {
+          "name": "Bianca Neri",
+          "initialRating": 698.4515447837616,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 2,
+              "gamesLost": 0,
+              "ratingIncrement": 26.53241735880566
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 2,
+              "ratingIncrement": -0.07100490983239031
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 2,
+              "ratingIncrement": 4.258759130419916
+            }
+          ],
+          "tournamentGamesWon": 8,
+          "tournamentGamesLost": 4,
+          "tournamentMatchesWon": 2,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 1,
+          "tournamentRatingIncrement": 30.720171579393188,
+          "tournamentScore": 8
+        },
+        {
+          "name": "Pippo Franco",
+          "initialRating": 1592.2847116313924,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 0,
+              "gamesLost": 2,
+              "ratingIncrement": -26.53241735880566
+            },
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 0.13694503161218147
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 5,
+              "ratingIncrement": -6.1945587351562414
+            }
+          ],
+          "tournamentGamesWon": 10,
+          "tournamentGamesLost": 12,
+          "tournamentMatchesWon": 1,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 2,
+          "tournamentRatingIncrement": -32.590031062349716,
+          "tournamentScore": 10
+        },
+        {
+          "name": "Franca Mente",
+          "initialRating": 401.87055756715426,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -14.848897964598647
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 2,
+              "ratingIncrement": -0.07100490983239031
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 5,
+              "ratingIncrement": -6.1945587351562414
+            }
+          ],
+          "tournamentGamesWon": 8,
+          "tournamentGamesLost": 15,
+          "tournamentMatchesWon": 0,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 3,
+          "tournamentRatingIncrement": -21.11446160958728,
+          "tournamentScore": 8
+        },
+        {
+          "name": "Guglielmo Cancelli",
+          "initialRating": 1601.8705575671543,
+          "totalMatchesPlayed": 52,
+          "KFactor": 20,
+          "matchesResult": [
+            {
+              "gamesWon": 2,
+              "gamesLost": 0,
+              "ratingIncrement": 26.53241735880566
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 1,
+              "ratingIncrement": 0.03550245491619641
+            },
+            {
+              "gamesWon": 0,
+              "gamesLost": 1,
+              "ratingIncrement": -0.7155835369777076
+            }
+          ],
+          "tournamentGamesWon": 4,
+          "tournamentGamesLost": 2,
+          "tournamentMatchesWon": 2,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 1,
+          "tournamentRatingIncrement": 25.85233627674415,
+          "tournamentScore": 4
+        },
+        {
+          "name": "Felice Loffo",
+          "initialRating": 222.03739071952336,
+          "totalMatchesPlayed": 5,
+          "KFactor": 40,
+          "matchesResult": [
+            {
+              "gamesWon": 8,
+              "gamesLost": 5,
+              "ratingIncrement": 13.611489800882094
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -0.14939457994056388
+            },
+            {
+              "gamesWon": 0,
+              "gamesLost": 1,
+              "ratingIncrement": -0.7155835369777076
+            }
+          ],
+          "tournamentGamesWon": 13,
+          "tournamentGamesLost": 14,
+          "tournamentMatchesWon": 1,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 2,
+          "tournamentRatingIncrement": 12.746511683963822,
+          "tournamentScore": 13
+        },
+        {
+          "name": "Gemma Preziosa",
+          "initialRating": 1698.4515447837616,
+          "totalMatchesPlayed": 52,
+          "KFactor": 20,
+          "matchesResult": [
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -14.848897964598647
+            },
+            {
+              "gamesWon": 2,
+              "gamesLost": 1,
+              "ratingIncrement": 0.03550245491619641
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 0,
+              "ratingIncrement": 0.4770556913184709
+            }
+          ],
+          "tournamentGamesWon": 8,
+          "tournamentGamesLost": 9,
+          "tournamentMatchesWon": 2,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 1,
+          "tournamentRatingIncrement": -14.33633981836398,
+          "tournamentScore": 8
+        },
+        {
+          "name": "Bruno Biondi",
+          "initialRating": 1415.0373907195235,
+          "totalMatchesPlayed": 52,
+          "KFactor": 20,
+          "matchesResult": [
+            {
+              "gamesWon": 0,
+              "gamesLost": 2,
+              "ratingIncrement": -26.53241735880566
+            },
+            {
+              "gamesWon": 5,
+              "gamesLost": 8,
+              "ratingIncrement": -0.14939457994056388
+            },
+            {
+              "gamesWon": 1,
+              "gamesLost": 0,
+              "ratingIncrement": 0.4770556913184709
+            }
+          ],
+          "tournamentGamesWon": 6,
+          "tournamentGamesLost": 10,
+          "tournamentMatchesWon": 1,
+          "tournamentMatchesDrawn": 0,
+          "tournamentMatchesLost": 2,
+          "tournamentRatingIncrement": -26.204756247427753,
+          "tournamentScore": 6
+        }
+      ],
+      "matches": [
+        {
+          "teams": [
+            {
+              "player": [
+                "Flip Trmon",
+                "Bianca Neri"
+              ],
+              "initialRating": 1291.868128207577,
+              "KFactor": 27.5,
+              "gamesWon": 5
+            },
+            {
+              "player": [
+                "Pippo Franco",
+                "Franca Mente"
+              ],
+              "initialRating": 997.0776345992733,
+              "KFactor": 40,
+              "gamesWon": 2
+            }
+          ]
+        },
+        {
+          "teams": [
+            {
+              "player": [
+                "Guglielmo Cancelli",
+                "Felice Loffo"
+              ],
+              "initialRating": 911.9539741433388,
+              "KFactor": 30,
+              "gamesWon": 0
+            },
+            {
+              "player": [
+                "Gemma Preziosa",
+                "Bruno Biondi"
+              ],
+              "initialRating": 1556.7444677516426,
+              "KFactor": 20,
+              "gamesWon": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
