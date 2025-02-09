@@ -44,7 +44,7 @@ Players must be in the registered list. Currently, there is a JSON file for this
   - _Random:_ (like above)
   - _Semi-final and final:_ In this case, there will be just another round. The winning teams will face each other for the first and second place, and the losing teams will face each other for the third and fourth place.
   - _Winners with Losers:_ In this case, the winning players will be separated and will play in the same team with the defeated players.
-  - _Fixed rotation:_ In this case, there is a fixed rotation scheme for the players. Here is the scheme:
+  - _Fixed rotation:_ In this case, there is a fixed rotation scheme for the players. Same color indicates same team, here is the scheme:
     ![Fixed Rotation](/assets/screenshots/FixedRotation.jpg)
 
 - Select the criterion and go to the next step.
