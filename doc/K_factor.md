@@ -1,3 +1,5 @@
+# K-factor Table
+
 | Matches number | Rating | K |
 |---|---|---|
 | < 10 | All | 40 |
@@ -5,7 +7,6 @@
 | 10-25 | >= 1500 | 25 |
 | > 25 | < 1800 | 20 |
 | > 25 | >= 1800 | 15 |
-
 
 This table defines how to determine the K-factor for a player in a rating system, likely for a game like padel.
 
